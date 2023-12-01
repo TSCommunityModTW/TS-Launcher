@@ -3,7 +3,7 @@
 <!-- <em><h5 align="center">(全名 TS Launcher)</h5></em> -->
 <h6 align="center">Develop Minecraft Mods Launcher using Tauri / React framework and Node.js</h6>
 <p align="center">使用 Tauri / React 框架和 Node.js / Rust 開發 Minecraft Mods Launcher (啟動器)</p>
-## 銘謝
-- Yu - yucheng._.0918 (TSLuncher主代碼撰寫)
-- 阿倫LUN - lun0225
-- 小雷 - Raw.air
+<h3 align="center"> 銘謝
+<p align="center">- Yu - yucheng._.0918 (TSLuncher代碼撰寫)
+<p align="center">- 阿倫LUN - lun0225
+<p align="center">- 小雷 - Raw.air
