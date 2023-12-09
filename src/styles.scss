@@ -1,0 +1,37 @@
+body {
+    @font-face {
+        font-family: "jfOpenhuninn";
+        font-style: normal;
+        font-weight: 600;
+        src: url("./assets/fonts/jf-openhuninn-2.0.ttf") format("truetype");
+    }
+
+    font-family: "jfOpenhuninn", --font-chinese-traditional;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    margin: 0;
+    overflow: hidden;
+    line-height: 1.41;
+    background-color: #240046;
+}
+
+:root {
+    --font-chinese-traditional: {
+        Whitney,
+        "Microsoft JhengHei",
+        微軟正黑體,
+        "Microsoft JhengHei UI",
+        "Microsoft YaHei",
+        微軟雅黑,
+        宋体,
+        SimSun,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif
+    }
+}

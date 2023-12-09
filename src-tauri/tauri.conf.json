@@ -6,8 +6,8 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "TS-Launcher",
-    "version": "0.0.0"
+    "productName": "TSLauncher",
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -15,12 +15,24 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "window": {
+        "create": true,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true,
+        "setDecorations": true
       }
     },
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "com.tsmodservers",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -34,11 +46,16 @@
     },
     "windows": [
       {
+        "title": "TSlauncher",
+        "width": 1280,
+        "height": 720,
+        "minWidth": 1280,
+        "minHeight": 720,
+        "resizable": false,
         "fullscreen": false,
-        "resizable": true,
-        "title": "ts-launcher",
-        "width": 800,
-        "height": 600
+        "focus": true,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true
       }
     ]
   }

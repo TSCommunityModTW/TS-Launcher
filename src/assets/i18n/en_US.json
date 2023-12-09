@@ -1,0 +1,352 @@
+{
+    "loading": {
+        "text_1": "Loading"
+    },
+    "login": {
+        "title": "Welcome Player!",
+        "subTitle_1": "Please select a login method",
+        "subTitle_2": "We're happy that you use our launcher",
+        "loginState": "Stay logged in",
+        "backSelect": "Back to login",
+        "forgetPassword": "Forgot password?",
+        "buttonText": "Login",
+        "loadingText": "Logging in"
+    },
+    "mainGameLog": {
+        "menu": {
+            "title_1": {
+                "title": "Record",
+                "subTitle_1": "Game"
+            },
+            "title_2": {
+                "title": "Open",
+                "subTitle_1": "Logs folder"
+            }
+        },
+        "record": {
+            "title": "Minecraft Game Record",
+            "button_1": {
+                "text": "export-file.txt"
+            },
+            "fontButton": {
+                "button_1": "小",
+                "button_2": "中",
+                "button_3": "大"
+            }
+        }
+    },
+    "main": {
+        "components": {
+            "buttonPlay": {
+                "playText_1": "Start Game",
+                "playText_2": "Game is starting",
+                "playText_3": "Game in progress",
+                "playText_4": "Game is being repaied",
+                "playText_5": "Repair done",
+                "playText_6": "Game stopped",
+                "playText_7": "Repair in progress"
+            },
+            "serverList": {
+                "title_1": "Server"
+            },
+            "topPlayer": {
+                "playerMenu": {
+                    "select_1": "Switch account",
+                    "select_2": "Launcher settings",
+                    "select_3": "Log out"
+                }
+            }
+        }
+    },
+    "setting": {
+        "menu": {
+            "title_1": {
+                "title": "Launcher Settings",
+                "subTitle_1": "General",
+                "subTitle_2": "Java",
+                "subTitle_3": "Language"
+            },
+            "title_2": {
+                "title": "Initiator Information",
+                "subTitle_1": "Changelog",
+                "subTitle_2": "Developer"
+            }
+        },
+        "components": {
+            "general": {
+                "item_1": {
+                    "title": "Keep the launcher open when the game starts",
+                    "dependencies": "If this feature is turned off, it will also disable the ability to open the monitoring game log window"
+                },
+                "item_2": {
+                    "title": "Open the monitor game log window when the game starts",
+                    "dependencies": ""
+                }
+            },
+            "information": {
+                "launcherInfo": {
+                    "title_1": "Launcher Launcher",
+                    "title_2": "Version:"
+                },
+                "developersList": {
+                    "developers_1": {
+                        "description": "Anonymous server as server master and administrator"
+                    }
+                }
+            },
+            "language": {
+                "buttonTitle": "Assist translation",
+                "zh_tw": {
+                    "title": "Traditional Chinese",
+                    "description": "Traditional Chinese (Taiwan)"
+                },
+                "en_us": {
+                    "title": "English",
+                    "description": "English (United States)"
+                }
+            }
+        }
+    },
+    "instanceSetting": {
+        "menu": {
+            "title_1": {
+                "title": "Settings",
+                "subTitle_1": "Java",
+                "subTitle_2": "Module",
+                "subTitle_3": "Resource Pack"
+            },
+            "title_2": {
+                "title": "Data",
+                "subTitle_1": "Screenshot"
+            },
+            "title_3": {
+                "title": "Function",
+                "subTitle_1": "Scan Repair"
+            },
+            "title_4": {
+                "title": "Open",
+                "button_1": "Directory Folder",
+                "button_2": "Mod Folder"
+            }
+        },
+        "components": {
+            "flx": {
+                "selectFlx": {
+                    "title": "Select Repair Mode",
+                    "hiddenAlertConfirm": {
+                        "title": "Attention!",
+                        "description": "Before using the repair function, please note that this function will delete files, including texture packs, light and shadows, and mods that you added yourself. If necessary, please backup it first."
+                    },
+                    "disableSelect": {
+                        "title": "Cannot use the repair, please close the game first"
+                    },
+                    "selects": {
+                        "item_1": {
+                            "typeTitle": "Simple fix",
+                            "description": "Faster, but may not help with the fix"
+                        },
+                        "item_2": {
+                            "typeTitle": "Deep Fix",
+                            "description": "Very slow, it might be helpful to fix it"
+                        }
+                    }
+                },
+                "title": {
+                    "simple": "Simple Fix",
+                    "deep": "Deep Repair"
+                },
+                "percentageBig": {
+                    "texts": {
+                        "text_1": "Repairing stopped...",
+                        "text_2": "The repair has been completed, try opening the game to see if it solves your problem"
+                    },
+                    "title_1": "Overall progress",
+                    "title_2": "Progress"
+                },
+                "buttons": {
+                    "button_1": "Export Logs(.txt)"
+                },
+                "logs": {
+                    "title": "Repair Log"
+                }
+            },
+            "modList": {
+                "disabled": {
+                    "title": "Cannot change the mod, please close the game first"
+                },
+                "searchButton": {
+                    "button_1": {
+                        "title": "Add Module"
+                    }
+                },
+                "list": {
+                    "title_1": "Status",
+                    "title_2": "Title",
+                    "filter": {
+                        "title": "Conditional Filter",
+                        "checkbox_1": {
+                            "title": "Enable"
+                        },
+                        "checkbox_2": {
+                            "title": "Disabled"
+                        }
+                    },
+                    "hiddenAlertConfirm": {
+                        "title": "Are you sure you want to delete the mod?",
+                        "descriptionsSplit": {
+                            "split_1": "Module:",
+                            "split_2": "Will be permanently deleted!"
+                        }
+                    },
+                    "notMods": {
+                        "title": "No mods"
+                    }
+                }
+            },
+            "resourcePacks": {
+                "topTools": {
+                    "button_1": {
+                        "title": "View Folder"
+                    },
+                    "button_2": {
+                        "title": "Add Resource Pack"
+                    }
+                },
+                "motPacks": {
+                    "title": "There are no resource packs"
+                }
+            },
+            "screenshot": {
+                "topTools": {
+                    "button_1": {
+                        "title": "View Folder"
+                    }
+                },
+                "notScreenshots": {
+                    "title": "No screenshots"
+                }
+            }
+        }
+    },
+    "common": {
+        "components": {
+            "alertConfirm": {
+                "cancel": {
+                    "title": "Cancel"
+                },
+                "confirm": {
+                    "title": "Confirm"
+                }
+            },
+            "crashPayback": {
+                "title": {
+                    "title_minecraft": "Oops! Game crashed :(",
+                    "title_launcher": "Oops! Game crashed on launch :(",
+                    "title_flx": "糟糕了！遊戲修復崩潰了 :("
+                },
+                "buttons": {
+                    "button_1": "Don't report errors",
+                    "button_2": "I want to report an error",
+                    "button_3": "Cancel",
+                    "button_4": "Continue",
+                    "button_5": "Cancel",
+                    "button_6": "Report error"
+                },
+                "issueSend": {
+                    "title": "Privacy",
+                    "issueDescription": {
+                        "text_1": "Why does mcKismetLab collect information, records about errors?",
+                        "description_1": "We will collect your launcher usage log data and send it to mcKismetLab. This information can help the developers diagnose what problems you are encountering. When a solution is found, a solution will be released in the next update.",
+                        "text_2": "What types of information do we collect?",
+                        "description_2": "All launcher log files. Also collects information such as your OS version and launcher settings.",
+                        "text_3": "Security question?",
+                        "description_3": "We will not collect your account information to send to mcKismetLab, please use it with confidence."
+                    },
+                    "checkbox": {
+                        "title": "I understand the above"
+                    }
+                },
+                "form": {
+                    "title": "If possible, please list the steps you made wrong (optional)"
+                }
+            },
+            "parameters": {
+                "javaParameter": {
+                    "type": {
+                        "setting": {
+                            "text": "parameter"
+                        },
+                        "instanceSetting": {
+                            "checkbox": {
+                                "text": "Parameter"
+                            },
+                            "text": "(use global settings)"
+                        }
+                    }
+                },
+                "javaPath": {
+                    "type": {
+                        "setting": {
+                            "text": "Path"
+                        },
+                        "instanceSetting": {
+                            "checkbox": {
+                                "text": "Path"
+                            },
+                            "text": "(use global settings)"
+                        }
+                    },
+                    "toggleBuiltInJava": {
+                        "title": "Use built-in Java"
+                    },
+                    "stateButtons": {
+                        "state": {
+                            "title": "Status: ",
+                            "text_1": "Available path",
+                            "text_2": "Unavailable path",
+                            "text_3": "Please press the test button"
+                        },
+                        "buttons": {
+                            "button_1": {
+                                "text": "Test"
+                            },
+                            "button_2": {
+                                "text": "Auto Find"
+                            },
+                            "button_3": {
+                                "text": "Manual search"
+                            }
+                        }
+                    }
+                },
+                "ram": {
+                    "type": {
+                        "setting": {
+                            "text": "Memory"
+                        },
+                        "instanceSetting": {
+                            "checkbox": {
+                                "text": "Memory"
+                            },
+                            "text": "(use global settings)"
+                        }
+                    },
+                    "input": {
+                        "ramMax": {
+                            "text": "Max memory usage:"
+                        },
+                        "ramMin": {
+                            "text": "Min memory usage:"
+                        }
+                    },
+                    "ramFree": {
+                        "text": "Available"
+                    },
+                    "ramTotal": {
+                        "text": "Total"
+                    }
+                }
+            }
+        }
+    }
+}

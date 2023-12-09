@@ -1,7 +1,19 @@
 {
   "name": "ts-launcher",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "productName": "TSLauncher",
+  "description": "Minecraft TSLauncher",
+  "author": "Yu (https://github.com/yucheng918)",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/TSCommunityModTW/TS-Launcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TSCommunityModTW/TS-Launcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TSCommunityModTW/TS-Launcher/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -9,16 +21,24 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.5.1",
+    "i18next": "^23.7.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@tauri-apps/api": "^1.5.1"
+    "react-i18next": "^13.5.0",
+    "react-router-dom": "^6.20.1",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "@tauri-apps/cli": "^1.5.6",
+    "@types/node": "^20.10.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.0.3",
+    "sass": "^1.69.5",
     "typescript": "^5.0.2",
-    "vite": "^4.4.4",
-    "@tauri-apps/cli": "^1.5.6"
+    "vite": "^4.4.4"
   }
 }
