@@ -1,0 +1,63 @@
+import styles from "./Changelog.module.scss";
+
+import { useTranslation } from "react-i18next";
+
+export default function Changelog() {
+
+    const { t } = useTranslation();
+
+    const contextList = [
+        // {
+        //     title: "更新",
+        //     color: "#0dc468",
+        //     descriptions: [
+        //         "新增內部錯誤報告訊息"
+        //     ]
+        // },
+        {
+            title: "修復",
+            color: "#e93232",
+            descriptions: [
+                "修復啟動器下載錯誤"
+            ]
+        },
+        // {
+        //     title: "移除",
+        //     color: "#dda50c",
+        //     descriptions: [
+        //         "移除 Mojang 登入"
+        //     ]
+        // }
+    ]
+
+    return (
+        <div className={styles.changelogDiv}>
+
+            <h1 className={styles.headline}>{t("setting.menu.title_2.subTitle_1")}</h1>
+            <h2 className={styles.versionText}>{`v0.1.0`}</h2>
+
+            {
+                contextList.map(item => (
+                    <div className={styles.item}>
+
+                        <div className={styles.titleDiv}>
+                            <h1 className={styles.title} style={{ color: item.color }}>{item.title}</h1>
+                            {/* <div className={styles.titleTr}></div> */}
+                        </div>
+                        
+                        {
+                            item.descriptions.map(item => (
+                                <div className={styles.descriptionItem}>
+                                    <div className={styles.circle}></div>
+                                    <h1 className={styles.descriptionText}>{item}</h1>
+                                </div>
+                            ))
+                        }
+
+                    </div>
+                ))
+            }
+
+        </div>
+    );
+}

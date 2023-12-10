@@ -1,0 +1,63 @@
+.loadingContainer {
+ 
+    cursor: default;
+    width: 100vw;
+    height: 50vh;
+    transform: translateY(76%);
+
+    .loadingTitleContainer {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            margin-right: 2vw;
+            width: 12%;
+            height: auto;
+            // box-shadow: 0px 15px 20px 5px rgba(0,0,0,0.5);
+            animation-name: scaleAnim;
+            animation-duration: 2s;
+        }
+
+        @keyframes scaleAnim {
+            from {
+                transform: translateX(-50px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        span {
+            margin: 0 6px;
+            color: #fff;
+            font-size: 6vw;
+            font-weight: bold;
+            text-shadow: 0px 15px 5px rgba(0,0,0,0.5);
+        }
+    }
+
+    .loadingText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 8vh;
+
+        h1 {
+            margin: 0;
+            text-align: center;
+            color: #D8D8D8;
+        }
+
+        .loadingPoint {
+            display: flex;
+            justify-content: center;
+
+            p {
+                color: #D8D8D8;
+                font-size: 30px;
+            }
+        }
+    }
+}

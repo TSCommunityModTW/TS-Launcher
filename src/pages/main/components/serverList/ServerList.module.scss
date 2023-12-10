@@ -1,0 +1,146 @@
+.serverListContainer {
+
+    width: 70px;
+    box-sizing: border-box;
+
+    .focus {
+
+        position: absolute;
+        left: 13px;
+        background-color: #bdbdbd;
+
+        width: 5px;
+        height: 25px;
+
+        border-radius: 10px;
+
+        animation-name: focusAnim;
+        animation-duration: 0.2s;
+    }
+
+    @keyframes focusAnim {
+        from {
+            transform: scaleY(0);
+        }
+        to {
+            transform: scaleY(1);
+        }
+    }
+
+    .homeButton {
+
+        margin-bottom: 10px;
+
+        height: 60px;
+
+        background-color: rgba(16, 16, 16, 0.75);
+        padding: 10px;
+        border-radius: 100%;
+
+        box-sizing: border-box;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+
+        transition: all 0.2s linear;
+
+        img {
+            display: block;
+            width: 50px;
+            height: auto;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+    
+        img:active {
+            transform: scale(1);
+        }
+
+        .focusHover {
+            position: absolute;
+            background-color: #bdbdbd;
+    
+            width: 5px;
+            height: 10px;
+    
+            border-radius: 10px;
+    
+            transform: translate(-40px);
+
+            transition: all 0.2s ease-out;
+
+            opacity: 0;
+        }
+    }
+
+    .homeButton:hover > .focusHover {
+        opacity: 1;
+    }
+
+    .hr {
+        margin: 0 12px;
+        border-bottom: 4px solid #3E3E3E;
+        border-radius: 5px;
+    }
+
+    .listContainer {
+
+        box-sizing: border-box;
+
+        margin-top: 10px;
+
+        background-color: rgba(16, 16, 16, 0.75);
+        padding: 10px 10px 50px 10px;
+        border-radius: 100px;
+
+        .listItem {
+
+            margin-bottom: 10px;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                display: block;
+                width: 50px;
+                transition: all 0.2s linear;
+            }
+
+            img:hover {
+                transform: scale(1.05);
+            }
+    
+            img:active {
+                transform: scale(1);
+            }
+
+            .focusHover {
+                position: absolute;
+                background-color: #bdbdbd;
+        
+                width: 5px;
+                height: 10px;
+        
+                border-radius: 10px;
+        
+                transform: translate(-40px);
+
+                transition: all 0.2s ease-out;
+
+                opacity: 0;
+            }
+        }
+
+        .listItem:hover > .focusHover {
+            opacity: 1;
+        }
+    }
+}

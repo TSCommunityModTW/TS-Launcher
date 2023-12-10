@@ -1,21 +1,29 @@
 import React from "react";
-import Frame from "@/pages/components/Frame/Frame";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+import Loading from "@/pages/loading/Loading";
 
 export default function App() {
+    
+    const navigate = useNavigate();
 
-    const [osType, setOSType] = React.useState<"osx" | "windows" | "linux" | "unknown">("unknown");
+    React.useEffect(() => { init() }, []);
 
-    React.useEffect(() => {
-        init();
-    }, []);
-
+    // initialize
     const init = async () => {
-        setOSType("osx");
+
+        navigate("/settings");
+        // setTimeout(() => {
+        //     navigate("/login");
+        // }, 5000);
     }
+
+    const { t } = useTranslation();
 
     return (
         <>
-            <Frame windowName="main" osType={osType} />
+            <Loading text={t("loading.text_1")} />
 
             {/* <HashRouter>
                 <Switch>

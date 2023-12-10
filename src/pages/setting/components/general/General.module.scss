@@ -1,0 +1,72 @@
+.generalDiv {
+
+    width: 100%;
+
+    .headline {
+        margin: 15px 0px 20px 0px;
+        font-size: 1.6em;
+        color: #fff;
+    }
+
+    .itemDiv {
+
+        height: 75px;
+        box-sizing: border-box;
+        background: #2E2E2E;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 15px 30px 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        .disabledDiv {
+
+            position: absolute;
+            background: rgba(30, 30, 30, 0.8);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0px;
+            left: 0px;
+            border-radius: 5px;
+    
+        }
+
+        .itemLeftDiv {
+
+            h1 {
+                font-size: 20px;
+                color: #fff;
+                margin: 0;
+            }
+    
+            h2 {
+                font-size: 14px;
+                color: #D8D8D8;
+                margin: 0;
+            }
+
+        }
+
+        .itemRightDiv {
+
+            .toggle {
+                width: 42px;
+                height: 22px;
+            }
+
+        }
+
+        // transition: all 0.2s linear;
+
+    }
+
+    // .itemDiv:hover {
+
+    //     transform: scale(1.01);
+
+    // }
+}

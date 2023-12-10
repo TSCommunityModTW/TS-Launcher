@@ -27,7 +27,9 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
     "react-router-dom": "^6.20.1",
-    "react-spring": "^9.7.3"
+    "react-skinview3d": "^5.0.2",
+    "react-spring": "^9.7.3",
+    "skinview3d": "^3.0.1"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",

@@ -1,0 +1,113 @@
+.topContainer {
+
+    height: 80px;
+
+    // padding: 10px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+    .logoContainer {
+
+        img {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .playerSettingCloseContainer {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // height: 40px;
+
+        .playerContainer {
+
+            margin-right: 5px;
+
+            height: 100%;
+
+            background-color: #A238FF;
+            padding: 5px 10px 5px 20px;
+            border-radius: 15px;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                margin: 0;
+                color: #ffff;
+                font-size: 14px;
+                margin-right: 20px;
+            }
+
+            .playerBodyImg {
+
+                width: 40px;
+                height: 40px;
+
+                border-radius: 100%;
+                overflow: hidden;
+                background-position: top;
+                background-repeat: no-repeat;
+                transform: scaleX(-1);
+
+            }
+        }
+
+        .buttonContainer {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            height: 100%;
+
+            div {
+                margin-right: 5px;
+
+                // padding: 5px;
+                background-color: #A238FF;
+                border-radius: 15px;
+                box-sizing: border-box;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                cursor: pointer;
+
+                width: 50px;
+                height: 50px;
+
+                transition: all 0.2s linear;
+            }
+
+            div:hover {
+                background: #921bf9;
+                transform: scale(1.05);
+            }
+
+            div:active {
+                transform: scale(1);
+            }
+
+            .settingButton {
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            .closeButton {
+                margin-right: 0px;
+            }
+        }
+
+    }
+}

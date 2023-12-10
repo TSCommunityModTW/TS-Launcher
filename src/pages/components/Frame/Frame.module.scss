@@ -1,7 +1,6 @@
-.frameDiv {
-    -webkit-app-region: drag;
+.frameContainer {
     width: 100vw;
-    height: 26px;
+    height: 30px;
 
     position: absolute;
     top: 0;
@@ -12,7 +11,7 @@
 
     cursor: default;
 
-    .textDiv {
+    .frameText {
 
         // position: absolute;
         // left: 10px;
