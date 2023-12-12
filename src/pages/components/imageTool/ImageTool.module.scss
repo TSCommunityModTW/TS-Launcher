@@ -1,0 +1,176 @@
+.imageToolDiv {
+    width: 305px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+    .imgPreview {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 85%;
+            border-radius: 10px;
+        }
+    }
+
+    .imgPreviewEnterAnima {
+        animation-name: imgPreviewEnter;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    .imgPreviewLeaveAnima {
+        animation-name: imgPreviewLeave;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    .imgPreviewImgEnterAnima {
+        animation-name: imgPreviewImgEnter;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    .imgPreviewImgLeaveAnima {
+        animation-name: imgPreviewImgLeave;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes imgPreviewEnter {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes imgPreviewLeave {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes imgPreviewImgLeave {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(0.9);
+        }
+    }
+
+    @keyframes imgPreviewImgEnter {
+        from {
+            transform: scale(0.9);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .imageToolContextDiv {
+        position: relative;
+
+        .serverBorderDiv {
+            border: 2px solid transparent;
+            transition: all 0.1s linear;
+            border-radius: 15px;
+            padding: 2px;
+
+            .toolsDiv {
+                position: absolute;
+                top: -12px;
+                right: 5px;
+                opacity: 0;
+
+                .toolsContainerDiv {
+                    margin-right: 10px;
+                    background: #2e2e2e;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+
+                    .iconDiv {
+                        width: 50%;
+                        height: 100%;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        padding: 3px 8px;
+
+                        img {
+                            width: 25px;
+                            height: 25px;
+                            display: block;
+                        }
+
+                        img:active {
+                            transform: translateY(5%);
+                        }
+                    }
+
+                    .iconDiv:hover {
+                        background: #373737;
+                    }
+                }
+            }
+        }
+
+        .topDiv {
+            background: #141414;
+            height: 140px;
+            border-radius: 10px 10px 0px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+
+            .imageResourcePacks {
+                width: 100px;
+                border-radius: 10px;
+            }
+
+            .imageScreenshots {
+                width: 100%;
+            }
+        }
+
+        .bottomDiv {
+            background: #373737;
+            height: 35px;
+            border-radius: 0px 0px 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            h1 {
+                color: #fff;
+                font-size: 16px;
+                margin: 0;
+            }
+        }
+    }
+
+    .imageToolContextDiv:hover > .serverBorderDiv {
+        border: 2px solid rgb(150, 150, 150);
+    }
+
+    .imageToolContextDiv:hover > .serverBorderDiv .toolsDiv {
+        opacity: 1;
+    }
+}

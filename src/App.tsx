@@ -13,7 +13,7 @@ export default function App() {
     // initialize
     const init = async () => {
 
-        navigate("/settings");
+        // navigate("/main");
         // setTimeout(() => {
         //     navigate("/login");
         // }, 5000);
@@ -24,16 +24,6 @@ export default function App() {
     return (
         <>
             <Loading text={t("loading.text_1")} />
-
-            {/* <HashRouter>
-                <Switch>
-                    <Route exact path="/"><Init /></Route>
-                    <Route path="/main"><Main /></Route>
-                    <Route path="/login"><Login /></Route>
-                    <Route path="/settings"><Setting /></Route>
-                    <Route path="/instanceSetting/:serverId/:paramsMenuType"><InstanceSetting /></Route>
-                </Switch>
-            </HashRouter> */}
         </>
     );
 }

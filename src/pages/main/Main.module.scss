@@ -1,4 +1,19 @@
+@keyframes main {
+    from {
+        transform: scale(1.02);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .mainContainer {
+
+    animation-name: main;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
 
     padding: 20px 20px;
 

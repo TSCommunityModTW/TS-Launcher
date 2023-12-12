@@ -4,7 +4,8 @@ import App from "@/App";
 import Login from "@/pages/login/Login";
 import Frame from "@/pages/components/frame/Frame";
 import Main from "@/pages/main/Main";
-import Setting from "@/pages/setting/Setting";
+import Settings from "@/pages/settings/Settings";
+import InstanceSettings from "@/pages/instanceSettings/InstanceSettings";
 
 export default createBrowserRouter([
     {
@@ -24,7 +25,11 @@ export default createBrowserRouter([
             },
             {
                 path: "/settings",
-                element: <Setting />
+                element: <Settings />,
+            },
+            {
+                path: "/instanceSettings",
+                element: <InstanceSettings />
             }
         ]
     }

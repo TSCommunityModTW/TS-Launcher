@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import styles from "./Main.module.scss";
 
 import Trail from "../components/trail/Trail";
@@ -7,7 +9,10 @@ import settingLines from "@/assets/icons/setting-lines.png";
 import ButtonPlay from "./components/buttonPlay/ButtonPlay";
 import modpack from "@/assets/images/modpack.png";
 
+
 export default function Main() {
+
+    const navigate = useNavigate();
 
     const serverName = "無名伺服器";
     const title = "主服模組包伺服器";
@@ -73,7 +78,7 @@ export default function Main() {
                                     <h2 className={styles.serverNameH2}>{title}</h2>
                                     <div className={styles.buttonDiv}>
                                         <div className={styles.settingButton} onClick={() => {
-
+                                            navigate("/instanceSettings");
                                         }}>
                                             <img src={settingLines} alt="setting-lines" />
                                         </div>
@@ -85,7 +90,9 @@ export default function Main() {
                             </div>
 
                             <div className={styles.modpackContainer}>
-                                <img src={modpack} />
+                                <Trail open={true}>
+                                    <img src={modpack} />    
+                                </Trail>
                             </div>
 
                         </div>

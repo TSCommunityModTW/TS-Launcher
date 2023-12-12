@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Menu.module.scss";
+import styles from "./SettingsMenu.module.scss";
 import { useTranslation } from "react-i18next";
 // import settingImg from "../../../../../assets/icons/settings.png";
 
@@ -33,15 +33,15 @@ export default function Menu(props: IProps) {
                     <h1>{t("setting.menu.title_1.title")}</h1>
                     <div>
                         <h2 
-                            style={ menuType === 1 ? { background: "#1E1E1E", color: "#ffff" } : {} } 
+                            style={ menuType === 1 ? { background: "#A238FF", color: "#ffff" } : {} } 
                             onClick={() => onClickMenuButton(1)}
                         >{t("setting.menu.title_1.subTitle_1")}</h2>
                         <h2 
-                            style={ menuType === 2 ? { background: "#1E1E1E", color: "#ffff" } : {} }
+                            style={ menuType === 2 ? { background: "#A238FF", color: "#ffff" } : {} }
                             onClick={() => onClickMenuButton(2)}    
                         >{t("setting.menu.title_1.subTitle_2")}</h2>
                         <h2 
-                            style={ menuType === 3 ? { background: "#1E1E1E", color: "#ffff" } : {} }
+                            style={ menuType === 3 ? { background: "#A238FF", color: "#ffff" } : {} }
                             onClick={() => onClickMenuButton(3)}
                         >{t("setting.menu.title_1.subTitle_3")}</h2>
                     </div>
@@ -51,11 +51,11 @@ export default function Menu(props: IProps) {
                     <h1>{t("setting.menu.title_2.title")}</h1>
                     <div>
                         <h2 
-                            style={ menuType === 4 ? { background: "#1E1E1E", color: "#ffff" } : {} }
+                            style={ menuType === 4 ? { background: "#A238FF", color: "#ffff" } : {} }
                             onClick={() => onClickMenuButton(4)}    
                         >{t("setting.menu.title_2.subTitle_1")}</h2>
                         <h2
-                            style={ menuType === 5 ? { background: "#1E1E1E", color: "#ffff" } : {} }
+                            style={ menuType === 5 ? { background: "#A238FF", color: "#ffff" } : {} }
                             onClick={() => onClickMenuButton(5)}    
                         >{t("setting.menu.title_2.subTitle_2")}</h2>
                     </div>

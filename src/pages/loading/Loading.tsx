@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Loading.module.scss";
-import logoImg from "@/assets/images/logo/logo.png";
+import logoImg from "@/assets/images/logo/logo_1.png";
 
 import { animated, useTrail, config } from "react-spring";
 

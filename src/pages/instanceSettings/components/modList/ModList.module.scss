@@ -1,0 +1,147 @@
+.modListDiv {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    .disabledDiv {
+
+        position: absolute;
+        top: 100px;
+        background: rgba(30, 30, 30, 0.8);
+        width: 82%;
+        height: 100%;
+        z-index: 1;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .disabledBackgroundDiv {
+
+            padding: 20px 30px;
+            background: #101010;
+            border-radius: 5px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            transform: translateY(-80px);
+
+            .disabledTitle {
+                color: #fff;
+                font-size: 32px;
+                margin: 0;
+            }
+        }
+    }
+
+    .headline {
+        margin: 15px 0px 10px 0px;
+        font-size: 1.6em;
+        color: #fff;
+    }
+
+    .searchButtonDiv {
+
+        display: flex;
+        justify-content: flex-start;
+
+        .inputIcon {
+
+            width: 50%;
+            height: 40px;
+            background-color: #141414;
+
+        }
+
+        .buttonFocus {
+
+            margin-left: 10px;
+            height: 40px;
+
+        }
+
+    }
+
+    .textFilterDiv {
+
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        .leftDiv {
+
+            display: flex;
+            align-items: center;
+
+            h1 {
+                color: #fff;
+                font-size: 20px;
+                margin: 0;
+                margin-left: 5px;
+            }
+
+            h2 {
+                color: #fff;
+                font-size: 20px;
+                margin: 0;
+                margin-left: 15px;
+            }
+        }
+
+        .rightDiv {
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .checkbox {
+                margin-left: 10px;
+            }
+
+            .text {
+                color: #D8D8D8;
+                font-size: 20px;
+                margin: 0;
+                margin-right: 10px;
+            }
+        }
+
+    }
+
+    .listDiv {
+
+        margin-top: 10px;
+        // height: 480px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        flex-grow: 1;
+
+        .notModsDiv {
+
+            text-align: center;
+
+            h1 {
+                color: #fff;
+                font-size: 40px;
+                margin: 0;
+                margin-top: 20%;
+            }
+
+        }
+    }
+    
+    .listDiv::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .listDiv::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #979797;
+    }
+    
+    .listDiv::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: rgba(100, 100, 100, 0.5);
+    }
+}

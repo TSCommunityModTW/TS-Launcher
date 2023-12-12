@@ -1,0 +1,66 @@
+.resourcePacksDiv {
+
+    width: 100%;
+
+    .headline {
+        margin: 15px 0px 10px 0px;
+        font-size: 1.6em;
+        color: #fff;
+    }
+
+    .topDiv {
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .buttonFocus {
+            margin-right: 10px;
+        }
+
+        .buttonFocus button {
+            min-height: 30px;
+        }
+
+    }
+
+    .listDiv {
+
+        margin-top: 15px;
+        height: 554px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .motPacks {
+
+            width: 100%;
+            text-align: center;
+
+            h1 {
+                color: #fff;
+                font-size: 40px;
+                margin: 0;
+                margin-top: 22%;
+            }
+
+        }
+
+    }
+
+    .listDiv::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .listDiv::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #979797;
+    }
+    
+    .listDiv::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: rgba(100, 100, 100, 0.5);
+    }
+}

@@ -1,0 +1,101 @@
+.menuDiv {
+
+    box-sizing: border-box;
+    height: 100%;
+    padding: 30px 0px 20px 25px;
+    width: 200px;
+    
+    .menuContentDiv {
+
+        position: relative;
+        background: rgba(16, 16, 16, 0.75);
+        border-radius: 10px;
+        height: 100%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        .menuContentButtonDiv {
+            
+            padding: 35px 10px 15px 10px;
+            height: 100%;
+            box-sizing: border-box;
+
+            h1 {
+                font-size: 0.8em;
+                color: #a5a5a5;
+                margin: 0px;
+                margin-left: 20px;
+                margin-bottom: 8px;
+            }
+
+            h2 {
+
+                font-size: 1.2em;
+                color: #D8D8D8;
+                cursor: pointer;
+                margin: 0px;
+                margin-bottom: 3px;
+                border-radius: 5px;
+                padding: 6px 20px;
+                
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            h2:hover {
+
+                background: #A238FF;
+                color: #fff;
+
+            }
+
+            .functionButtonDiv {
+
+                margin-top: 10px;
+                margin-left: 5px;
+                padding: 0px 15px;
+
+                .functionButton {
+                    margin-bottom: 5px;
+                }
+
+                .functionButton button {
+                    min-height: 30px;
+                }
+
+                // .functionFixButton button {
+
+                //     background: #3183E1;
+
+                // }
+
+                // .functionFixButton button:hover {
+
+                //     background: #2c74c7;
+
+                // }
+
+                // .functionFixButton button:active {
+
+                //     background: #3080db;
+
+                // }
+
+            }
+        }
+
+        .tr {
+
+            background: #7B2CBF;
+            height: 2px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+
+        }
+
+    }
+
+}

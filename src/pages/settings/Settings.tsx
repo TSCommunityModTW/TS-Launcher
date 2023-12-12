@@ -1,15 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./Setting.module.scss";
+import styles from "./Settings.module.scss";
 
-import Menu from "./menu/Menu";
+import SettingsMenu from "./components/menu/SettingsMenu";
 import General from "./components/general/General";
 import Language from "./components/language/Language";
 import Changelog from "./components/changelog/Changelog";
 import Information from "./components/information/Information";
 import Parameters from "../components/parameters/Parameters";
-
 
 export default function Setting() {
 
@@ -52,7 +51,7 @@ export default function Setting() {
                 </div>
             </div>
             <div className={styles.leftDiv}>
-                <Menu menuType={menuType} onClickMenuButton={setMenuType} />
+                <SettingsMenu menuType={menuType} onClickMenuButton={setMenuType} />
             </div>
             <div className={styles.rightDiv}>
                 {
