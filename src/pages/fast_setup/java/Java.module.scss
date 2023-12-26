@@ -1,0 +1,47 @@
+.javaContainer {
+
+    width: 100vw;
+    height: 100vh;
+
+    // display: flex;
+    // justify-content: space-around;
+    // align-items: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+
+    background: rgba(15, 15, 15, 0.5);
+
+    .leftContainer {
+
+        // position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .javaIcon {
+
+            position: relative;
+
+            .javaImg {
+                position: absolute;
+                top: -160px;
+                left: -40px;
+            }
+    
+            .minecraftImg {
+                position: absolute;
+                top: -15px;
+                left: -100px;
+            }
+        }
+    }
+
+    .rightContainer {
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

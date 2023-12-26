@@ -1,0 +1,32 @@
+.linkErrorContainer {
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        color: #ffffff;
+        font-size: 55px;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+        color: #D8D8D8;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .buttonContainer {
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+    }
+}

@@ -13,9 +13,23 @@ edition = "2021"
 tauri-build = { version = "1.5", features = [] }
 
 [dependencies]
-tauri = { version = "1.5", features = [ "window-unminimize", "window-unmaximize", "window-set-decorations", "window-minimize", "window-hide", "window-start-dragging", "window-show", "window-create", "window-maximize", "window-close", "shell-open"] }
+
+allay-core = { path = "../allay-core" }
+
+tauri = { version = "1.5", features = [ "macos-private-api", "app-all", "window-unminimize", "window-unmaximize", "window-set-decorations", "window-minimize", "window-hide", "window-start-dragging", "window-show", "window-create", "window-maximize", "window-close", "shell-open"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+window-vibrancy = "0.4.3"
+
+tracing = "0.1.37"
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+tracing-error = "0.2.0"
+tracing-appender = "0.2.2"
+
+thiserror = "1.0.50"
+
+tokio = { version = "1", features = ["full"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem

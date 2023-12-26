@@ -1,0 +1,59 @@
+.welcomeContainer {
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: linear-gradient(98deg, #141414 50.67%, rgba(107, 60, 187, 0.2) 52.75%);
+
+    .leftContainer {
+        .logoImg {
+
+            width: 500px;
+            height: 500px;
+
+            transform: translateX(-100px);
+        }
+    }
+
+    .rightContainer {
+        .textButtonContainer {
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 0;
+                color: #ffffff;
+                font-size: 52px;
+            }
+        
+            h2 {
+                text-align: center;
+                margin: 0;
+                color: #D8D8D8;
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+
+            .button {
+                button {
+                    padding: 10px 60px;
+                }
+            }
+
+            .secondButton {
+                margin-top: 10px;
+            }
+
+        }
+    }
+}

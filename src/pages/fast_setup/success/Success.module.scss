@@ -1,0 +1,67 @@
+.setupSuccessContainer {
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: rgba(15, 15, 15, 0.5);
+
+    .leftContainer {
+        .logoImg {
+
+            width: 250px;
+            height: 250px;
+
+            // transform: translateX(-100px);
+        }
+    }
+
+    .rightContainer {
+        .textButtonContainer {
+
+            width: 550px;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            h1 {
+                margin: 0;
+                color: #ffffff;
+                font-size: 55px;
+            }
+
+            h2 {
+                margin: 0;
+                color: #D8D8D8;
+                font-size: 20px;
+                // margin-bottom: 20px;
+            }
+
+            .versions {
+                li {
+                    margin: 0;
+                    color: #D8D8D8;
+                    font-size: 20px;
+                }
+            }
+
+            .buttonContainer {
+
+                margin-top: 20px;
+
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+                gap: 20px;  
+            }
+        }
+    }
+}

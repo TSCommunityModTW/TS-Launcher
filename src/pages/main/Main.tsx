@@ -7,7 +7,7 @@ import ServerList from "./components/serverList/ServerList";
 import Top from "./components/top/Top";
 import settingLines from "@/assets/icons/setting-lines.png";
 import ButtonPlay from "./components/buttonPlay/ButtonPlay";
-import modpack from "@/assets/images/modpack.png";
+import modpack from "@/assets/images/miscs/modpack.png";
 
 
 export default function Main() {

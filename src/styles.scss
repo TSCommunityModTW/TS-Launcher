@@ -1,3 +1,7 @@
+html, body {
+    background: transparent;
+}
+
 body {
     @font-face {
         font-family: "jfOpenhuninn";
@@ -16,7 +20,7 @@ body {
     margin: 0;
     overflow: hidden;
     line-height: 1.41;
-    background-color: #10002B;
+    // background-color: #10002B;
 }
 
 :root {

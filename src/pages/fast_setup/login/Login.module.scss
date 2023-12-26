@@ -1,0 +1,40 @@
+.loginContainer {
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background: rgba(15, 15, 15, 0.5);
+
+    .leftContainer {
+
+        width: 150px;
+        height: 300px;
+
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .microsoftImg {
+            position: absolute;
+            top: 60px;
+            left: 110px;
+        }
+
+        .minecraftImg {
+            position: absolute;
+            top: 115px;
+            left: 30px;
+        }
+    }
+
+    .rightContainer {
+
+        // margin-left: 200px;
+    }
+}

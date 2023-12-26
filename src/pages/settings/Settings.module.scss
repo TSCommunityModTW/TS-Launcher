@@ -19,6 +19,8 @@
     // align-items: flex-start;
     position: relative;
 
+    background: var(--20, linear-gradient(285deg, rgba(109, 58, 194, 0.5) 34.92%, rgba(14, 12, 19, 0.5) 82.01%));
+
     animation-name: setting;
     animation-duration: 0.2s;
     animation-timing-function: ease-in-out;
@@ -76,11 +78,11 @@
         }
     }
 
-    .backButtonBorderDiv:hover {
-        border: 2px solid #7B2CBF;
-    }
+    // .backButtonBorderDiv:hover {
+    //     border: 2px solid #7B2CBF;
+    // }
 
-    .backButtonBorderDiv:active {
-        top: 52px;
-    }
+    // .backButtonBorderDiv:active {
+    //     top: 52px;
+    // }
 }

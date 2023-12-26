@@ -24,6 +24,17 @@ export default function menu(props: IProps) {
         }
     }
 
+    const componentStyles = (index: number) => {
+
+        const styles = [];
+
+        if (menuType === index) {
+            styles.push({ background: "#A238FF", color: "#ffff" });
+        }
+
+        return styles.reduce((acc, style) => ({ ...acc, ...style }), {});
+    }
+
     return (
         <div className={styles.menuDiv}>
 
@@ -34,15 +45,15 @@ export default function menu(props: IProps) {
                     <h1>{t("instanceSetting.menu.title_1.title")}</h1>
                     <div>
                         <h2
-                            style={menuType === 1 ? { background: "#A238FF", color: "#ffff" } : {}}
+                            style={componentStyles(1)}
                             onClick={() => onClickMenuButton(1)}
                         >{t("instanceSetting.menu.title_1.subTitle_1")}</h2>
                         <h2
-                            style={menuType === 2 ? { background: "#A238FF", color: "#ffff" } : {}}
+                            style={componentStyles(2)}
                             onClick={() => onClickMenuButton(2)}
                         >{t("instanceSetting.menu.title_1.subTitle_2")}</h2>
                         <h2
-                            style={menuType === 3 ? { background: "#A238FF", color: "#ffff" } : {}}
+                            style={componentStyles(3)}
                             onClick={() => onClickMenuButton(3)}
                         >{t("instanceSetting.menu.title_1.subTitle_3")}</h2>
                     </div>
@@ -52,7 +63,7 @@ export default function menu(props: IProps) {
                     <h1>{t("instanceSetting.menu.title_2.title")}</h1>
                     <div>
                         <h2
-                            style={menuType === 4 ? { background: "#A238FF", color: "#ffff" } : {}}
+                            style={componentStyles(4)}
                             onClick={() => onClickMenuButton(4)}
                         >{t("instanceSetting.menu.title_2.subTitle_1")}</h2>
                     </div>

@@ -16,6 +16,9 @@
         "all": false,
         "open": true
       },
+      "app": {
+        "all": true
+      },
       "window": {
         "create": true,
         "close": true,
@@ -44,9 +47,10 @@
     "security": {
       "csp": null
     },
+    "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "TSlauncher",
+        "title": "TSLauncher",
         "width": 1280,
         "height": 720,
         "minWidth": 1280,
@@ -55,7 +59,9 @@
         "fullscreen": false,
         "focus": true,
         "titleBarStyle": "Overlay",
-        "hiddenTitle": true
+        "hiddenTitle": true,
+        "transparent": true,
+        "visible": false
       }
     ]
   }

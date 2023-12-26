@@ -1,0 +1,88 @@
+.installSuccessContainer {
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .titleContainer {
+
+        margin-bottom: 20px;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+
+        .successImg {
+            margin-right: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+            color: #ffffff;
+            font-size: 55px;
+        }
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+        color: #D8D8D8;
+        font-size: 20px;
+        // margin-bottom: 20px;
+    }
+
+    .buttonContainer {
+
+        margin-top: 20px;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;
+
+        button {
+
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    
+            background: #0A9850;
+            border: none;
+            border-radius: 10px;
+            display: block;
+            color: #fff;
+            padding: 16px 32px;
+            // width: 120px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            text-align: center;
+    
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+    
+            transition: all 0.2s linear;
+        }
+    
+        .secondButton {
+            font-size: 18px;
+            line-height: 18px;
+        }
+    
+        button:hover {
+            background: #098648;
+            transform: scale(1.03);
+        }
+    
+        button:active {
+            background: #0aa758;
+            transform: scale(1);
+        }
+    }
+}

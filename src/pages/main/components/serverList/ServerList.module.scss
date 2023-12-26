@@ -1,15 +1,16 @@
 .serverListContainer {
 
-    width: 70px;
+    width: 60px;
     box-sizing: border-box;
 
     .focus {
 
         position: absolute;
-        left: 13px;
+        left: -7px;
+
         background-color: #bdbdbd;
 
-        width: 5px;
+        width: 3px;
         height: 25px;
 
         border-radius: 10px;
@@ -22,6 +23,7 @@
         from {
             transform: scaleY(0);
         }
+
         to {
             transform: scaleY(1);
         }
@@ -47,44 +49,41 @@
 
         transition: all 0.2s linear;
 
-        img {
-            display: block;
-            width: 50px;
-            height: auto;
-        }
-
-        img:hover {
-            transform: scale(1.05);
-        }
-    
-        img:active {
-            transform: scale(1);
-        }
-
-        .focusHover {
-            position: absolute;
-            background-color: #bdbdbd;
-    
-            width: 5px;
-            height: 10px;
-    
-            border-radius: 10px;
-    
-            transform: translate(-40px);
-
-            transition: all 0.2s ease-out;
-
-            opacity: 0;
+        .homeImg {
+            transform: translateY(-1px);
         }
     }
 
-    .homeButton:hover > .focusHover {
-        opacity: 1;
+    .homeButton:hover > .homeImg {
+        transform: scale(1.05) translateY(-1px);
+    }
+
+    .homeButton:active > .homeImg {
+        transform: scale(1) translateY(-1px);
+    }
+
+    .homeButton:hover {
+
+        .focusHover {
+            opacity: 1;
+        }
+
+        .homeImg {
+            path {
+                fill: #A238FF;
+            }
+        }
+    }
+
+    .homeButtonFillA238FF {
+        path {
+            fill: #A238FF;
+        }
     }
 
     .hr {
         margin: 0 20px;
-        border-bottom: 4px solid #7B2CBF;
+        border-bottom: 4px solid #ffff;
         border-radius: 5px;
     }
 
@@ -95,12 +94,18 @@
         margin-top: 10px;
 
         background-color: rgba(16, 16, 16, 0.75);
-        padding: 10px 10px 50px 10px;
+        padding: 13px 10px 13px 10px;
         border-radius: 100px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
         .listItem {
 
-            margin-bottom: 10px;
+            position: relative;
+
+            // margin-bottom: 10px;
 
             cursor: pointer;
 
@@ -117,21 +122,21 @@
             img:hover {
                 transform: scale(1.05);
             }
-    
+
             img:active {
                 transform: scale(1);
             }
 
             .focusHover {
                 position: absolute;
+                left: -7px;
+
                 background-color: #bdbdbd;
-        
-                width: 5px;
+
+                width: 3px;
                 height: 10px;
-        
+
                 border-radius: 10px;
-        
-                transform: translate(-40px);
 
                 transition: all 0.2s ease-out;
 
@@ -139,7 +144,7 @@
             }
         }
 
-        .listItem:hover > .focusHover {
+        .listItem:hover>.focusHover {
             opacity: 1;
         }
     }

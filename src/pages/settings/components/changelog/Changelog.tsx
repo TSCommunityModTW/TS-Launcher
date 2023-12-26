@@ -33,8 +33,10 @@ export default function Changelog() {
     return (
         <div className={styles.changelogDiv}>
 
-            <h1 className={styles.headline}>{t("setting.menu.title_2.subTitle_1")}</h1>
-            <h2 className={styles.versionText}>{`v0.1.0`}</h2>
+            <div className={styles.changelogTitleDiv}>
+                <h1 className={styles.headline}>{t("setting.menu.title_2.subTitle_1")}</h1>
+                <h2 className={styles.versionText}>{`v0.1.0-beta`}</h2>
+            </div>
 
             {
                 contextList.map(item => (
@@ -44,7 +46,7 @@ export default function Changelog() {
                             <h1 className={styles.title} style={{ color: item.color }}>{item.title}</h1>
                             {/* <div className={styles.titleTr}></div> */}
                         </div>
-                        
+
                         {
                             item.descriptions.map(item => (
                                 <div className={styles.descriptionItem}>

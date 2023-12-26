@@ -10,13 +10,23 @@ export default function App() {
 
     React.useEffect(() => { init() }, []);
 
+    // ! https://github.com/tauri-apps/tauri/issues/5170
+    const setupAppWindow = async () => {
+        const appWindow = (await import('@tauri-apps/api/window')).appWindow
+        appWindow.show();
+    }
+
     // initialize
     const init = async () => {
 
-        // navigate("/main");
+        setTimeout(setupAppWindow, 200);
+
+        navigate("/login/account");
         // setTimeout(() => {
         //     navigate("/login");
         // }, 5000);
+
+        // 200ms
     }
 
     const { t } = useTranslation();

@@ -14,6 +14,7 @@ export default function Frame(props: IProps) {
 
     return (
         <>
+
             <div data-tauri-drag-region className={styles.frameContainer} style={props.osType === "macos" ? { flexDirection: "row-reverse" } : {}}>
 
                 <div className={styles.frameText}>
@@ -61,6 +62,7 @@ export default function Frame(props: IProps) {
                     //     </div>
                 }
             </div>
+
             <Outlet />
         </>
     );

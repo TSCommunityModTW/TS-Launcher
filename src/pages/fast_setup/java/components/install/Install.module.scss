@@ -1,0 +1,66 @@
+.installContainer {
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        color: #ffffff;
+        font-size: 55px;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+        color: #D8D8D8;
+        font-size: 20px;
+        // margin-bottom: 20px;
+    }
+
+    .versions {
+        li {
+            margin: 0;
+            color: #D8D8D8;
+            font-size: 20px;
+        }
+    }
+
+    .progressBarContainer {
+
+        margin-top: 20px;
+
+        width: 500px;
+        height: 70px;
+
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        background: rgba(15, 15, 15, 0.60);
+
+        position: relative;
+        overflow: hidden;
+
+        .progressBar {
+            transition: all 0.2s linear;
+            height: 100%;
+            background: #1EB106;
+        }
+
+        .progressBarText {
+
+            position: absolute;
+            left: 32px;
+
+            h1 {
+                text-align: center;
+                margin: 0;
+                color: #ffffff;
+                font-size: 16px;
+            }
+        }
+    }
+}

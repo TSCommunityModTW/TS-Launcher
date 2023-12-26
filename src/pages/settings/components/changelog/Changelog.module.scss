@@ -2,18 +2,24 @@
 
     width: 100%;
 
-    .headline {
-        margin: 15px 0px 20px 0px;
-        font-size: 1.6em;
-        color: #fff;
-    }
+    .changelogTitleDiv {
+        .headline {
+            margin: 15px 0px 0px 0px;
+            font-size: 1.6em;
+            color: #fff;
+        }
+    
+        .versionText {
+            margin: 0;
+            font-size: 1.1em;
+            color: #fff;
+            // margin-bottom: 10px;
+            user-select: text;
+        }
 
-    .versionText {
-        margin: 0;
-        font-size: 1.1em;
-        color: #fff;
+        padding: 0px 0px 15px 0px;
+        border-bottom: 2px solid #3E3E3E;
         margin-bottom: 10px;
-        user-select: text;
     }
 
     .item {
