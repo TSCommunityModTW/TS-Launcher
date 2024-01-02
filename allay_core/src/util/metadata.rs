@@ -2,6 +2,7 @@ use std::path::Path;
 
 use serde::Deserialize;
 
+use crate::launcher_assets::LauncherAssets;
 use crate::minecraft::version::VanillaVersionInfo;
 use crate::util::app_path;
 use crate::util::io;
@@ -57,10 +58,18 @@ pub async fn get_vanilla_version_info(version: &str) -> crate::Result<VanillaVer
     }
 }
 
+#[tracing::instrument]
 pub async fn get_forge_versions_manifest() -> crate::Result<daedalus::modded::Manifest> {
 
     let forge_manifest_v0_url = format!("{}/{}", S3_MANIFEST_URL, "forge/v0/manifest.json");
     let forge_manifest_v0 = fetch::request_json::<daedalus::modded::Manifest>(&forge_manifest_v0_url).await?;
 
     Ok(forge_manifest_v0)
+}
+
+#[tracing::instrument]
+pub async fn get_ts_launcher_assets() -> crate::Result<LauncherAssets> {
+    let home_dir = home::home_dir().unwrap().join("Desktop").join("Projects").join("launchers").join("TS-Launcher").join("allay_core").join("launcher_api.json");
+    let ts_launcher_assets = io::read_json_file::<LauncherAssets>(&home_dir).await?;
+    Ok(ts_launcher_assets)
 }

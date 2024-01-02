@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 
 import styles from "./Screenshot.module.scss";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";

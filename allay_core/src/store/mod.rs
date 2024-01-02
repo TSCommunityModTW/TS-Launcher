@@ -2,6 +2,8 @@ use std::sync::Arc;
 use tokio::sync::{OnceCell, RwLock};
 use crate::util::app_path;
 
+pub mod launcher_assets;
+
 mod settings;
 pub use self::settings::*;
 

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 
 import styles from "./Changelog.module.scss";
 

@@ -1,0 +1,209 @@
+{
+    "date": "2022-03-05T05:08:27.000Z",
+    "servers": [
+        {
+            "id": "namelessrealms",
+            "name": "無名模組伺服器",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/cb59/e34f/6975698d62769d30948554cc99d2edf2?Expires=1705276800&Signature=U9daOTjksosaL5Xr~N2Q1QpXVrTcgyNldHcPgBqbjoOuqRpCOP7NcsP0DVA-k6vwynOQMfXvWimV9KK5JqeOuLcRo1Bgl7tx4AByae8xqMvsZsf~NiL4ZxTEa81toqdLMYKB-5fAVzJu9x4sr4RG-H2cu~VCibJneGMWuq2bPz8bk5bJ5-VmBbpROuv1nc54N9QmX0loAEJTD9qjkPcFnlpruO7wx8T4HlDTTmMNI87ns7~2L0sbjngFzuv-c5BW58GIy1lFOxzgLf4T6dPPKunsL46ubOXF-9q2yXMOwcDLhvn4olHg-jFY4M8qf8SU59FQptl0C3bGHB~OXRYEwQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+            "description": "",
+            "officialWebLinkUrl": "",
+            "children": [
+                {
+                    "name": "主要伺服器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "1.20.2",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "次服務器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "測試服",
+                    "minecraftType": "minecraftVanilla",
+                    "minecraftVersion": "1.20.4",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "",
+                        "version": "",
+                        "downloadUrl": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "tsmodservers",
+            "name": "TS模組伺服器",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/10ed/8f38/38334d551b56aad1119456e90b908c0e?Expires=1705276800&Signature=PGj9EPXzrSLitHuLZ-Chcu7mhp9SaMy~JyYniy7WTl~X1PcCTHmhkHpezw9wgEnYTgEc1njXcVPOSCxhbJ94cv66BWF1MmTKWe8iqviCtSLRM7fA3P1VzU~KbRqYuhkokKH8~bkbkrtbqBEcIULfvMbeYmQM6DbDvJZxTINy7WPYOlJ6T-iY~7Fw261sEPnl7DIo-eFkWZyWnzhvbISeeSiQoCWX6RMnaovpOfbimGXErcAqTHwufES8FeZ1pyZgA3miEDJYAx5LEiiccOlpzDkDCyWV5F-kF69j1rmGsIEHkpfsPxdXKOSn~77JJ4QubNYO7yhh3csQcmif2hq3bg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+            "description": "",
+            "officialWebLinkUrl": "",
+            "children": [
+                {
+                    "name": "主要伺服器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "1.20.2",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "次服務器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "TS-WAR",
+                    "minecraftType": "minecraftVanilla",
+                    "minecraftVersion": "1.20.4",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "",
+                        "version": "",
+                        "downloadUrl": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "gxs2.0",
+            "name": "GXS模組伺服器",
+            "imageUrl": "https://kocreeper1.tplinkdns.com/_nuxt/logo.2418ce41.png",
+            "description": "",
+            "officialWebLinkUrl": "",
+            "children": [
+                {
+                    "name": "主要伺服器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "1.20.2",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "次服務器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "TS-WAR",
+                    "minecraftType": "minecraftVanilla",
+                    "minecraftVersion": "1.20.4",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "",
+                        "version": "",
+                        "downloadUrl": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "muilties",
+            "name": "沐提斯模組伺服器",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/10ed/8f38/38334d551b56aad1119456e90b908c0e?Expires=1705276800&Signature=PGj9EPXzrSLitHuLZ-Chcu7mhp9SaMy~JyYniy7WTl~X1PcCTHmhkHpezw9wgEnYTgEc1njXcVPOSCxhbJ94cv66BWF1MmTKWe8iqviCtSLRM7fA3P1VzU~KbRqYuhkokKH8~bkbkrtbqBEcIULfvMbeYmQM6DbDvJZxTINy7WPYOlJ6T-iY~7Fw261sEPnl7DIo-eFkWZyWnzhvbISeeSiQoCWX6RMnaovpOfbimGXErcAqTHwufES8FeZ1pyZgA3miEDJYAx5LEiiccOlpzDkDCyWV5F-kF69j1rmGsIEHkpfsPxdXKOSn~77JJ4QubNYO7yhh3csQcmif2hq3bg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+            "description": "",
+            "officialWebLinkUrl": "",
+            "children": [
+                {
+                    "name": "主要伺服器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "1.20.2",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "次服務器",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "name": "TS-WAR",
+                    "minecraftType": "minecraftVanilla",
+                    "minecraftVersion": "1.20.4",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "",
+                        "version": "",
+                        "downloadUrl": ""
+                    }
+                }
+            ]
+        }
+    ]
+}

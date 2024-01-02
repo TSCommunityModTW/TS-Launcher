@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 
 import styles from "./General.module.scss";
 

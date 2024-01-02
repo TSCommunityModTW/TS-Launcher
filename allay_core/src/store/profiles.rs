@@ -8,7 +8,7 @@ use crate::util;
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreProfilesMicrosoftAuth")]
-#[ts(export, export_to = "../src/interfaces/IStoreProfilesMicrosoftAuth.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreProfilesMicrosoftAuth.ts")]
 pub struct MicrosoftAuth {
     pub mc_account_token: String,
     pub expires_at: String
@@ -16,7 +16,7 @@ pub struct MicrosoftAuth {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreProfilesUser")]
-#[ts(export, export_to = "../src/interfaces/IStoreProfilesUser.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreProfilesUser.ts")]
 pub struct User {
     pub username: String,
     pub id: String
@@ -24,7 +24,7 @@ pub struct User {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreProfilesPlayer")]
-#[ts(export, export_to = "../src/interfaces/IStoreProfilesPlayer.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreProfilesPlayer.ts")]
 pub struct Player {
     pub name: String,
     pub uuid: String,
@@ -32,7 +32,7 @@ pub struct Player {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreProfiles")]
-#[ts(export, export_to = "../src/interfaces/IStoreProfiles.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreProfiles.ts")]
 pub struct Profiles {
     pub microsoft_auth: MicrosoftAuth,
     pub user: User,

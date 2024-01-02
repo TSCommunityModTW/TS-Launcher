@@ -13,7 +13,7 @@ pub enum JavaPathVersion {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreSettingsJava")]
-#[ts(export, export_to = "../src/interfaces/IStoreSettingsJava.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreSettingsJava.ts")]
 pub struct Java {
     pub id: String,
     pub java17_path: String,
@@ -31,7 +31,7 @@ pub struct Java {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreSettingsGeneral")]
-#[ts(export, export_to = "../src/interfaces/IStoreSettingsGeneral.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreSettingsGeneral.ts")]
 pub struct General {
     pub open_game_keep_launcher_state: bool,
     // pub game_start_open_monitor_log: bool,
@@ -39,7 +39,7 @@ pub struct General {
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreSettings")]
-#[ts(export, export_to = "../src/interfaces/IStoreSettings.ts")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreSettings.ts")]
 pub struct Settings {
     pub language: String,
     pub java: HashMap<String, Java>,
