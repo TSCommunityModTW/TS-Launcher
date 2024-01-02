@@ -1,52 +1,22 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import styles from "./InstanceSettings.module.scss";
 
 import Menu from "./components/menu/Menu";
-import ModList from "./components/modList/ModList";
-import ResourcePacks from "./components/resourcePacks/ResourcePacks";
-import Screenshot from "./components/screenshot/Screenshot";
-import Parameters from "../components/parameters/Parameters";
+import Store from "@/invoke/store";
 
 export default function InstanceSettings() {
 
-    let { serverId } = useParams<{ serverId: string }>();
-    const { paramsMenuType } = useParams<{ paramsMenuType: string }>();
-    const [menuType, setMenuType] = React.useState(Number(paramsMenuType));
+    let { instanceId } = useParams<{ instanceId: string }>();
 
-    // TODO
-    if (serverId === undefined) {
-        serverId = "main-server";
+    if (instanceId === undefined) {
+        return null;
     }
 
     const navigate = useNavigate();
 
-    const instanceSettingComponent = [
-        {
-            id: 1,
-            component: <Parameters checkbox={true} serverId={serverId} />
-        },
-        {
-            id: 2,
-            component: <ModList serverId={serverId} />
-        },
-        {
-            id: 3,
-            component: <ResourcePacks serverId={serverId} />
-        },
-        {
-            id: 4,
-            component: <Screenshot serverId={serverId} />
-        },
-        // {
-        //     id: 5,
-        //     component: <Flx serverId={serverId} />
-        // }
-    ]
-
     const backMain = () => {
-        // window.electron.io.save();
+        Store.saveLauncherSettingsFile();
         navigate("/main");
     }
 
@@ -60,19 +30,11 @@ export default function InstanceSettings() {
             </div>
 
             <div className={styles.leftDiv}>
-                <Menu menuType={menuType} onClickMenuButton={setMenuType} serverId={serverId} />
+                <Menu instanceId={instanceId} />
             </div>
 
             <div className={styles.rightDiv}>
-                {
-                    instanceSettingComponent.map((item) => (
-                        <React.Fragment>
-                            {
-                                item.id === menuType ? item.component : null
-                            }
-                        </React.Fragment>
-                    ))
-                }
+                <Outlet />
             </div>
 
         </div>

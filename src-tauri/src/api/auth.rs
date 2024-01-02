@@ -1,33 +1,24 @@
-use allay_core::{oauth::{microsoft::{self, DeviceAuth}, minecraft}, launcher::LauncherStore};
+use allay_core::{auth, data::DeviceAuth};
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
     tauri::plugin::Builder::new("auth")
         .invoke_handler(tauri::generate_handler![
-            device_auth,
-            auth_verification_await
+            get_device_code,
+            auth_minecraft_await
         ])
         .build()
 }
 
+/// await invoke("plugin:auth|get_device_code");
 #[tauri::command]
-pub async fn device_auth() -> crate::api::Result<DeviceAuth> {
-    Ok(microsoft::auth_device_code().await?)
+pub async fn get_device_code() -> crate::api::Result<DeviceAuth> {
+    Ok(auth::get_device_code().await?)
 }
 
+
+/// await invoke("plugin:auth|auth_minecraft_await");
 #[tauri::command]
-pub async fn auth_verification_await(device_auth: DeviceAuth) -> crate::api::Result<()> {
-
-    let microsoft_token_auth = microsoft::auth_verification_user(&device_auth).await?;
-    let minecraft_auth = minecraft::auth_minecraft(&microsoft_token_auth.access_token).await?;
-
-    // let mut launcher_store = LauncherStore::init().await?;
-
-    // launcher_store.set_microsoft_access_token(&minecraft_auth.access_token)?;
-    // launcher_store.set_microsoft_refresh_token(&microsoft_token_auth.refresh_token)?;
-    // launcher_store.player_name().set(minecraft_auth.name);
-    // launcher_store.player_uuid().set(minecraft_auth.uuid);
-    // launcher_store.save().await?;
-
-    Ok(())
+pub async fn auth_minecraft_await(device_auth: DeviceAuth) -> crate::api::Result<bool> {
+    Ok(auth::auth_minecraft_await(&device_auth).await?)
 }

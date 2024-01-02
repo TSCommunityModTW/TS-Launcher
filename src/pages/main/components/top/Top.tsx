@@ -31,7 +31,7 @@ export default function Top(props: IProps) {
 
                     <h1>{props.userName}</h1>
                     
-                    <div className={styles.playerBodyImg} style={{ backgroundImage: `url(https://crafatar.com/renders/body/${props.userUUID}scale=2&overlay)` }}></div>
+                    <div className={styles.playerBodyImg} style={ props.userUUID.length > 0 ? { backgroundImage: `url(https://visage.surgeplay.com/bust/70/${props.userUUID}?y-40)` } : undefined }></div>
 
                     {/* <ReactSkinview3d
                         // skinUrl={`"https://crafatar.com/skins/"${props.userUUID}`}
@@ -52,7 +52,7 @@ export default function Top(props: IProps) {
 
                     <div className={styles.settingButton}
                         onClick={() => {
-                            navigate("/settings");
+                            navigate("/settings/general");
                         }}    
                     >
                         <img src={settingLines} />

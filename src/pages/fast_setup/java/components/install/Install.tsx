@@ -5,35 +5,52 @@ import styles from "./Install.module.scss";
 
 import Trail from "@/pages/components/trail/Trail";
 import { useEffect, useState } from "react";
+import Java from "@/invoke/java";
+import { loading_listener } from "@/invoke/events";
+import { useAppDispatch } from "@/hooks";
+import { setCrashOpen } from "@/slices/stateSlice";
 
 export default function Install() {
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const { t } = useTranslation();
-    const [progressBarText, setProgressBarText] = useState<string>("Installing Java 17...");
-    const [progressBarPercentage, setProgressBarPercentage] = useState<number>(1);
+    const [progressBarText, setProgressBarText] = useState<string>("");
+    const [progressBarPercentage, setProgressBarPercentage] = useState<number>(0);
 
     useEffect(() => {
-
-        setInterval(() => {
-
-            // ! Test
-            setProgressBarPercentage((val) => {
-                if (val === 100) {
-                    
-                    setTimeout(() => {
-                        navigate("/java/install_success");
-                    }, 2000);
-
-                    return val;
-                } else {
-                    return val + 1;
-                }
-            });
-
-        }, 50);
-
+        init();
     }, []);
+
+    const init = async () => {
+
+        const taskProgressMap = new Map();
+
+        await loading_listener((payload: any) => {
+
+            let fraction = Math.round(payload.fraction);
+            let event = payload.event;
+
+            taskProgressMap.set(event.version, fraction);
+            let taskProgressArray = Array.from(taskProgressMap).map(([_name, value]) => (value));
+            const totalProgress = taskProgressArray.reduce((sum, progress) => sum + progress, 0);
+            const averageProgress = Math.round(totalProgress / 3);
+
+            setProgressBarText(payload.message);
+            setProgressBarPercentage(averageProgress);
+        });
+
+        Java.autoInstallJava()
+            .then(() => {
+                setTimeout(() => {
+                    navigate("/java/install_success");
+                }, 500);
+            })
+            .catch((err) => {
+                dispatch(setCrashOpen({ state: true, errorMessage: err.message }));
+                navigate("/java/setup");
+            });
+    }
 
     return (
         <div className={styles.installContainer}>

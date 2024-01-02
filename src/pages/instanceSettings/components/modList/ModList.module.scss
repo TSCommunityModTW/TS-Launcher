@@ -1,3 +1,12 @@
+@keyframes enterFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .modListDiv {
 
     width: 100%;
@@ -5,6 +14,10 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+
+    animation-name: enterFade;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
 
     .disabledDiv {
 

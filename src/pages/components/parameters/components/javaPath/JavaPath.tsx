@@ -1,5 +1,5 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
+import { open } from "@tauri-apps/api/dialog";
 
 import styles from "./JavaPath.module.scss";
 
@@ -24,105 +24,108 @@ type IProps = {
 export default function JavaPath(props: IProps) {
 
     const { t } = useTranslation();
-    const [toggleInputPathDisabledDiv, setToggleInputPathDisabledDiv] = React.useState(props.toggle);
-    const hiddenFileInput = React.useRef<any>(null);
-
-    const handleClick = () => {
-        hiddenFileInput.current.click();
-    };
-
-    const handleChange = (event: any) => {
-        const fileUploaded = event.target.files[0];
-        if (props.onClickManualSearched === undefined) return;
-        props.onClickManualSearched(fileUploaded.path);
-    };
 
     return (
         <div className={styles.javaPathDiv}>
 
             {
-                props.type === "instanceSetting" ? props.checked || false ? null : <div className={styles.disabledDiv}></div> : null
-            }
-
-            {
                 props.type === "setting"
                     ?
-                    <h1>{t("common.components.parameters.javaPath.type.setting.text")}</h1>
+                    <h1>{t("common.parameters.javaPath.type.setting.text")}</h1>
                     :
                     <div className={styles.titleDiv}>
 
-                        <Checkbox content={t("common.components.parameters.javaPath.type.instanceSetting.checkbox.text")} className={styles.checkbox} checked={props.type === "instanceSetting" ? props.checked || false : false} onClickChecked={(state) => {
+                        <Checkbox
+                            content={t("common.parameters.javaPath.type.instanceSetting.checkbox.text")} className={styles.checkbox}
+                            checked={props.type === "instanceSetting" ? props.checked || false : false}
+                            onClickChecked={(state) => {
 
-                            if (props.onChecked === undefined) return;
-                            props.onChecked(state);
+                                if (props.onChecked === undefined) return;
+                                props.onChecked(state);
 
-                        }} />
+                            }}
+                        />
+
                         {
-                            props.type === "instanceSetting" ? props.checked ? null : <h1>{t("common.components.parameters.javaPath.type.instanceSetting.text")}</h1> : null
+                            props.type === "instanceSetting" ? props.checked ? null : <h1>{t("common.parameters.javaPath.type.instanceSetting.text")}</h1> : null
                         }
 
                     </div>
             }
+            <div
+                className={styles.javaPathContainer}
+                style={props.type === "instanceSetting" ? !props.checked ? { filter: "grayscale(1)", WebkitFilter: "grayscale(1)" } : undefined : undefined}
+            >
 
-            <div className={styles.toggleBuiltInJavaDiv}>
-                <div className={styles.leftDiv}>
-                    <h1>{t("common.components.parameters.javaPath.toggleBuiltInJava.title")}</h1>
-                    {/* {
-                        window.electron.os.type() === "osx" ? <h2>MacOS不適用這項功能</h2> : null
-                    } */}
+                {
+                    props.type === "instanceSetting" ? !props.checked ? <div className={styles.disabledDiv}></div> : null : null
+                }
+
+                <div className={styles.toggleBuiltInJavaDiv}>
+                    <div className={styles.leftDiv}>
+                        <h1>{t("common.parameters.javaPath.toggleBuiltInJava.title")}</h1>
+                    </div>
+                    <div className={styles.rightDiv}>
+                        <Toggle className={styles.toggle} state={props.toggle} onChange={(state) => {
+                            if (props.onChangeJavaToggle) props.onChangeJavaToggle(state);
+                        }} />
+                    </div>
                 </div>
-                <div className={styles.rightDiv}>
-                    <Toggle className={styles.toggle} state={props.toggle} onChange={(state) => {
 
-                        setToggleInputPathDisabledDiv(state);
-                        if (props.onChangeJavaToggle === undefined) return;
-                        props.onChangeJavaToggle(state);
+                <div
+                    className={styles.inputTestJavaContainer}
+                    style={props.toggle ? { filter: "grayscale(1)", WebkitFilter: "grayscale(1)" } : undefined}
+                >
+
+                    {
+                        props.toggle ? <div className={styles.toggleInputPathDisabledDiv}></div> : null
+                    }
+
+                    <InputIcon className={styles.inputIcon} type="text" icon="java" value={props.value} onChange={(value) => {
+
+                        if (props.onChangeJavaPath === undefined) return;
+                        props.onChangeJavaPath(value);
 
                     }} />
-                </div>
-            </div>
 
-            {
-                toggleInputPathDisabledDiv ? <div className={styles.toggleInputPathDisabledDiv}></div> : null
-            }
+                    <div className={styles.stateButtonDiv}>
 
-            <InputIcon className={styles.inputIcon} type="text" icon="java" value={props.value} onChange={(value) => {
+                        <div className={styles.leftDiv}>
+                            <h1>狀態:</h1>
+                            {
+                                props.pathChecking !== undefined ? props.pathChecking ? <h1>{t("common.parameters.javaPath.stateButtons.state.text_1")}</h1> : <h1>{t("common.parameters.javaPath.stateButtons.state.text_2")}</h1> : <h1>{t("common.parameters.javaPath.stateButtons.state.text_3")}</h1>
+                            }
+                        </div>
+                        <div className={styles.rightDiv}>
 
-                if (props.onChangeJavaPath === undefined) return;
-                props.onChangeJavaPath(value);
+                            <button className={styles.testButton} onClick={() => {
 
-            }} />
+                                if (props.onClickTest) props.onClickTest();
 
-            <div className={styles.stateButtonDiv}>
+                            }}>{t("common.parameters.javaPath.stateButtons.buttons.button_1.text")}</button>
 
-                <div className={styles.leftDiv}>
-                    <h1>狀態:</h1>
-                    {
-                        props.pathChecking !== undefined ? props.pathChecking ? <h1>{t("common.components.parameters.javaPath.stateButtons.state.text_1")}</h1> : <h1>{t("common.components.parameters.javaPath.stateButtons.state.text_2")}</h1> : <h1>{t("common.components.parameters.javaPath.stateButtons.state.text_3")}</h1>
-                    }
-                </div>
-                <div className={styles.rightDiv}>
+                            {/* <button onClick={() => {
 
-                    <button className={styles.testButton} onClick={() => {
+                            if (props.onClickAutoSearch) props.onClickAutoSearch();
 
-                        if (props.onClickTest === undefined) return;
-                        props.onClickTest();
+                        }}>{t("common.parameters.javaPath.stateButtons.buttons.button_2.text")}</button> */}
 
-                    }}>{t("common.components.parameters.javaPath.stateButtons.buttons.button_1.text")}</button>
-                    <button onClick={() => {
+                            <button
+                                onClick={async () => {
 
-                        if (props.onClickAutoSearch === undefined) return;
-                        props.onClickAutoSearch();
+                                    let filePath = await open({
+                                        multiple: false
+                                    });
 
-                    }}>{t("common.components.parameters.javaPath.stateButtons.buttons.button_2.text")}</button>
-                    <button onClick={handleClick}>
-                        <input type="file" ref={hiddenFileInput} onChange={(event) => {
-                            handleChange(event);
-                            event.target.value = "";
-                        }} style={{ display: "none" }} />
-                        {t("common.components.parameters.javaPath.stateButtons.buttons.button_3.text")}
-                    </button>
+                                    if (props.onClickManualSearched && filePath) props.onClickManualSearched(filePath as string);
 
+                                }}>
+                                {t("common.parameters.javaPath.stateButtons.buttons.button_3.text")}
+                            </button>
+
+                        </div>
+
+                    </div>
                 </div>
 
             </div>

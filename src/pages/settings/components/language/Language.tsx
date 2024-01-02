@@ -1,17 +1,18 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
 
 import styles from "./Language.module.scss";
 
 import countryTaiwanImg from "@/assets/images/country/taiwan.png";
-import countryUSAImg from "@/assets/images/country/usa.png";
+// import countryUSAImg from "@/assets/images/country/usa.png";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 
 export default function Language() {
 
     const { t, i18n } = useTranslation();
 
-    const [languageList, setLanguageList] = React.useState([
+    const [languageList, setLanguageList] = useState([
         {
             id: "zh_TW",
             title: t("setting.components.language.zh_tw.title"),
@@ -20,17 +21,17 @@ export default function Language() {
             countryImg: countryTaiwanImg,
             state: true
         },
-        {
-            id: "en_US",
-            title: t("setting.components.language.en_us.title"),
-            description: t("setting.components.language.en_us.description"),
-            translate: 100,
-            countryImg: countryUSAImg,
-            state: false
-        }
+        // {
+        //     id: "en_US",
+        //     title: t("setting.components.language.en_us.title"),
+        //     description: t("setting.components.language.en_us.description"),
+        //     translate: 100,
+        //     countryImg: countryUSAImg,
+        //     state: false
+        // }
     ]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setLanguageList((items) => {
             return items.map((item) => {
                 item.state = item.id === "zh_TW"
@@ -62,7 +63,7 @@ export default function Language() {
             <div className={styles.listDiv}>
                 {
                     languageList.map((item) => (
-                        <div key={item.id} className={styles.itemDiv} onClick={() => onLanguageClick(item.id)}>
+                        <div key={uuidv4()} className={styles.itemDiv} onClick={() => onLanguageClick(item.id)}>
                             <div className={styles.leftDiv}>
                                 <div className={styles.outerCircle}>
                                     {

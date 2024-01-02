@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import styles from "./Main.module.scss";
 
@@ -8,15 +9,31 @@ import Top from "./components/top/Top";
 import settingLines from "@/assets/icons/setting-lines.png";
 import ButtonPlay from "./components/buttonPlay/ButtonPlay";
 import modpack from "@/assets/images/miscs/modpack.png";
+import Store from "@/invoke/store";
 
 
 export default function Main() {
 
     const navigate = useNavigate();
+    const [playerName, setPlayerName] = useState<string>("");
+    const [playerUUID, setPlayerUUID] = useState<string>("");
+
+    useEffect(() => {
+        init();
+    }, []);
+
+    const init = async () => {
+
+        let profiles = await Store.getProfiles();
+
+        setPlayerName(profiles.player.name);
+        setPlayerUUID(profiles.player.uuid);
+
+    }
 
     const serverName = "無名伺服器";
     const title = "主服模組包伺服器";
-    const serverId = "";
+    const serverId = "nr-server";
 
     const servers = [
         {
@@ -55,8 +72,8 @@ export default function Main() {
         <div className={styles.mainContainer}>
 
             <Top
-                userName="yucheng_0918"
-                userUUID="93ea0589ec754cad8619995164382e8d?"
+                userName={playerName}
+                userUUID={playerUUID}
             />
 
             <div className={styles.container}>
@@ -78,7 +95,7 @@ export default function Main() {
                                     <h2 className={styles.serverNameH2}>{title}</h2>
                                     <div className={styles.buttonDiv}>
                                         <div className={styles.settingButton} onClick={() => {
-                                            navigate("/instanceSettings");
+                                            navigate(`/instanceSettings/${serverId}/parameters`);
                                         }}>
                                             <img src={settingLines} alt="setting-lines" />
                                         </div>

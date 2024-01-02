@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./Toggle.module.scss";
 
 type IProps = {
@@ -10,12 +8,12 @@ type IProps = {
 
 export default function Toggle(props: IProps) {
 
-    const [toggleOffDivClassName, setToggleOffDivClassName] = React.useState(props.state ? styles.toggleOnDiv : "");
+    // const [toggleOffDivClassName, setToggleOffDivClassName] = React.useState(props.state ? styles.toggleOnDiv : "");
 
     return (
-        <div className={`${styles.toggleDiv} ${toggleOffDivClassName} ${props.className}`} onClick={() => {
+        <div className={`${styles.toggleDiv} ${props.state ? styles.toggleOnDiv : null} ${props.className}`} onClick={() => {
 
-            setToggleOffDivClassName(toggleOffDivClassName === styles.toggleOnDiv ? "" : styles.toggleOnDiv);
+            // setToggleOffDivClassName(toggleOffDivClassName === styles.toggleOnDiv ? "" : styles.toggleOnDiv);
             props.onChange(!props.state)
 
         }}>

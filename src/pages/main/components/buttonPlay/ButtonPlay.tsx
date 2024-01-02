@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 import styles from "./ButtonPlay.module.scss";
 import playImg from "@/assets/icons/play.png";
@@ -7,41 +7,41 @@ import stopImg from "@/assets/icons/stop.png";
 import supportImg from "@/assets/icons/support.png";
 
 type IPlayState = "onStandby" | "validate" | "start" | "startError" | "close" | "closeError" | "validateFlx" | "stop" | "flxStop";
-type IPlayButtonState = {
-    progressBar: number;
-    playState: IPlayState;
-    playText: string;
-    playColor: "#0a9850" | "#3183E1" | "#ED4245";
-    playIconPadding: 15 | 30
-}
-type IProgressBar = {
-    percentage: number;
-}
+// type IPlayButtonState = {
+//     progressBar: number;
+//     playState: IPlayState;
+//     playText: string;
+//     playColor: "#0a9850" | "#3183E1" | "#ED4245";
+//     playIconPadding: 15 | 30
+// }
+// type IProgressBar = {
+//     percentage: number;
+// }
 type IProps = {
     serverId: string;
     onCrashClick?: (code: number, description: string) => void;
 }
 
-export default function ButtonPlay(props: IProps) {
+export default function ButtonPlay(_props: IProps) {
 
-    const { t } = useTranslation();
-    const [playState, setPlayState] = React.useState<IPlayState>("onStandby");
-    const [progressBar, setProgressBar] = React.useState(100);
-    const [playText, setPlayText] = React.useState<string>("開始遊戲");
-    const [playColor, setPlayColor] = React.useState<"#0a9850" | "#3183E1" | "#ED4245">("#0a9850");
-    const [playPadding, setPlayIconPadding] = React.useState<15 | 30>(30);
+    // const { t } = useTranslation();
+    const [playState, _setPlayState] = React.useState<IPlayState>("onStandby");
+    const [progressBar, _setProgressBar] = React.useState(100);
+    const [playText, _setPlayText] = React.useState<string>("開始遊戲");
+    const [playColor, _setPlayColor] = React.useState<"#0a9850" | "#3183E1" | "#ED4245">("#0a9850");
+    const [playPadding, _setPlayIconPadding] = React.useState<15 | 30>(30);
 
-    const setButton = (type: "setPlayButtonStates" | "setProgressBar", data: IPlayButtonState | IProgressBar) => {
-        if (type === "setPlayButtonStates") {
-            setPlayState((data as IPlayButtonState).playState);
-            setPlayText((data as IPlayButtonState).playText);
-            setPlayColor((data as IPlayButtonState).playColor);
-            setPlayIconPadding((data as IPlayButtonState).playIconPadding);
-            setProgressBar((data as IPlayButtonState).progressBar);
-        } else if (type === "setProgressBar") {
-            setProgressBar((data as IProgressBar).percentage);
-        }
-    }
+    // const setButton = (type: "setPlayButtonStates" | "setProgressBar", data: IPlayButtonState | IProgressBar) => {
+    //     if (type === "setPlayButtonStates") {
+    //         setPlayState((data as IPlayButtonState).playState);
+    //         setPlayText((data as IPlayButtonState).playText);
+    //         setPlayColor((data as IPlayButtonState).playColor);
+    //         setPlayIconPadding((data as IPlayButtonState).playIconPadding);
+    //         setProgressBar((data as IPlayButtonState).progressBar);
+    //     } else if (type === "setProgressBar") {
+    //         setProgressBar((data as IProgressBar).percentage);
+    //     }
+    // }
 
     // React.useEffect(() => {
 

@@ -1,33 +1,32 @@
+import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from "react-i18next";
+
 import styles from "./Changelog.module.scss";
 
-import { useTranslation } from "react-i18next";
+enum ChangelogContextColor {
+    Green = "#0dc468",
+    Red = "#e93232",
+    Yellow = "#dda50c"
+}
+
+interface ChangelogContext {
+    title: string,
+    color: ChangelogContextColor,
+    descriptions: Array<string>
+}
 
 export default function Changelog() {
 
     const { t } = useTranslation();
 
-    const contextList = [
-        // {
-        //     title: "更新",
-        //     color: "#0dc468",
-        //     descriptions: [
-        //         "新增內部錯誤報告訊息"
-        //     ]
-        // },
+    const contextList: Array<ChangelogContext> = [
         {
-            title: "修復",
-            color: "#e93232",
+            title: "新專案開發",
+            color: ChangelogContextColor.Green,
             descriptions: [
-                "修復啟動器下載錯誤"
+                "新增：啟動器 v0.1.0-beta 專案"
             ]
         },
-        // {
-        //     title: "移除",
-        //     color: "#dda50c",
-        //     descriptions: [
-        //         "移除 Mojang 登入"
-        //     ]
-        // }
     ]
 
     return (
@@ -40,7 +39,7 @@ export default function Changelog() {
 
             {
                 contextList.map(item => (
-                    <div className={styles.item}>
+                    <div key={uuidv4()} className={styles.item}>
 
                         <div className={styles.titleDiv}>
                             <h1 className={styles.title} style={{ color: item.color }}>{item.title}</h1>
@@ -49,7 +48,7 @@ export default function Changelog() {
 
                         {
                             item.descriptions.map(item => (
-                                <div className={styles.descriptionItem}>
+                                <div key={uuidv4()} className={styles.descriptionItem}>
                                     <div className={styles.circle}></div>
                                     <h1 className={styles.descriptionText}>{item}</h1>
                                 </div>

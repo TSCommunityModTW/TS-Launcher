@@ -1,19 +1,23 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { open } from "@tauri-apps/api/shell";
+import { useEffect, useState } from "react";
 
 import styles from "./DeviceCode.module.scss";
 
+import { useAppDispatch } from "@/hooks";
+import { setCrashOpen } from "@/slices/stateSlice";
+
 import Trail from "@/pages/components/trail/Trail";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
-import { useEffect, useState } from "react";
-import Auth from "@/api/auth";
+import Auth from "@/invoke/auth";
 
 export default function DeviceCode() {
 
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const [deviceCode, setDeviceCode] = useState<string>();
+    const [deviceCode, setDeviceCode] = useState<string>("");
 
     useEffect(() => {
         init();
@@ -24,15 +28,16 @@ export default function DeviceCode() {
 
             const auth = new Auth();
             setDeviceCode(await auth.getDeviceCode());
-            await auth.auth_verification_await();
-            navigate("/login/link_success");
 
-        } catch (err) {
+            if (await auth.auth_minecraft_await()) {
+                navigate("/login/link_success");
+            } else {
+                navigate("/login/link_error");
+            }
 
-            console.error(err);
-
-            // navigate("/login/link_error");
-
+        } catch (err: any) {
+            dispatch(setCrashOpen({ state: true, errorMessage: err.message }));
+            navigate("/login/account");
         }
     }
 
@@ -53,6 +58,7 @@ export default function DeviceCode() {
                     <ButtonFocus
                         content={t("login.device_code.text_3")}
                         themeColor="green"
+                        disabled={ deviceCode.length > 0 ? false : true }
                         onClick={() => {
                             open("https://www.microsoft.com/link");
                         }}

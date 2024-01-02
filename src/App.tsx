@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import Loading from "@/pages/loading/Loading";
+import Launcher from "@/invoke/launcher";
 
 export default function App() {
     
@@ -21,12 +22,10 @@ export default function App() {
 
         setTimeout(setupAppWindow, 200);
 
-        navigate("/login/account");
-        // setTimeout(() => {
-        //     navigate("/login");
-        // }, 5000);
+        await Launcher.initialize();
 
-        // 200ms
+        // navigate("/instanceSettings/nr-server/parameters");
+        navigate("/main")
     }
 
     const { t } = useTranslation();

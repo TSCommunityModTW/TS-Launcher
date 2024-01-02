@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "./General.module.scss";
 
 import Toggle from "@/pages/components/toggle/Toggle";
+import Store from "@/invoke/store";
 
 // const dataItems = [
 //     {
@@ -25,31 +26,50 @@ import Toggle from "@/pages/components/toggle/Toggle";
 export default function General() {
 
     const { t } = useTranslation();
-    const [openGameKeepLauncherState, setOpenGameKeepLauncherState] = React.useState(true);
-    const [gameStartOpenMonitorLog, setGameStartOpenMonitorLog] = React.useState(true);
-    const [gameStartOpenMonitorLogHide, setGameStartOpenMonitorLogHide] = React.useState(true);
+    const [openGameKeepLauncherState, setOpenGameKeepLauncherState] = React.useState(false);
+    // const [gameStartOpenMonitorLog, setGameStartOpenMonitorLog] = React.useState(true);
+    // const [gameStartOpenMonitorLogHide, setGameStartOpenMonitorLogHide] = React.useState(true);
 
-    const onToggleClick = (id: number, state: boolean) => {
-        setTimeout(() => {
-            switch (id) {
-                case 0:
-                    setOpenGameKeepLauncherState(state);
-                    // io.general.setOpenGameKeepLauncherState(state);
-                    if (!state) {
-                        setGameStartOpenMonitorLogHide(false);
-                        setGameStartOpenMonitorLog(false);
-                        // io.general.setGameStartOpenMonitorLog(false);
-                    } else {
-                        setGameStartOpenMonitorLogHide(true);
-                    }
-                    break;
-                case 1:
-                    setGameStartOpenMonitorLog(state);
-                    // io.general.setGameStartOpenMonitorLog(state);
-                    break;
-            }
-        }, 400)
+    const initStateRef = useRef<boolean>(false);
+    const storeSettingsRef = useRef<any>();;
+
+    useEffect(() => {
+        init();
+    }, [])
+
+    useEffect(() => {
+        if(!initStateRef.current) return;
+        storeSettingsRef.current.general.open_game_keep_launcher_state = openGameKeepLauncherState;
+        Store.setSettings(storeSettingsRef.current);
+    }, [openGameKeepLauncherState]);
+
+    const init = async () => {
+        storeSettingsRef.current = await Store.getSettings();
+        setOpenGameKeepLauncherState(storeSettingsRef.current.general.open_game_keep_launcher_state);
+        initStateRef.current = true;
     }
+
+    // const onToggleClick = (id: number, state: boolean) => {
+    //     setTimeout(() => {
+    //         switch (id) {
+    //             case 0:
+    //                 setOpenGameKeepLauncherState(state);
+    //                 // io.general.setOpenGameKeepLauncherState(state);
+    //                 if (!state) {
+    //                     setGameStartOpenMonitorLogHide(false);
+    //                     setGameStartOpenMonitorLog(false);
+    //                     // io.general.setGameStartOpenMonitorLog(false);
+    //                 } else {
+    //                     setGameStartOpenMonitorLogHide(true);
+    //                 }
+    //                 break;
+    //             case 1:
+    //                 setGameStartOpenMonitorLog(state);
+    //                 // io.general.setGameStartOpenMonitorLog(state);
+    //                 break;
+    //         }
+    //     }, 400)
+    // }
 
     return (
         <div className={styles.generalDiv}>
@@ -59,13 +79,18 @@ export default function General() {
             <div className={styles.itemDiv}>
                 <div className={styles.itemLeftDiv}>
                     <h1>{t("setting.components.general.item_1.title")}</h1>
-                    <h2>{t("setting.components.general.item_1.dependencies")}</h2>
+                    {/* <h2>{t("setting.components.general.item_1.dependencies")}</h2> */}
                 </div>
                 <div className={styles.itemRightDiv}>
-                    <Toggle className={styles.toggle} state={openGameKeepLauncherState} onChange={(state) => onToggleClick(0, state)} />
+                    {/* <Toggle className={styles.toggle} state={openGameKeepLauncherState} onChange={(state) => onToggleClick(0, state)} /> */}
+                    <Toggle
+                        className={styles.toggle}
+                        state={openGameKeepLauncherState}
+                        onChange={(state) => setOpenGameKeepLauncherState(state)} />
                 </div>
             </div>
-            <div className={styles.itemDiv}>
+
+            {/* <div className={styles.itemDiv}>
                 {gameStartOpenMonitorLogHide ? null : <div className={styles.disabledDiv}></div>}
                 <div className={styles.itemLeftDiv}>
                     <h1>{t("setting.components.general.item_2.title")}</h1>
@@ -73,7 +98,8 @@ export default function General() {
                 <div className={styles.itemRightDiv}>
                     <Toggle className={styles.toggle} state={gameStartOpenMonitorLog} onChange={(state) => onToggleClick(1, state)} />
                 </div>
-            </div>
+            </div> */}
+
         </div>
     );
 }

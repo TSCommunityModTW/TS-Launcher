@@ -2,19 +2,6 @@
 
     padding: 0px 0px 25px 0px;
     border-bottom: 2px solid #3E3E3E;
-    position: relative;
-
-    .disabledDiv {
-
-        position: absolute;
-        background: rgba(16, 0, 43, 0.8);
-        width: 100%;
-        height: 86%;
-        z-index: 1;
-        top: 30px;
-        border-radius: 5px;
-
-    }
 
     h1 {
         color: #D8D8D8;
@@ -42,8 +29,25 @@
     .ramContainerDiv {
 
         margin-top: 10px;
+
         display: flex;
         justify-content: space-between;
+
+        position: relative;
+
+        .disabledDiv {
+
+            position: absolute;
+            z-index: 1;
+    
+            border-radius: 0px 0px 5px 5px;
+    
+            width: 100%;
+            height: 100%;
+    
+            cursor: not-allowed;
+
+        }
 
         .leftDiv {
 
@@ -83,7 +87,7 @@
 
                 input[type=number]::-webkit-inner-spin-button,
                 input[type=number]::-webkit-outer-spin-button {
-                    -webkit-appearance: none; 
+                    -webkit-appearance: none;
                     margin: 0;
                 }
             }
@@ -124,8 +128,9 @@
 
                 input[type=number]::-webkit-inner-spin-button,
                 input[type=number]::-webkit-outer-spin-button {
-                    -webkit-appearance: none; 
-                    margin: 0;;
+                    -webkit-appearance: none;
+                    margin: 0;
+                    ;
                 }
             }
 
@@ -142,7 +147,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                background:#3C096C;
+                background: #3C096C;
                 width: 140px;
                 height: 130px;
                 border-radius: 20px;

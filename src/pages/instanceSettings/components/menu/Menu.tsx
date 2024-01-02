@@ -1,39 +1,95 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 import styles from "./Menu.module.scss";
+
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 
 type IProps = {
-    menuType: number;
-    serverId: string;
+    instanceId: string;
     onClickMenuButton?: (menuType: number) => void;
+}
+
+enum IMenusType {
+    Wire,
+    Button,
+    Title
+}
+interface IMenus {
+    type: IMenusType,
+    text: string,
+    buttonId?: number,
 }
 
 export default function menu(props: IProps) {
 
+    const instanceId = props.instanceId;
+    const navigate = useNavigate();
     const { t } = useTranslation();
-    const [menuType, setMenuType] = React.useState(props.menuType);
+    const [menuId, setMenuId] = useState(0);
 
-    const onClickMenuButton = (type: number) => {
+    const onClickMenuButton = (id: number) => {
 
-        setMenuType(type);
+        if (menuId === id) return;
 
-        if (props.onClickMenuButton !== undefined) {
-            props.onClickMenuButton(type);
+        setMenuId(id);
+
+        if (props.onClickMenuButton) {
+            props.onClickMenuButton(id);
+        }
+
+        switch (id) {
+            case 0: navigate(`/instanceSettings/${instanceId}/parameters`); break;
+            case 1: navigate(`/instanceSettings/${instanceId}/mod_list`); break;
+            case 2: navigate(`/instanceSettings/${instanceId}/resource_packs`); break;
+            case 3: navigate(`/instanceSettings/${instanceId}/screenshot`); break;
         }
     }
 
-    const componentStyles = (index: number) => {
-
-        const styles = [];
-
-        if (menuType === index) {
-            styles.push({ background: "#A238FF", color: "#ffff" });
-        }
-
-        return styles.reduce((acc, style) => ({ ...acc, ...style }), {});
-    }
+    const menus: Array<IMenus> = [
+        {
+            type: IMenusType.Title,
+            text: t("instanceSetting.menu.title_1.title")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 0,
+            text: t("instanceSetting.menu.title_1.subTitle_1")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 1,
+            text: t("instanceSetting.menu.title_1.subTitle_2")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 2,
+            text: t("instanceSetting.menu.title_1.subTitle_3")
+        },
+        {
+            type: IMenusType.Wire,
+            text: t("setting.menu.title_2.title")
+        },
+        {
+            type: IMenusType.Title,
+            text: t("instanceSetting.menu.title_2.subTitle_1")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 3,
+            text: t("instanceSetting.menu.title_2.subTitle_1")
+        },
+        {
+            type: IMenusType.Wire,
+            text: t("setting.menu.title_2.title")
+        },
+        {
+            type: IMenusType.Title,
+            text: t("instanceSetting.menu.title_4.title")
+        },
+    ]
 
     return (
         <div className={styles.menuDiv}>
@@ -42,58 +98,36 @@ export default function menu(props: IProps) {
 
                 <div className={styles.menuContentButtonDiv}>
 
-                    <h1>{t("instanceSetting.menu.title_1.title")}</h1>
-                    <div>
-                        <h2
-                            style={componentStyles(1)}
-                            onClick={() => onClickMenuButton(1)}
-                        >{t("instanceSetting.menu.title_1.subTitle_1")}</h2>
-                        <h2
-                            style={componentStyles(2)}
-                            onClick={() => onClickMenuButton(2)}
-                        >{t("instanceSetting.menu.title_1.subTitle_2")}</h2>
-                        <h2
-                            style={componentStyles(3)}
-                            onClick={() => onClickMenuButton(3)}
-                        >{t("instanceSetting.menu.title_1.subTitle_3")}</h2>
-                    </div>
+                    {
+                        menus.map(menu => {
 
-                    <div className={styles.tr}></div>
+                            if (menu.type === IMenusType.Title) {
+                                return <h1 key={uuidv4()} className={styles.menuTitle}>{menu.text}</h1>;
+                            }
 
-                    <h1>{t("instanceSetting.menu.title_2.title")}</h1>
-                    <div>
-                        <h2
-                            style={componentStyles(4)}
-                            onClick={() => onClickMenuButton(4)}
-                        >{t("instanceSetting.menu.title_2.subTitle_1")}</h2>
-                    </div>
+                            if (menu.type === IMenusType.Wire) {
+                                return <div key={uuidv4()} className={styles.tr}></div>;
+                            }
 
-                    {/* <div className={styles.tr}></div> */}
+                            if (menu.type === IMenusType.Button) {
+                                return (
+                                    <div
+                                        key={uuidv4()}
+                                        className={`${styles.menuButton} ${menuId === menu.buttonId ? styles.menuButtonActive : null}`}
+                                        onClick={() => onClickMenuButton(menu.buttonId ? menu.buttonId : 0)}
+                                    >
+                                        <h1 className={styles.menuButtonText}>{menu.text}</h1>
+                                    </div>
+                                );
+                            }
 
-                    {/* <h1>{t("instanceSetting.menu.title_3.title")}</h1>
-                    <div>
-                        <h2
-                            style={menuType === 5 ? { background: "#1E1E1E", color: "#ffff" } : {}}
-                            onClick={() => onClickMenuButton(5)}
-                        >{t("instanceSetting.menu.title_3.subTitle_1")}</h2>
-                    </div> */}
+                        })
+                    }
 
-                    {/* <div className={styles.functionButtonDiv}>
-                        <ButtonFocus className={`${styles.functionButton} ${styles.functionFixButton}`} content="掃描與修復" />
-                    </div> */}
-
-                    <div className={styles.tr}></div>
-
-                    <h1>{t("instanceSetting.menu.title_4.title")}</h1>
+                    {/* TODO: 待優化 */}
                     <div className={styles.functionButtonDiv}>
-                        <ButtonFocus className={styles.functionButton} content={t("instanceSetting.menu.title_4.button_1") as string} onClick={() => {
-                            // const gameMinecraftDirPath = window.electron.path.getGameMinecraftDirPath(props.serverId);
-                            // window.electron.open.pathFolder(gameMinecraftDirPath);
-                        }}/>
-                        <ButtonFocus className={styles.functionButton} content={t("instanceSetting.menu.title_4.button_2") as string} onClick={() => {
-                            // const gameModsDirPath = window.electron.path.getGameModsDirPath(props.serverId);
-                            // window.electron.open.pathFolder(gameModsDirPath);
-                        }} />
+                        <ButtonFocus className={styles.functionButton} content={t("instanceSetting.menu.title_4.button_1") as string} />
+                        <ButtonFocus className={styles.functionButton} content={t("instanceSetting.menu.title_4.button_2") as string} />
                     </div>
 
                 </div>

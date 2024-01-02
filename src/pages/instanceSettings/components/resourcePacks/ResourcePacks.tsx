@@ -6,15 +6,11 @@ import styles from "./ResourcePacks.module.scss";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 import ImageTool from "@/pages/components/imageTool/ImageTool";
 
-type IProps = {
-    serverId: string;
-}
-
-export default function ResourcePacks(props: IProps) {
+export default function ResourcePacks() {
 
     const { t } = useTranslation();
     const hiddenFileInput = React.useRef<any>(null);
-    const [packs, setPacks] = React.useState<Array<{ fileName: string; filePath: string; imageSrc: string | undefined }>>();
+    const [packs, _setPacks] = React.useState<Array<{ fileName: string; filePath: string; imageSrc: string | undefined }>>();
 
     React.useEffect(() => {
         // const packs = window.electron.game.resourcePack.getResourcePacks(props.serverId);
@@ -22,7 +18,7 @@ export default function ResourcePacks(props: IProps) {
     }, []);
 
     const handleChange = (event: any) => {
-        for (let file of event.target.files) {
+        for (let _file of event.target.files) {
             // window.electron.game.resourcePack.copyResourcePackFile({ name: file.name, path: file.path }, props.serverId);
         }
         // setPacks(window.electron.game.resourcePack.getResourcePacks(props.serverId));
@@ -50,7 +46,7 @@ export default function ResourcePacks(props: IProps) {
                     packs !== undefined
                         ?
                         packs.map((item) => (
-                            <ImageTool type="ResourcePacks" title={item.fileName} filePath={item.filePath} imageSrc={item.imageSrc} onDeleteClick={(filePath) => {
+                            <ImageTool type="ResourcePacks" title={item.fileName} filePath={item.filePath} imageSrc={item.imageSrc} onDeleteClick={(_filePath) => {
                                 // window.electron.game.resourcePack.resourcePackDelete(filePath);
                                 // setPacks(window.electron.game.resourcePack.getResourcePacks(props.serverId));
                             }} />

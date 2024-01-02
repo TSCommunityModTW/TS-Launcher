@@ -9,25 +9,21 @@ import InputIcon from "@/pages/components/inputIcon/InputIcon";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 import Checkbox from "@/pages/components/checkbox/Checkbox";
 
-type IProps = {
-    serverId: string;
-}
-
-export default function ModList(props: IProps) {
+export default function ModList() {
 
     const { t } = useTranslation();
 
-    const [disabledDiv, setDisabledDiv] = React.useState<boolean>(false);
+    const [disabledDiv, _setDisabledDiv] = React.useState<boolean>(false);
     const [searchValue, setSearchValue] = React.useState("");
     const [enableCheckbox, setEnableCheckbox] = React.useState(true);
     const [disableCheckbox, setDisableCheckbox] = React.useState(true);
     const hiddenFileInput = React.useRef<any>(null);
     const [hiddenAlertConfirm, setHiddenAlertConfirm] = React.useState(false);
-    const [mods, setMods] = React.useState<Array<{ fileName: string; filePath: string; state: boolean; hidden: boolean }>>();
+    const [mods, _setMods] = React.useState<Array<{ fileName: string; filePath: string; state: boolean; hidden: boolean }>>();
 
     const [alertConfirmTitle, setAlertConfirmTitle] = React.useState("");
     const [alertConfirmDescription, setAlertConfirmDescription] = React.useState("");
-    const [deleteFilePath, setDeleteFilePath] = React.useState("");
+    const [_deleteFilePath, setDeleteFilePath] = React.useState("");
 
     React.useEffect(() => {
         // const mods = window.electron.game.module.getModules(props.serverId);
@@ -35,13 +31,13 @@ export default function ModList(props: IProps) {
     }, []);
 
     const handleChange = (event: any) => {
-        for (let file of event.target.files) {
+        for (let _file of event.target.files) {
             // window.electron.game.module.copyModuleFile({ name: file.name, path: file.path }, props.serverId);
         }
         // setMods(window.electron.game.module.getModules(props.serverId));
     };
 
-    const search = (searchValue: string) => {
+    const search = (_searchValue: string) => {
 
         if (mods === undefined) return;
 
@@ -65,15 +61,15 @@ export default function ModList(props: IProps) {
         // setMods(modules);
     }
 
-    const onFilterClick = (enableCheckboxState: boolean, disableCheckboxState: boolean) => {
+    const onFilterClick = (_enableCheckboxState: boolean, _disableCheckboxState: boolean) => {
 
-        let state = -1;
+        // let state = -1;
 
-        if (enableCheckboxState) state = 0;
-        if (disableCheckboxState) state = 1;
-        if (enableCheckboxState && disableCheckboxState) state = 2;
+        // if (enableCheckboxState) state = 0;
+        // if (disableCheckboxState) state = 1;
+        // if (enableCheckboxState && disableCheckboxState) state = 2;
 
-        if (mods === undefined) return;
+        // if (mods === undefined) return;
 
         // const modules = window.electron.game.module.getModules(props.serverId);
 
@@ -166,7 +162,7 @@ export default function ModList(props: IProps) {
                         mods.map((item) => (
                             <div>
                                 {
-                                    item.hidden ? <Mod fileName={item.fileName} filePath={item.filePath} state={item.state} serverId={props.serverId} onDeleteClick={(fileName, filePath) => {
+                                    item.hidden ? <Mod fileName={item.fileName} filePath={item.filePath} state={item.state} serverId={""} onDeleteClick={(fileName, filePath) => {
                                         setAlertConfirmTitle(t("instanceSetting.components.modList.list.hiddenAlertConfirm.title"));
                                         setAlertConfirmDescription(`${t("instanceSetting.components.modList.list.hiddenAlertConfirm.descriptionsSplit.split_1")}: ${fileName} ${t("instanceSetting.components.modList.list.hiddenAlertConfirm.descriptionsSplit.split_1")}`);
                                         setDeleteFilePath(filePath);

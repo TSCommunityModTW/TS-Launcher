@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { open } from "@tauri-apps/api/shell";
+import { v4 as uuidv4 } from "uuid";
 
 import styles from "./Information.module.scss";
 
@@ -17,21 +18,21 @@ export default function Information() {
     const developers = [
         {
             name: "Yu",
-            description: "主要代碼撰寫",
+            description: "全端工程師 (程式碼撰寫)",
             img: developerQuasiImg,
             discordLink: "",
             githubLink: "https://github.com/yucheng918"
         },
         {
             name: "小雷",
-            description: "UI設計師",
+            description: "UI 架構師 (想法 & 創意構思)",
             img: developerTsImg,
             discordLink: "",
             githubLink: "https://github.com/Raw-air"
         },
         {
             name: "阿倫",
-            description: "前端工程師",
+            description: "UI/UX 設計師 (設計 & 繪圖)",
             img: developerGxsImg,
             discordLink: "",
             githubLink: "https://github.com/kocreeper1"
@@ -58,7 +59,7 @@ export default function Information() {
                 {
                     developers.map((developer) => {
                         return (
-                            <div className={styles.developersDiv}>
+                            <div key={uuidv4()} className={styles.developersDiv}>
 
                                 <div className={styles.leftDiv}>
 

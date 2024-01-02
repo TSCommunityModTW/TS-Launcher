@@ -1,45 +1,17 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import styles from "./Settings.module.scss";
 
 import SettingsMenu from "./components/menu/SettingsMenu";
-import General from "./components/general/General";
-import Language from "./components/language/Language";
-import Changelog from "./components/changelog/Changelog";
-import Information from "./components/information/Information";
-import Parameters from "../components/parameters/Parameters";
+import Store from "@/invoke/store";
 
 export default function Setting() {
 
-    const settingComponents = [
-        {
-            id: 1,
-            component: <General />
-        },
-        {
-            id: 2,
-            component: <Parameters checkbox={false} />
-        },
-        {
-            id: 3,
-            component: <Language />
-        },
-        {
-            id: 4,
-            component: <Changelog />
-        },
-        {
-            id: 5,
-            component: <Information />
-        }
-    ];
-
-    const [menuType, setMenuType] = React.useState(1);
     const navigate = useNavigate();
 
     const backMain = () => {
-        // window.electron.io.save();
+        Store.saveLauncherSettingsFile();
         navigate("/main");
     }
 
@@ -51,20 +23,10 @@ export default function Setting() {
                 </div>
             </div>
             <div className={styles.leftDiv}>
-                <SettingsMenu menuType={menuType} onClickMenuButton={setMenuType} />
+                <SettingsMenu />
             </div>
             <div className={styles.rightDiv}>
-                {
-                    settingComponents.map((item) => {
-                        return (
-                            <div key={item.id}>
-                                {
-                                    item.id === menuType ? item.component : null
-                                }
-                            </div>
-                        );
-                    })
-                }
+                <Outlet />
             </div>
         </div>
     );

@@ -6,7 +6,8 @@ import styles from "./LinkSuccess.module.scss";
 import Trail from "@/pages/components/trail/Trail";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 import { useEffect, useState } from "react";
-import Player from "@/api/player";
+import Store from "@/invoke/store";
+
 export default function LinkSuccess() {
 
     const navigate = useNavigate();
@@ -18,7 +19,8 @@ export default function LinkSuccess() {
     }, []);
 
     const init = async () => {
-        setPlayerName(await Player.get_name());
+        let profiles = await Store.getProfiles();
+        setPlayerName(profiles.player.name);
     };
 
     return (

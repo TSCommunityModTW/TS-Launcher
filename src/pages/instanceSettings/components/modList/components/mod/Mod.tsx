@@ -16,7 +16,7 @@ type IProps = {
 export default function Mod(props: IProps) {
 
     const [state, setState] = React.useState(props.state);
-    const [filePath, setFilePath] = React.useState(props.filePath);
+    const [filePath, _setFilePath] = React.useState(props.filePath);
 
     return (
         <div className={styles.itemDiv}>

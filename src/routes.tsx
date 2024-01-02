@@ -17,7 +17,17 @@ import Install from "@/pages/fast_setup/java/components/install/Install";
 import SetupSuccess from "@/pages/fast_setup/success/Success";
 import Paths from "@/pages/fast_setup/java/components/paths/Paths";
 import Success from "@/pages/fast_setup/java/components/success/Success";
-import CrashPayback from "./pages/components/crashPayback/CrashPayback";
+import CrashPayback from "@/pages/components/crashPayback/CrashPayback";
+import General from "@/pages/settings/components/general/General";
+import Parameters from "@/pages/components/parameters/Parameters";
+import Language from "@/pages/settings/components/language/Language";
+import Changelog from "@/pages/settings/components/changelog/Changelog";
+import Information from "@/pages/settings/components/information/Information";
+import ModList from "@/pages/instanceSettings/components/modList/ModList";
+import ResourcePacks from "@/pages/instanceSettings/components/resourcePacks/ResourcePacks";
+import Screenshot from "@/pages/instanceSettings/components/screenshot/Screenshot";
+
+import { parametersLoader } from "./loader";
 
 export default createBrowserRouter([
     {
@@ -91,10 +101,52 @@ export default createBrowserRouter([
             {
                 path: "/settings",
                 element: <Settings />,
+                children: [
+                    {
+                        path: "/settings/general",
+                        element: <General />,
+                    },
+                    {
+                        path: "/settings/parameters",
+                        element: <Parameters checkbox={false} />,
+                        loader: parametersLoader
+                    },
+                    {
+                        path: "/settings/language",
+                        element: <Language />
+                    },
+                    {
+                        path: "/settings/changelog",
+                        element: <Changelog />
+                    },
+                    {
+                        path: "/settings/information",
+                        element: <Information />
+                    }
+                ]
             },
             {
-                path: "/instanceSettings",
-                element: <InstanceSettings />
+                path: "/instanceSettings/:instanceId",
+                element: <InstanceSettings />,
+                children: [
+                    {
+                        path: "/instanceSettings/:instanceId/parameters",
+                        element: <Parameters checkbox={true} />,
+                        loader: parametersLoader
+                    },
+                    {
+                        path: "/instanceSettings/:instanceId/mod_list",
+                        element: <ModList />
+                    },
+                    {
+                        path: "/instanceSettings/:instanceId/resource_packs",
+                        element: <ResourcePacks />
+                    },
+                    {
+                        path: "/instanceSettings/:instanceId/screenshot",
+                        element: <Screenshot />
+                    }
+                ]
             }
         ]
     }

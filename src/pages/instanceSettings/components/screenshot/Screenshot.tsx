@@ -5,14 +5,10 @@ import styles from "./Screenshot.module.scss";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 import ImageTool from "@/pages/components/imageTool/ImageTool";
 
-type IProps = {
-    serverId: string;
-}
-
-export default function Screenshot(props: IProps) {
+export default function Screenshot() {
 
     const { t } = useTranslation();
-    const [screenshots, setScreenshots] = React.useState<Array<{ fileName: string; filePath: string; imageSrc: string | undefined }>>();
+    const [screenshots, _setScreenshots] = React.useState<Array<{ fileName: string; filePath: string; imageSrc: string | undefined }>>();
 
     React.useEffect(() => {
         // const screenshots = window.electron.game.screenshot.getScreenshots(props.serverId);
@@ -36,7 +32,7 @@ export default function Screenshot(props: IProps) {
                     screenshots !== undefined
                         ?
                         screenshots.map((item) => (
-                            <ImageTool type="Screenshots" title={item.fileName} filePath={item.filePath} imageSrc={item.imageSrc} onDeleteClick={(filePath) => {
+                            <ImageTool type="Screenshots" title={item.fileName} filePath={item.filePath} imageSrc={item.imageSrc} onDeleteClick={(_filePath) => {
                                 // window.electron.game.screenshot.screenshotDelete(filePath);
                                 // setScreenshots(window.electron.game.screenshot.getScreenshots(props.serverId));
                             }} />

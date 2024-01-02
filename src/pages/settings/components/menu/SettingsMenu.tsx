@@ -1,27 +1,90 @@
-import React from "react";
-import styles from "./SettingsMenu.module.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// import settingImg from "../../../../../assets/icons/settings.png";
+import { v4 as uuidv4 } from "uuid";
+
+import styles from "./SettingsMenu.module.scss";
 
 type IProps = {
-    menuType: number;
     onClickMenuButton?: (menuType: number) => void;
     onClickBackButton?: () => void;
 }
 
+enum IMenusType {
+    Wire,
+    Button,
+    Title
+}
+interface IMenus {
+    type: IMenusType,
+    text: string,
+    buttonId?: number,
+}
+
 export default function Menu(props: IProps) {
 
+    const navigate = useNavigate();
     const { t } = useTranslation();
-    const [menuType, setMenuType] = React.useState(props.menuType);
+    const [menuId, setMenuId] = useState<number>(0);
 
-    const onClickMenuButton = (type: number) => {
+    const onClickMenuButton = (id: number) => {
 
-        setMenuType(type);
+        if (menuId === id) return;
 
-        if(props.onClickMenuButton !== undefined) {
-            props.onClickMenuButton(type);
+        setMenuId(id);
+
+        if(props.onClickMenuButton) {
+            props.onClickMenuButton(id);
+        }
+
+        switch(id) {
+            case 0: navigate("/settings/general"); break;
+            case 1: navigate("/settings/parameters"); break;
+            case 2: navigate("/settings/language"); break;
+            case 3: navigate("/settings/changelog"); break;
+            case 4: navigate("/settings/information"); break;
         }
     }
+
+    const menus: Array<IMenus> = [
+        {
+            type: IMenusType.Title,
+            text: t("setting.menu.title_1.title")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 0,
+            text: t("setting.menu.title_1.subTitle_1")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 1,
+            text: t("setting.menu.title_1.subTitle_2")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 2,
+            text: t("setting.menu.title_1.subTitle_3")
+        },
+        {
+            type: IMenusType.Wire,
+            text: t("setting.menu.title_2.title")
+        },
+        {
+            type: IMenusType.Title,
+            text: t("setting.menu.title_2.title")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 3,
+            text: t("setting.menu.title_2.subTitle_1")
+        },
+        {
+            type: IMenusType.Button,
+            buttonId: 4,
+            text: t("setting.menu.title_2.subTitle_2")
+        }
+    ]
 
     return (
         <div className={styles.menuDiv}>
@@ -29,43 +92,32 @@ export default function Menu(props: IProps) {
             <div className={styles.menuContentDiv}>
 
                 <div className={styles.menuContentButtonDiv}>
+                    {
+                        menus.map(menu => {
+                            
+                            if (menu.type === IMenusType.Title) {
+                                return <h1 key={uuidv4()} className={styles.menuTitle}>{menu.text}</h1>;
+                            }
 
-                    <h1>{t("setting.menu.title_1.title")}</h1>
-                    <div>
-                        <h2 
-                            style={ menuType === 1 ? { background: "#A238FF", color: "#ffff" } : {} } 
-                            onClick={() => onClickMenuButton(1)}
-                        >{t("setting.menu.title_1.subTitle_1")}</h2>
-                        <h2 
-                            style={ menuType === 2 ? { background: "#A238FF", color: "#ffff" } : {} }
-                            onClick={() => onClickMenuButton(2)}    
-                        >{t("setting.menu.title_1.subTitle_2")}</h2>
-                        <h2 
-                            style={ menuType === 3 ? { background: "#A238FF", color: "#ffff" } : {} }
-                            onClick={() => onClickMenuButton(3)}
-                        >{t("setting.menu.title_1.subTitle_3")}</h2>
-                    </div>
+                            if (menu.type === IMenusType.Wire) {
+                                return <div key={uuidv4()} className={styles.tr}></div>;
+                            }
 
-                    <div className={styles.tr}></div>
+                            if (menu.type === IMenusType.Button) {
+                                return (
+                                    <div
+                                        key={uuidv4()}
+                                        className={`${styles.menuButton} ${menuId === menu.buttonId ? styles.menuButtonActive : null}`}
+                                        onClick={() => onClickMenuButton(menu.buttonId ? menu.buttonId : 0)}
+                                    >
+                                        <h1 className={styles.menuButtonText}>{menu.text}</h1>
+                                    </div>
+                                );
+                            }
 
-                    <h1>{t("setting.menu.title_2.title")}</h1>
-                    <div>
-                        <h2 
-                            style={ menuType === 4 ? { background: "#A238FF", color: "#ffff" } : {} }
-                            onClick={() => onClickMenuButton(4)}    
-                        >{t("setting.menu.title_2.subTitle_1")}</h2>
-                        <h2
-                            style={ menuType === 5 ? { background: "#A238FF", color: "#ffff" } : {} }
-                            onClick={() => onClickMenuButton(5)}    
-                        >{t("setting.menu.title_2.subTitle_2")}</h2>
-                    </div>
-
+                        })
+                    }
                 </div>
-
-                {/* <div className={styles.backButtonDiv}>
-                    <img src={settingImg} alt="setting" onClick={props.onClickBackButton}/>
-                    <h1 onClick={props.onClickBackButton}>返回主畫面</h1>
-                </div> */}
 
             </div>
 
