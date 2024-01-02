@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "allay_core",
+    "ts_gui/src-tauri",
+]
