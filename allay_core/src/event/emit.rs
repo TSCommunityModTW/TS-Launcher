@@ -1,4 +1,5 @@
 use super::LoadingBarId;
+use futures::{TryStream, Future};
 use uuid::Uuid;
 
 use crate::event::{
@@ -9,11 +10,7 @@ use crate::event::{
 use tauri::Manager;
 
 pub async fn init_loading(bar_type: LoadingBarType, total: f64, title: &str) -> crate::Result<LoadingBarId> {
-    Ok(init_loading_unsafe(bar_type, total, title).await?)
-}
 
-pub async fn init_loading_unsafe(bar_type: LoadingBarType, total: f64, title: &str,) -> crate::Result<LoadingBarId> {
-    
     let event_state = crate::EventState::get().await?;
     let id = LoadingBarId(Uuid::new_v4());
 
@@ -31,6 +28,7 @@ pub async fn init_loading_unsafe(bar_type: LoadingBarType, total: f64, title: &s
 
     // attempt an initial loading_emit event to the frontend
     emit_loading(&id, 0.0, None).await?;
+
     Ok(id)
 }
 
@@ -64,20 +62,46 @@ pub async fn emit_loading(id: &LoadingBarId, increment_fraction: f64, message: O
 
     // Emit event to tauri
     #[cfg(feature = "tauri")]
-    event_state
-        .app
-        .emit_all(
+    event_state.app.emit_all(
         "loading",
         LoadingPayload {
             fraction: Some(opt_display_frac),
             message: message.unwrap_or(&loading_bar.message).to_string(),
             event: loading_bar.bar_type.clone(),
             loader_uuid: loading_bar.loading_bar_uuid,
-        },
-    )
-    .map_err(EventError::from)?;
+        }
+    ).map_err(EventError::from)?;
 
     loading_bar.last_sent = display_frac;
 
     Ok(())
+}
+
+pub async fn loading_try_for_each_concurrent<I, F, Fut, T>(
+    stream: I,
+    limit: Option<usize>,
+    key: Option<&LoadingBarId>,
+    total: f64,
+    num_futs: usize,
+    message: Option<&str>,
+    f: F,
+) -> crate::Result<()>
+where
+    I: futures::TryStreamExt<Error = crate::Error> + TryStream<Ok = T>,
+    F: FnMut(T) -> Fut + Send,
+    Fut: Future<Output = crate::Result<()>> + Send,
+    T: Send,
+{
+    let mut f = f;
+
+    stream.try_for_each_concurrent(limit, |item| {
+        let f = f(item);
+        async move {
+            f.await?;
+            if let Some(key) = key {
+                emit_loading(key, total / (num_futs as f64), message).await?;
+                }
+            Ok(())
+        }
+    }).await
 }

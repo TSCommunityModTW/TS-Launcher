@@ -9,7 +9,10 @@
             "officialWebLinkUrl": "",
             "children": [
                 {
+                    "id": "namelessrealms-1",
+                    "ip": "",
                     "name": "主要伺服器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
                     "minecraftVersion": "1.20.2",
                     "action": {
@@ -23,9 +26,12 @@
                     }
                 },
                 {
+                    "id": "namelessrealms-2",
+                    "ip": "",
                     "name": "次服務器",
+                    "imageUrl": "https://i.imgur.com/cn0OGDE.png",
                     "minecraftType": "modpack",
-                    "minecraftVersion": "",
+                    "minecraftVersion": "1.12.2",
                     "action": {
                         "rule": "ALL",
                         "players": []
@@ -37,7 +43,10 @@
                     }
                 },
                 {
+                    "id": "namelessrealms-3",
+                    "ip": "",
                     "name": "測試服",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "minecraftVanilla",
                     "minecraftVersion": "1.20.4",
                     "action": {
@@ -60,9 +69,12 @@
             "officialWebLinkUrl": "",
             "children": [
                 {
+                    "id": "tsmodservers-1",
+                    "ip": "",
                     "name": "主要伺服器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
-                    "minecraftVersion": "1.20.2",
+                    "minecraftVersion": "1.19.2",
                     "action": {
                         "rule": "ALL",
                         "players": []
@@ -74,9 +86,12 @@
                     }
                 },
                 {
+                    "id": "tsmodservers-2",
+                    "ip": "",
                     "name": "次服務器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
-                    "minecraftVersion": "",
+                    "minecraftVersion": "1.18.2",
                     "action": {
                         "rule": "ALL",
                         "players": []
@@ -88,9 +103,12 @@
                     }
                 },
                 {
+                    "id": "tsmodservers-3",
+                    "ip": "",
                     "name": "TS-WAR",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "minecraftVanilla",
-                    "minecraftVersion": "1.20.4",
+                    "minecraftVersion": "1.17",
                     "action": {
                         "rule": "ALL",
                         "players": []
@@ -106,14 +124,17 @@
         {
             "id": "gxs2.0",
             "name": "GXS模組伺服器",
-            "imageUrl": "https://kocreeper1.tplinkdns.com/_nuxt/logo.2418ce41.png",
+            "imageUrl": "https://kocreeper1.tplinkdns.com/_nuxt/logo.2fZ0AIra.png",
             "description": "",
             "officialWebLinkUrl": "",
             "children": [
                 {
+                    "id": "gxs2.0-1",
+                    "ip": "",
                     "name": "主要伺服器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
-                    "minecraftVersion": "1.20.2",
+                    "minecraftVersion": "1.7.10",
                     "action": {
                         "rule": "ALL",
                         "players": []
@@ -125,7 +146,10 @@
                     }
                 },
                 {
+                    "id": "gxs2.0-2",
+                    "ip": "",
                     "name": "次服務器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
                     "minecraftVersion": "",
                     "action": {
@@ -139,7 +163,10 @@
                     }
                 },
                 {
+                    "id": "gxs2.0-3",
+                    "ip": "",
                     "name": "TS-WAR",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "minecraftVanilla",
                     "minecraftVersion": "1.20.4",
                     "action": {
@@ -157,12 +184,15 @@
         {
             "id": "muilties",
             "name": "沐提斯模組伺服器",
-            "imageUrl": "https://s3-alpha-sig.figma.com/img/10ed/8f38/38334d551b56aad1119456e90b908c0e?Expires=1705276800&Signature=PGj9EPXzrSLitHuLZ-Chcu7mhp9SaMy~JyYniy7WTl~X1PcCTHmhkHpezw9wgEnYTgEc1njXcVPOSCxhbJ94cv66BWF1MmTKWe8iqviCtSLRM7fA3P1VzU~KbRqYuhkokKH8~bkbkrtbqBEcIULfvMbeYmQM6DbDvJZxTINy7WPYOlJ6T-iY~7Fw261sEPnl7DIo-eFkWZyWnzhvbISeeSiQoCWX6RMnaovpOfbimGXErcAqTHwufES8FeZ1pyZgA3miEDJYAx5LEiiccOlpzDkDCyWV5F-kF69j1rmGsIEHkpfsPxdXKOSn~77JJ4QubNYO7yhh3csQcmif2hq3bg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/4c56/a0cf/69c8be79ce0762ee7fbab8108cb93a38?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lI9JhNvc1TbntjTJKpTRIwOXDjHmpyfHNaUViKVCLmPaahlgbLy17PDApxJZAo6Sb3xm66doSFyCTuEDlDo4pYgvpolo4hISkO6bjZBVP-jDaIMBp~BYjlGDhvXDDmUEIU88tn~az5ZsTHif-q6C8GnhDLp098VHlVGdGxZFExePB1OJ1Rko5BbPgPOHBlUKaf2U87DMEsyVgmR6OQ2ASWyb7rBjWRtx2hyxdzy3u~axSjMkzZFvi4FEujRm1VnvnuuX17Djs3B6ZzNpzTjBPW1tPiKnGG8AIXk~HEafnuR~fdObwtPhdsECfChnbQhSjaYxI9AkesmP-3O8oJEr-A__",
             "description": "",
             "officialWebLinkUrl": "",
             "children": [
                 {
+                    "id": "muilties-1",
+                    "ip": "",
                     "name": "主要伺服器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
                     "minecraftVersion": "1.20.2",
                     "action": {
@@ -176,7 +206,10 @@
                     }
                 },
                 {
+                    "id": "muilties-2",
+                    "ip": "",
                     "name": "次服務器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "modpack",
                     "minecraftVersion": "",
                     "action": {
@@ -190,7 +223,10 @@
                     }
                 },
                 {
+                    "id": "muilties-3",
+                    "ip": "",
                     "name": "TS-WAR",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "minecraftVanilla",
                     "minecraftVersion": "1.20.4",
                     "action": {

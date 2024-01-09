@@ -18,20 +18,14 @@ pub struct EventState {
 impl EventState {
     
     #[cfg(feature = "tauri")]
-    pub async fn init(app: tauri::AppHandle) -> crate::Result<Arc<Self>> {
-        EVENT_STATE
-            .get_or_try_init(|| async {
-                Ok(Arc::new(Self {
-                    app,
-                    loading_bars: RwLock::new(HashMap::new()),
-                }))
-            })
-            .await
-            .map(Arc::clone)
+    pub async fn initialize(app: tauri::AppHandle) -> crate::Result<Arc<Self>> {
+        EVENT_STATE.get_or_try_init(|| async {
+            Ok(Arc::new(Self { app, loading_bars: RwLock::new(HashMap::new()) }))
+        }).await.map(Arc::clone)
     }
 
     #[cfg(not(feature = "tauri"))]
-    pub async fn init() -> crate::Result<Arc<Self>> {
+    pub async fn initialize() -> crate::Result<Arc<Self>> {
         EVENT_STATE
             .get_or_try_init(|| async {
                 Ok(Arc::new(Self {
@@ -49,7 +43,7 @@ impl EventState {
 
     #[cfg(not(feature = "tauri"))]
     pub async fn get() -> crate::Result<Arc<Self>> {
-        Self::init().await
+        Self::initialize().await
     }
 }
 
@@ -68,10 +62,20 @@ pub struct LoadingBar {
 #[serde(tag = "type")]
 #[serde(rename_all = "snake_case")]
 pub enum LoadingBarType {
-    StateInit,
     JavaDownload {
         version: u32,
+    },
+    ProcessChildren {
+        id: String
     }
+}
+
+#[derive(Serialize, Clone)]
+pub struct LoadingPayload {
+    pub event: LoadingBarType,
+    pub loader_uuid: Uuid,
+    pub fraction: Option<f64>,
+    pub message: String
 }
 
 #[derive(Serialize, Debug, Clone)]
@@ -118,14 +122,6 @@ impl Drop for LoadingBarId {
             }
         });
     }
-}
-
-#[derive(Serialize, Clone)]
-pub struct LoadingPayload {
-    pub event: LoadingBarType,
-    pub loader_uuid: Uuid,
-    pub fraction: Option<f64>,
-    pub message: String
 }
 
 #[derive(Debug, thiserror::Error)]

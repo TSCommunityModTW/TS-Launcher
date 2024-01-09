@@ -26,8 +26,9 @@ import Information from "@/pages/settings/components/information/Information";
 import ModList from "@/pages/instanceSettings/components/modList/ModList";
 import ResourcePacks from "@/pages/instanceSettings/components/resourcePacks/ResourcePacks";
 import Screenshot from "@/pages/instanceSettings/components/screenshot/Screenshot";
+import ServerInfo from "@/pages/main/pages/serverInfo/ServerInfo";
 
-import { parametersLoader } from "./loader";
+import { mainLoader, parametersLoader, serverInfoLoader } from "./loader";
 
 export default createBrowserRouter([
     {
@@ -96,7 +97,15 @@ export default createBrowserRouter([
             },
             {
                 path: "/main",
-                element: <Main />
+                element: <Main />,
+                loader: mainLoader,
+                children: [
+                    {
+                        path: "/main/:serverId/server_info",
+                        element: <ServerInfo />,
+                        loader: serverInfoLoader
+                    }
+                ]
             },
             {
                 path: "/settings",

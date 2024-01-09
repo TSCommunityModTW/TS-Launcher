@@ -175,7 +175,7 @@ pub fn is_rules(rules: &Vec<LibrariesRules>) -> bool {
     true
 }
 
-pub fn extract_natives(libraries: Vec<LibrariesJar>, natives_dir_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
+pub fn extract_natives(libraries: Vec<LibrariesJar>, natives_dir_path: &Path) -> crate::Result<()> {
 
     fs::create_dir_all(natives_dir_path)?;
     let natives_libraries = libraries.iter().filter(|item| item.r#type == LibrariesJarType::Natives);

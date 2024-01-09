@@ -29,9 +29,8 @@ mod event;
 mod error;
 mod logger;
 
-pub use util::metadata::*;
-pub use api::*;
 pub use store::*;
+pub use api::*;
 pub use error::*;
 pub use event::*;
 pub use logger::init_logger;

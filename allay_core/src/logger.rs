@@ -7,7 +7,7 @@ pub fn init_logger() -> Option<WorkerGuard> {
 
     let filter = tracing_subscriber::EnvFilter::try_from_default_env()
         .unwrap_or_else(|_| {
-            tracing_subscriber::EnvFilter::new("allay_core=debug")
+            tracing_subscriber::EnvFilter::new("allay_core=debug,ts_gui=debug")
         });
 
     let subscriber = tracing_subscriber::registry()

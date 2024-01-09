@@ -21,6 +21,8 @@ fn main() {
         .plugin(api::store::init())
         .plugin(api::java::init())
         .plugin(api::system::init())
+        .plugin(api::launcher::init())
+        .plugin(api::process::init())
         .invoke_handler(tauri::generate_handler![
             initialize
         ]);
@@ -32,6 +34,7 @@ fn main() {
 
 #[tauri::command]
 async fn initialize(app: tauri::AppHandle) -> crate::api::Result<()> {
-    allay_core::EventState::init(app).await?;
+    allay_core::EventState::initialize(app).await?;
+    allay_core::prelude::launcher::initialize_assets().await?;
     Ok(())
 }

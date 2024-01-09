@@ -1,4 +1,4 @@
-use allay_core::{init_logger, get_ts_launcher_assets};
+use allay_core::{init_logger, launcher_assets::ServerChildren};
 
 const MINECRAFT_VERSION: &str = "1.20.2";
 
@@ -6,10 +6,6 @@ const MINECRAFT_VERSION: &str = "1.20.2";
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let _logger_guard = init_logger();
-
-    let ts_launcher_assets = get_ts_launcher_assets().await?;
-
-    println!("{:#?}", ts_launcher_assets);
 
     // println!("{:#?}", get_max_memory_size()?);
 

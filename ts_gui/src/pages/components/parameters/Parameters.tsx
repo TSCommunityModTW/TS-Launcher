@@ -9,17 +9,12 @@ import JavaPath from "./components/javaPath/JavaPath";
 import Ram from "./components/ram/Ram";
 import Store from "@/invoke/store";
 import Java from "@/invoke/java";
-import { IStoreSettingsJava } from "@/interfaces/IStoreSettingsJava";
 import { useAppDispatch } from "@/hooks";
 import { setCrashOpen } from "@/slices/stateSlice";
+import { IParametersLoader } from "@/loader";
 
 type IProps = {
     checkbox: boolean;
-}
-
-interface ILoaderData {
-    storeSettingsJava: IStoreSettingsJava,
-    systemMaxMemorySize: number
 }
 
 export default function Parameters(props: IProps) {
@@ -28,7 +23,7 @@ export default function Parameters(props: IProps) {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
-    const loaderData = useLoaderData() as ILoaderData;
+    const loaderData = useLoaderData() as IParametersLoader;
     const storeSettingsJava = loaderData.storeSettingsJava;
     const systemMaxMemorySize = loaderData.systemMaxMemorySize;
 

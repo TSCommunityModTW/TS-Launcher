@@ -1,11 +1,12 @@
-use crate::{util::{download::{DownloadFile, self}, config}, minecraft::loader::{loader::LoaderType, forge::installer::ForgeInstaller}};
+use crate::{util::{download::{DownloadFile, self}, config}, minecraft::loader::{loader::LoaderType, forge::installer::ForgeInstaller}, LoadingBarId};
 use super::{version::{VanillaVersionInfo, ClientJar}, loader::loader::LoaderVersionInfo, libraries::LibrariesJar, assets::AssetObjects};
 
-#[tracing::instrument(skip(vanilla_version_info, loader_version_info))]
-pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loader_version_info: Option<&LoaderVersionInfo>, java_jvm_path: Option<&str>) -> crate::Result<()> {
 
-    tracing::info!("Validate downloads Data...");
-    tracing::info!("Add vanilla downloads queue");
+#[tracing::instrument(skip(vanilla_version_info, loader_version_info, java_jvm_path, loading_bar))]
+pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loader_version_info: Option<&LoaderVersionInfo>, java_jvm_path: Option<&str>, loading_bar: Option<(&LoadingBarId, f64)>) -> crate::Result<()> {
+
+    tracing::info!("Validate downloading Data...");
+    tracing::info!("Add vanilla downloads queue.");
 
     let download_queue: Vec<DownloadFile> = {
 
@@ -36,7 +37,7 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
     };
 
     // 驗證下載的資產
-    download::validate_download_assets(download_queue, config::APP_DOWNLOAD_LIMIT).await?;
+    download::validate_download_assets(download_queue, Some(config::APP_DOWNLOAD_LIMIT), loading_bar).await?;
 
     // forge modloader installer
     if let Some(loader_version_info) = loader_version_info {
@@ -51,6 +52,8 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
             forge_installer.install(&loader_install.processors, java_jvm_path).await?;
         }
     }
+
+    tracing::info!("Done downloading Data!");
 
     Ok(())
 }

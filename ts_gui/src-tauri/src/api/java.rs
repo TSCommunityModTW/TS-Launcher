@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use allay_core::java;
+use allay_core::{java, settings, Store};
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
@@ -15,9 +15,12 @@ pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
 /// await invoke("plugin:java|auto_install_all_java");
 #[tauri::command]
 pub async fn auto_install_all_java() -> super::Result<()> {
-    java::install_jar(8).await?;
-    java::install_jar(16).await?;
-    java::install_jar(17).await?;
+    let mut java_settings = settings::get_java("global").await?;
+    java_settings.java8_path = java::install_jar(8).await?.to_string_lossy().to_string();
+    java_settings.java16_path = java::install_jar(16).await?.to_string_lossy().to_string();
+    java_settings.java17_path = java::install_jar(17).await?.to_string_lossy().to_string();
+    settings::set_java("global", java_settings).await?;
+    Store::sync().await?;
     Ok(())
 }
 

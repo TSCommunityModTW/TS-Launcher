@@ -1,4 +1,4 @@
-use std::{path::PathBuf, collections::HashMap};
+use std::{path::{PathBuf, Path}, collections::HashMap};
 use uuid::Uuid;
 use crate::{util::{app_path, utils::{self, OSArch, OSType}, config}, FORGE_MANIFEST_V3_QUERY_P1, FORGE_MANIFEST_V2_QUERY_P1, FORGE_MANIFEST_V2_QUERY};
 
@@ -11,17 +11,38 @@ pub struct JvmMinecraftParameters {
 }
 
 #[derive(Debug)]
+pub struct JavaJvmSettings {
+    pub ram_max_size: i32,
+    pub ram_min_size: i32,
+    pub java_jvm_path: String,
+    pub java_parameter: String
+}
+
+#[derive(Debug)]
+pub struct PlayerProfile {
+    pub name: String,
+    pub uuid: String,
+    pub mc_account_token: String,
+}
+
+#[derive(Debug)]
 pub struct BuildParameters<'a, 'b> {
     version_metadata: &'a VanillaVersionInfo,
     loader_manifest: Option<&'b LoaderVersionInfo>,
+    game_dir_path: PathBuf,
+    java_settings: JavaJvmSettings,
+    player_profile: PlayerProfile,
     natives_dir_path: PathBuf,
 }
 
 impl<'a, 'b> BuildParameters<'a, 'b> {
 
-    pub fn new(version_metadata: &'a VanillaVersionInfo) -> BuildParameters<'a, 'b> {
+    pub fn new(version_metadata: &'a VanillaVersionInfo, game_dir_path: &Path, java_settings: JavaJvmSettings, player_profile: PlayerProfile) -> BuildParameters<'a, 'b> {
 
         BuildParameters {
+            game_dir_path: game_dir_path.to_path_buf(),
+            player_profile,
+            java_settings,
             version_metadata,
             loader_manifest: None,
             natives_dir_path: app_path::get_common_dir_path().join("bin").join(Uuid::new_v4().to_string().split("-").next().unwrap()),
@@ -318,9 +339,6 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
         let games = self.version_metadata.get_java_parameters().get_game();
         // let mut game_parameters = Vec::<String>::new();
 
-        let game_instances_dir_path = app_path::get_instances_dir_path().join("main-server").to_string_lossy().to_string();
-        let assets_common_dir_path = app_path::get_common_dir_path().join("assets").to_string_lossy().to_string();
-
         // ! Old
         // 遍歷遊戲參數
         // for games in &games.arguments {
@@ -348,13 +366,13 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
             .map(|value| {
 
                 let val = match value.key.as_str() {
-                    "${auth_player_name}" => "Yu_Cheng".to_owned(),
+                    "${auth_player_name}" => self.player_profile.name.clone(),
                     "${version_name}" => self.minecraft_version().to_owned(),
-                    "${game_directory}" => game_instances_dir_path.clone(),
-                    "${assets_root}" => assets_common_dir_path.clone(),
+                    "${game_directory}" => self.game_dir_path.to_string_lossy().to_string(),
+                    "${assets_root}" => app_path::get_common_dir_path().join("assets").to_string_lossy().to_string(),
                     "${assets_index_name}" => self.version_metadata.get_assets_index_id().to_owned(),
-                    "${auth_uuid}" => "93ea0589-ec75-4cad-8619-995164382e8d".to_owned(),
-                    "${auth_access_token}" => "null_token".to_owned(),
+                    "${auth_uuid}" => self.player_profile.uuid.clone(),
+                    "${auth_access_token}" => self.player_profile.mc_account_token.clone(),
                     "${user_type}" => "mojang".to_owned(),
                     "${version_type}" => "release".to_owned(),
                     "${user_properties}" => "{}".to_owned(),
@@ -399,8 +417,8 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
 
         let mut arguments: Vec<String> = Vec::new();
 
-        let ram_size_max = 8192;
-        let ram_size_min = 2048;
+        let ram_size_max = self.java_settings.ram_max_size;
+        let ram_size_min = self.java_settings.ram_min_size;
         
         if ram_size_max != 0 {
             arguments.push(format!("-Xmx{}M", ram_size_max));
@@ -418,6 +436,11 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
         // ? Flx GLFW error before init: [0x10008]Cocoa: Failed to find service port for display
         if utils::get_os_type() == OSType::MacOS && utils::get_os_arch() == OSArch::Aarch64 {
             arguments.push("-Dfml.earlyprogresswindow=false".to_owned());
+        }
+
+        // * Add java parameter
+        if !self.java_settings.java_parameter.is_empty() {
+            arguments.push(self.java_settings.java_parameter.clone());
         }
 
         tracing::debug!("通用 JVM 參數: {:?}", arguments);

@@ -4,15 +4,14 @@ pub mod store;
 pub mod auth;
 pub mod java;
 pub mod system;
+pub mod launcher;
+pub mod process;
 
 #[derive(Debug, thiserror::Error)]
 pub enum AllayCoreSerializableError {
 
     #[error("{0}")]
     AllayCore(#[from] allay_core::Error),
-
-    #[error("Store error: {0}")]
-    StoreError(String),
 
     #[error("Tauri invoke error: {0}")]
     TauriInvokeError(#[from] java::JavaInvokeError)

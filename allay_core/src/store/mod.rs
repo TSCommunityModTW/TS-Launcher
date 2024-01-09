@@ -1,5 +1,6 @@
 use std::sync::Arc;
 use tokio::sync::{OnceCell, RwLock};
+use crate::process::children::Children;
 use crate::util::app_path;
 
 pub mod launcher_assets;
@@ -31,7 +32,8 @@ static LAUNCHER_STORE: OnceCell<RwLock<Store>> = OnceCell::const_new();
 pub struct Store {
     pub profiles: RwLock<Profiles>,
     pub settings: RwLock<Settings>,
-    pub instances: RwLock<Instances>
+    pub instances: RwLock<Instances>,
+    pub children: RwLock<Children>
 }
 
 impl Store {
@@ -48,10 +50,13 @@ impl Store {
         let mut instances = Instances::new();
         instances.init(&instances_path).await?;
 
+        let children = Children::new();
+
         Ok(RwLock::new(Self {
             profiles: RwLock::new(profile),
             settings: RwLock::new(settings),
-            instances: RwLock::new(instances)
+            instances: RwLock::new(instances),
+            children: RwLock::new(children)
         }))
     }
 

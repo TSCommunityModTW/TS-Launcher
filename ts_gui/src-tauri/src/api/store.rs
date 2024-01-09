@@ -1,4 +1,4 @@
-use allay_core::{Store, Settings, settings, Java, profiles, Profiles};
+use allay_core::{data::{Settings, Java, Profiles}, settings, profiles, Store};
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {

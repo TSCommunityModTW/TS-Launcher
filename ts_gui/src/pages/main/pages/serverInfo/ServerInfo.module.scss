@@ -1,0 +1,279 @@
+.serverInfoContainer {
+
+    width: 100%;
+
+    .scroll {
+
+        width: 100%;
+        height: 80vh;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .playServerGameContainer {
+            // padding: 0px 40px 0px 60px;
+            // height: ;
+
+            margin-bottom: 60px;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .leftDiv {
+                // margin-top: 100px;
+
+                .serverNameH1 {
+                    font-size: 62px;
+                    color: #fff;
+                    margin: 0;
+                }
+
+                .serverNameH2 {
+                    font-size: 62px;
+                    color: #d8d8d8;
+                    margin: 0;
+                    margin-top: -10px;
+                }
+
+                .buttonDiv {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                    height: 80px;
+
+                    .settingButton {
+                        width: 88px;
+                        height: 100%;
+                        background-color: #A238FF;
+                        border-radius: 15px;
+                        padding: 15px 15px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        transition: all 0.2s linear;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
+                    .settingButton:hover {
+                        background: #921bf9;
+                        transform: scale(1.02);
+                    }
+
+                    .settingButton:active {
+                        transform: scale(1);
+                    }
+
+                    .buttonPlayDiv {
+                        background-color: #252424;
+                        border-radius: 10px;
+                        width: 300px;
+                        height: 100%;
+                        margin-left: 10px;
+                        cursor: pointer;
+                        // padding: 0px 15px;
+                        box-sizing: border-box;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        transition: all 0.2s linear;
+                        position: relative;
+                        overflow: hidden;
+
+                        h1 {
+                            font-size: 42px;
+                            color: #fff;
+                            margin: 0;
+                            line-height: 80px;
+                            white-space: nowrap;
+                            z-index: 1;
+                        }
+
+                        img {
+                            position: absolute;
+                            // right: 30px;
+                            width: 50px;
+                            height: 50px;
+                            transition: all 0.2s linear;
+                            z-index: 1;
+                        }
+
+                        .playButtonBackground {
+                            // border-radius: 10px;
+                            position: absolute;
+                            left: 0px;
+                            height: 100%;
+                            transition: all 0.2s linear;
+                        }
+                    }
+
+                    .buttonPlayDiv:hover {
+                        transform: scale(1.02);
+                    }
+
+                    .buttonPlayDiv:active {
+                        transform: scale(1);
+                    }
+                }
+            }
+
+            .modpackContainer {
+                img {
+                    width: 250px;
+                    border-radius: 100px;
+                }
+            }
+        }
+
+        .childServerList {
+
+            padding: 0px 10px 0px 70px;
+
+            // display: flex;
+            // justify-content: flex-start;
+            // align-items: center;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 20px;
+
+            .serverDiv {
+
+                // margin-right: 20px;
+                cursor: pointer;
+
+                width: 320px;
+
+                .serverBorderDiv {
+                    border: 3px solid transparent;
+                    transition: all 0.1s linear;
+                    border-radius: 15px;
+                    padding: 4px;
+
+                    width: 100%;
+                    height: 180px;
+
+                    .serverBorderContainer {
+
+                        position: relative;
+
+                        width: 100%;
+                        height: 100%;
+                        background-color: #252424;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                        border-radius: 10px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        img {
+                            width: 100%;
+                            border-radius: 5px;
+                        }
+
+                        .bar {
+
+                            position: absolute;
+                            z-index: 1;
+
+                            bottom: 0;
+
+                            background: linear-gradient(193deg, rgba(28, 156, 91, 0.90) 6.7%, rgba(12, 35, 156, 0.54) 90.59%);;
+                            width: 100%;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                .serverBorderDiv:hover {
+                    transform: scale(1.02);
+                }
+
+                .serverBorderDiv:active {
+                    transform: scale(1);
+                }
+
+                .titleContainer {
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    // .leftTitleDiv {
+
+                    // }
+
+                    .rightTitleDiv {
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .serverState {
+
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 100%;
+
+                            background-color: #0a9850;
+                        }
+                    }
+
+                    h1 {
+                        color: #ffff;
+                        font-size: 16px;
+                        margin: 0px;
+                        // margin-top: 2px;
+                        margin-left: 10px;
+                    }
+                }
+
+            }
+
+            .serverDiv:hover>.serverBorderDiv {
+                border: 3px solid #921bf9;
+            }
+
+            .serverDiv:hover>.serverBorderDiv div img {
+                animation-name: serverBorderFocus;
+                animation-duration: 0.2s;
+                animation-timing-function: ease-in-out;
+            }
+
+            @keyframes serverBorderFocus {
+                0% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.05);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+        }
+    }
+
+    .scroll::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scroll::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #979797;
+    }
+
+    .scroll::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: rgba(100, 100, 100, 0.5);
+    }
+}

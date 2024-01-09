@@ -66,7 +66,10 @@ pub enum ErrorKind {
     NoValueFor(String),
 
     #[error("API interacting error: {0}")]
-    APIInteractingError(String)
+    APIInteractingError(String),
+
+    #[error("Launcher assets error: {0}")]
+    LauncherAssetsError(String),
 }
 
 #[derive(Debug)]

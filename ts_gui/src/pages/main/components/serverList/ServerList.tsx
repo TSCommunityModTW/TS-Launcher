@@ -1,53 +1,30 @@
-import React from "react";
+import { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 import styles from "./ServerList.module.scss";
 
 import HomeIcon from "@/assets/icons/home.svg?react";
-import gxs from "@/assets/images/servers/gxs.svg";
-import nr from "@/assets/images/servers/nr.svg";
-import ts from "@/assets/images/servers/ts.svg";
-import muilties from "@/assets/images/servers/muilties.svg";
+import { IMainLoader } from "@/loader";
 
-type IProps = {
-    onChangeIndex?: (server: number) => void;
-}
+export default function ServerList() {
 
-export default function ServerList(props: IProps) {
+    const navigate = useNavigate();
+    const { servers } = useLoaderData() as IMainLoader;
 
-    const servers = [
-        {
-            id: 1,
-            name: "GXS2.0 模組伺服器",
-            icon: gxs
-        },
-        {
-            id: 2,
-            name: "沐緹斯伺服器",
-            icon: muilties
-        },
-        {
-            id: 3,
-            name: "Nameless Realms 無名伺服器",
-            icon: nr
-        },
-        {
-            id: 4,
-            name: "TS 模組伺服器",
-            icon: ts
-        }
-    ]
+    const [selectLocation, setSelectLocation] = useState<string>("home");
 
-    const [selectLocation, setSelectLocation] = React.useState<number>(1);
+    const onClickMenuButton = (serverId: string) => {
+        navigate(`/main/${serverId}/server_info`);
+    }
 
     return (
         <div className={styles.serverListContainer}>
 
             <div className={styles.homeButton} onClick={() => {
-                setSelectLocation(0);
-                if (props.onChangeIndex) props.onChangeIndex(0);
+                setSelectLocation("home");
             }}>
                 <HomeIcon
-                        className={`${styles.homeImg} ${selectLocation === 0 ? styles.homeButtonFillA238FF : null}`}
+                        className={`${styles.homeImg} ${selectLocation === "home" ? styles.homeButtonFillA238FF : null}`}
                         // onClick={() => {
                         //     setSelectLocation(0);
                         //     if (props.onChangeIndex) props.onChangeIndex(0);
@@ -63,6 +40,7 @@ export default function ServerList(props: IProps) {
                     servers.map((server) => {
                         return (
                             <div className={styles.listItem} key={server.id}>
+
                                 {
                                     selectLocation === server.id
                                         ?
@@ -70,11 +48,14 @@ export default function ServerList(props: IProps) {
                                         :
                                         null
                                 }
+
                                 <div className={styles.focusHover}></div>
-                                <img src={server.icon}
+                                <img 
+                                    rel="preload"
+                                    src={server.imageUrl}
                                     onClick={() => {
                                         setSelectLocation(server.id);
-                                        if (props.onChangeIndex) props.onChangeIndex(server.id);
+                                        onClickMenuButton(server.id);
                                     }}
                                 />
                             </div>
