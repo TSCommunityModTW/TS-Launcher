@@ -43,7 +43,7 @@ export default function ServerInfo() {
             let bar = barChildrenServers.find((bar: { fraction: number, serverId: string }) => bar.serverId === serverId);
 
             if (bar) {
-                return bar.fraction;
+                // return bar.fraction;
             }
         }
 
