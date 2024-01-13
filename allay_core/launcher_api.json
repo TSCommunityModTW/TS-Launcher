@@ -124,7 +124,7 @@
         {
             "id": "gxs2.0",
             "name": "GXS模組伺服器",
-            "imageUrl": "https://kocreeper1.tplinkdns.com/_nuxt/logo.2fZ0AIra.png",
+            "imageUrl": "https://kocreeper1.tplinkdns.com/_nuxt/logo.2418ce41.png",
             "description": "",
             "officialWebLinkUrl": "",
             "children": [
@@ -224,6 +224,65 @@
                 },
                 {
                     "id": "muilties-3",
+                    "ip": "",
+                    "name": "TS-WAR",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
+                    "minecraftType": "minecraftVanilla",
+                    "minecraftVersion": "1.20.4",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "",
+                        "version": "",
+                        "downloadUrl": ""
+                    }
+                }
+            ]
+        },        {
+            "id": "bdstw",
+            "name": "憶蝶夢海模組伺服器",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/d8cd/88a0/b1bde4acf879fa054c94984328f631d3?Expires=1705881600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bYgKAXaBNJSvCdfzaayLYA3eo0ppyGRnLlzxKqVmMPH6XIEI1N0vkIbUS8YRg-~fy0DmlqOdGEc7hCzBrwcQXmHYhy1kvw9ldW83CWZaSzJNo1yeSD8iE5tzwOVR2kXslrCRQ84nQaJGdoEGsF5Ilxc1R7z4tuHII8E-xH5J6vhVJSF12qbTuMCzPithb3FVykeCpzPyrYjcZzApybSVl8J6S~7GPm-PpcXQOxNpM5gRmE1VQkkDRXbB5BKAxIPWbotLyrAMZBfa7PVVxMSD4NFoOJ1hIQcYTBPKq0rch5XHXkghAR9zODAUktIjNP4hHvEo1cLnsC3KpAWLQUxKLg__",
+            "description": "",
+            "officialWebLinkUrl": "",
+            "children": [
+                {
+                    "id": "bdstw-1",
+                    "ip": "",
+                    "name": "主要伺服器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "1.7.10",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "id": "bdstw-2",
+                    "ip": "",
+                    "name": "次服務器",
+                    "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
+                    "minecraftType": "modpack",
+                    "minecraftVersion": "",
+                    "action": {
+                        "rule": "ALL",
+                        "players": []
+                    },
+                    "modpack": {
+                        "name": "Fabulously Optimized",
+                        "version": "5.6.4",
+                        "downloadUrl": ""
+                    }
+                },
+                {
+                    "id": "gxs2.0-3",
                     "ip": "",
                     "name": "TS-WAR",
                     "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
