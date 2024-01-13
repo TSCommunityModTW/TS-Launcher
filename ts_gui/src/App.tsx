@@ -23,6 +23,7 @@ export default function App() {
         setTimeout(setupAppWindow, 200);
 
         await Launcher.initialize();
+        // HI
 
         // navigate("/instanceSettings/nr-server/parameters");
         // navigate("/main/namelessrealms/server_info")
