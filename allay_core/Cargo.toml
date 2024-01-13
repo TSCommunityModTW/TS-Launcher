@@ -34,6 +34,7 @@ dunce = "1.0.3"
 semver = "1.0.20"
 keyring = "2"
 ts-rs = "6.1"
+project-root = "0.2.2"
 
 tracing = "0.1.37"
 tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
