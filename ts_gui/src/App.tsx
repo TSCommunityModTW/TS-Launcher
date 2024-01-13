@@ -25,7 +25,7 @@ export default function App() {
         await Launcher.initialize();
 
         // navigate("/instanceSettings/nr-server/parameters");
-        navigate("/main/namelessrealms/server_info")
+        // navigate("/main/namelessrealms/server_info")
     }
 
     const { t } = useTranslation();
