@@ -9,6 +9,7 @@ import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";
 import { useEffect, useState } from "react";
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
+import ChildrenServer from "../../components/childrenServer/ChildrenServer";
 
 export default function ServerInfo() {
 
@@ -86,37 +87,12 @@ export default function ServerInfo() {
                 <div className={styles.childServerList}>
                     {
                         childrenServers.map(item => {
-                            return (
-                                <div
-                                    key={uuidv4()}
-                                    className={styles.serverDiv}
-                                    onClick={() => {
-                                        setSelectChildrenServerId(item.id);
-                                    }}
-                                >
-
-                                    <div className={styles.serverBorderDiv}>
-
-                                        <div className={styles.serverBorderContainer}>
-                                            <div
-                                                className={styles.bar}
-                                                style={{ height: `${getBarValue(item.id)}%` }}    
-                                            ></div>
-                                            <img src={item.imageUrl} />
-                                        </div>
-
-                                    </div>
-                                    <div className={styles.titleContainer}>
-                                        <div className={styles.leftTitleDiv}>
-                                            <h1>{item.name}</h1>
-                                        </div>
-                                        <div className={styles.rightTitleDiv}>
-                                            {/* <div className={styles.serverState}></div>
-                                            <h1>在線人數: {5}</h1> */}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
+                            return <ChildrenServer
+                                key={uuidv4()}
+                                serverId={item.id}
+                                imageUrl={item.imageUrl}
+                                name={item.name}
+                            />
                         })
                     }
                 </div>

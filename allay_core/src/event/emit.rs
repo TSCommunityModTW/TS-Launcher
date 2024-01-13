@@ -65,7 +65,7 @@ pub async fn emit_loading(id: &LoadingBarId, increment_fraction: f64, message: O
     event_state.app.emit_all(
         "loading",
         LoadingPayload {
-            fraction: Some(opt_display_frac),
+            fraction: opt_display_frac,
             message: message.unwrap_or(&loading_bar.message).to_string(),
             event: loading_bar.bar_type.clone(),
             loader_uuid: loading_bar.loading_bar_uuid,

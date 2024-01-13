@@ -2,6 +2,7 @@ use std::{collections::HashMap, sync::Arc};
 
 use serde::{Serialize, Deserialize};
 use tokio::sync::{OnceCell, RwLock};
+use ts_rs::TS;
 use uuid::Uuid;
 
 pub mod emit;
@@ -58,7 +59,9 @@ pub struct LoadingBar {
     pub last_sent: f64,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, Hash, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, Hash, PartialEq, Eq, TS)]
+#[ts(rename = "IEventLoadingBarType")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IEventLoadingBarType.ts")]
 #[serde(tag = "type")]
 #[serde(rename_all = "snake_case")]
 pub enum LoadingBarType {
@@ -70,11 +73,15 @@ pub enum LoadingBarType {
     }
 }
 
-#[derive(Serialize, Clone)]
+
+#[derive(Serialize, Clone, TS)]
+#[ts(rename = "IEventLoadingPayload")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IEventLoadingPayload.ts")]
 pub struct LoadingPayload {
     pub event: LoadingBarType,
+    #[ts(type = "string")]
     pub loader_uuid: Uuid,
-    pub fraction: Option<f64>,
+    pub fraction: f64,
     pub message: String
 }
 
