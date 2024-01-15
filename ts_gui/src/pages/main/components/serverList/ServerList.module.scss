@@ -35,7 +35,7 @@
 
         height: 60px;
 
-        background-color: rgba(16, 16, 16, 0.75);
+        background-color: #2E2D2C;
         padding: 10px;
         border-radius: 100%;
 
@@ -70,14 +70,14 @@
 
         .homeImg {
             path {
-                fill: #A238FF;
+                fill: #ffffff;
             }
         }
     }
 
     .homeButtonFillA238FF {
         path {
-            fill: #A238FF;
+            fill: #ffffff;
         }
     }
 
@@ -87,13 +87,16 @@
         border-radius: 5px;
     }
 
+
     .listContainer {
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
 
         box-sizing: border-box;
 
         margin-top: 10px;
 
-        background-color: rgba(16, 16, 16, 0.75);
+        background-color: #2E2D2C;
         padding: 13px 10px 13px 10px;
         border-radius: 100px;
 

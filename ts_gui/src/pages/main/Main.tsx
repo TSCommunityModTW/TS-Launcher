@@ -27,18 +27,22 @@ export default function Main() {
     }
 
     return (
-        <div className={styles.mainContainer}>
+        <div className={styles.box}>
+            
+            <div className={styles.mainContainer}>
+                
 
-            <Top
-                userName={playerName}
-                userUUID={playerUUID}
-            />
+                <Top
+                    userName={playerName}
+                    userUUID={playerUUID}
+                />
 
-            <div className={styles.container}>
-                <ServerList/>
-                <Outlet />
+                <div className={styles.container}>
+                    <ServerList/>
+                    <Outlet />
+                </div>
+
             </div>
-
         </div>
     )
 }

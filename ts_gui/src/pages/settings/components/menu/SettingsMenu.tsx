@@ -90,35 +90,36 @@ export default function Menu(props: IProps) {
         <div className={styles.menuDiv}>
 
             <div className={styles.menuContentDiv}>
-
-                <div className={styles.menuContentButtonDiv}>
-                    {
-                        menus.map(menu => {
-                            
-                            if (menu.type === IMenusType.Title) {
-                                return <h1 key={uuidv4()} className={styles.menuTitle}>{menu.text}</h1>;
-                            }
-
-                            if (menu.type === IMenusType.Wire) {
-                                return <div key={uuidv4()} className={styles.tr}></div>;
-                            }
-
-                            if (menu.type === IMenusType.Button) {
-                                return (
-                                    <div
-                                        key={uuidv4()}
-                                        className={`${styles.menuButton} ${menuId === menu.buttonId ? styles.menuButtonActive : null}`}
-                                        onClick={() => onClickMenuButton(menu.buttonId ? menu.buttonId : 0)}
-                                    >
-                                        <h1 className={styles.menuButtonText}>{menu.text}</h1>
-                                    </div>
-                                );
-                            }
-
-                        })
-                    }
+                <div className={styles.topLogo}>
+                    <img src="/src/assets/images/logo/ts.svg" alt="" />
                 </div>
+                    <div className={styles.menuContentButtonDiv}>
+                        {
+                            menus.map(menu => {
+                                
+                                if (menu.type === IMenusType.Title) {
+                                    return <h1 key={uuidv4()} className={styles.menuTitle}>{menu.text}</h1>;
+                                }
 
+                                if (menu.type === IMenusType.Wire) {
+                                    return <div key={uuidv4()} className={styles.tr}></div>;
+                                }
+
+                                if (menu.type === IMenusType.Button) {
+                                    return (
+                                        <div
+                                            key={uuidv4()}
+                                            className={`${styles.menuButton} ${menuId === menu.buttonId ? styles.menuButtonActive : null}`}
+                                            onClick={() => onClickMenuButton(menu.buttonId ? menu.buttonId : 0)}
+                                        >
+                                            <h1 className={styles.menuButtonText}>{menu.text}</h1>
+                                        </div>
+                                    );
+                                }
+
+                            })
+                        }
+                    </div>
             </div>
 
         </div>

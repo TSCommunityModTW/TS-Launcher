@@ -9,24 +9,31 @@
     }
 }
 
+.box{
+    width: 155px;
+    height: 774px;
+    flex-shrink: 0;
+    background-image: url(../../assets/images/servers/bg.svg);
+    
+
+}
 .mainContainer {
 
     animation-name: main;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
 
-    padding: 20px 20px;
+    padding: 20px 24px;
 
     width: 100vw;
     height: 100vh;
 
     box-sizing: border-box;
 
-    background: radial-gradient(118.21% 58.11% at 16.76% 37.71%, rgba(141, 92, 224, 0.44) 3.76%, rgba(24, 24, 24, 0.25) 76.75%);
-
     .container {
 
         padding: 30px 0px;
+        gap: 20px;
 
         display: flex;
         justify-content: flex-start;
