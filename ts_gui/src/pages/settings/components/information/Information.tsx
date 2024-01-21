@@ -32,7 +32,7 @@ export default function Information() {
         },
         {
             name: "阿倫",
-            description: "UI/UX 設計師 (設計 & 繪圖)",
+            description: "前端工程師（UI/UX & 前段程式碼）",
             img: developerGxsImg,
             discordLink: "",
             githubLink: "https://github.com/kocreeper1"
