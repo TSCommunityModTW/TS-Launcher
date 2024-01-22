@@ -26,7 +26,7 @@ export default function App() {
         // HI
 
         // navigate("/instanceSettings/nr-server/parameters");
-        // navigate("/main/namelessrealms/server_info")
+        navigate("/main/namelessrealms/server_info")
     }
 
     const { t } = useTranslation();
