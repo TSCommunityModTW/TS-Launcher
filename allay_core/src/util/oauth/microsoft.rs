@@ -1,13 +1,10 @@
 use std::collections::HashMap;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
-use ts_rs::TS;
 
 use crate::util::config::MICROSOFT_CLIENT_ID;
 
-#[derive(Debug, Deserialize, Serialize, TS)]
-#[ts(rename = "IMicrosoftDeviceAuth")]
-#[ts(export, export_to = "../src/interfaces/IMicrosoftDeviceAuth.ts")]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct DeviceAuth {
     pub device_code: String,
     pub expires_in: u32,

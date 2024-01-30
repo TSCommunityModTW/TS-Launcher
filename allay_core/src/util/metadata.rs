@@ -90,7 +90,7 @@ pub const LAUNCHER_ASSETS: &str = r#"{
         {
             "id": "namelessrealms",
             "name": "無名模組伺服器",
-            "imageUrl": "https://s3-alpha-sig.figma.com/img/cb59/e34f/6975698d62769d30948554cc99d2edf2?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=h9o6Q2mmiAqGqDYbsrRAKJIiIP4B960XS7ZIYaxk4EX5QHKzK5BhNcw6LNw54YloI9e-AXM85YQPkzknGBvgvdbpPUwkMqKtP-oz3sliVi2~YAgoe2RFJcSnIWbW7yOVANbBwP9txcdOFsC8ZtVqw~RckO4l9YWIoXXroM9QfWDRBxpCKy81oiF4qRLvkZo2Zi4IzQXxq~rLRZ0c~kuSjRWFafGt16pIzs-5gfjIh2~xxf5m~emFWwp5KYNGZzKKTVUviuWzOhI2v4Z8ybhlERphlABAAQrrnoftSc8VGKSejOj4FV33vf0zPk2gNAoBwDxNIGr6FzWMSbFcabJFYw__",
+            "imageUrl": "https://github.com/NamelessRealms/mckismetlab-launcher/blob/react-v0.4.x-beta/src/assets/images/logo/logo.png?raw=true",
             "description": "",
             "officialWebLinkUrl": "",
             "children": [
@@ -150,7 +150,7 @@ pub const LAUNCHER_ASSETS: &str = r#"{
         {
             "id": "tsmodservers",
             "name": "TS模組伺服器",
-            "imageUrl": "https://s3-alpha-sig.figma.com/img/10ed/8f38/38334d551b56aad1119456e90b908c0e?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jFgrza7uvfzlde5S-oljsuthSevuvOZJROWEYsaD5qdn0Fms8s~Nb2wJFMBBEcsE-qNB7KLzYFtXysQRjIbUbol8oxodC0S2sQFe8DK2pARGh5jZ5n256zjDC26kq22MGjJcsGHOuE2qSW7hf-PefX5csxxSB9mfcxpfnn~YiF-DPNi83YLcWO2v0fgceNsd7HS1BEs1yE-C3iQEEwENVRtq3irLCyZd4X2Rt7We9m-Wt9YMZiR4myVAMDTj360KIZ-d9NMiXWUM2N-DJICn879Kgd4xq8maymeWKH8B4elWBWYI~K~tx9e3pH-B00BMkNq1Z8AtypN23Ph1Ka~ijg__",
+            "imageUrl": "https://static.wixstatic.com/media/edf820_910898828af444db89b78b97e753408d%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/edf820_910898828af444db89b78b97e753408d%7Emv2.png",
             "description": "",
             "officialWebLinkUrl": "",
             "children": [
