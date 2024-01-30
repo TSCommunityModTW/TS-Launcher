@@ -13,6 +13,7 @@ impl Process {
 
         let loading_bar = init_loading(
             LoadingBarType::ProcessChildren {
+                server_id: children_server_id.to_owned(),
                 id: uuid.to_string()
             },
             100.0,

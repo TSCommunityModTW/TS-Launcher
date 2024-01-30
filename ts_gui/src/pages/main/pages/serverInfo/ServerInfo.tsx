@@ -20,35 +20,14 @@ export default function ServerInfo() {
 
     const [titleTrail, setTitleTrail] = useState<boolean>(true);
     const [selectChildrenServerId, setSelectChildrenServerId] = useState<string>(childrenServers[0].id);
-    const [barChildrenServers, setBarChildrenServers] = useState<any>();
 
     const childrenServer: (id: string) => ILauncherAssetsServerChildren | undefined = (id) => {
         return childrenServers.find(childrenServer => childrenServer.id === id);
     }
 
     useEffect(() => {
-
-        // setTitleTrail(false);
-        // setTimeout(() => {
-        //     setTitleTrail(true);
-        // }, 200)
-
         setSelectChildrenServerId(childrenServers[0].id);
-
     }, [server]);
-
-    const getBarValue = (serverId: string): number => {
-        if (barChildrenServers) {
-
-            let bar = barChildrenServers.find((bar: { fraction: number, serverId: string }) => bar.serverId === serverId);
-
-            if (bar) {
-                // return bar.fraction;
-            }
-        }
-
-        return 0;
-    }
 
     return (
         <div className={styles.serverInfoContainer}>
@@ -92,6 +71,9 @@ export default function ServerInfo() {
                                 serverId={item.id}
                                 imageUrl={item.imageUrl}
                                 name={item.name}
+                                onClick={() => {
+                                    setSelectChildrenServerId(item.id);
+                                }}
                             />
                         })
                     }

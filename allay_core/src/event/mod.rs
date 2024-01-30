@@ -69,7 +69,8 @@ pub enum LoadingBarType {
         version: u32,
     },
     ProcessChildren {
-        id: String
+        id: String,
+        server_id: String,
     }
 }
 

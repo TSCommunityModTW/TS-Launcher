@@ -20,8 +20,9 @@ export default function ChildrenServer(props: IProps) {
     const init = async () => {
 
         await loading_listener((payload) => {
-            let fraction = Math.round(payload.fraction);
-            setBarValue(fraction);
+            if (payload.event.type === "process_children" && payload.event.server_id === props.serverId) {
+                setBarValue(Math.round(payload.fraction));
+            }
         });
 
     }
