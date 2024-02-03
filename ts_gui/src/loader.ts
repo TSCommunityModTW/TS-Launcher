@@ -26,14 +26,24 @@ export async function parametersLoader({ params }: LoaderFunctionArgs<any>): Pro
 }
 
 export interface IMainLoader {
-    servers: Array<ILauncherAssetsServer>
+    servers: Array<ILauncherAssetsServer>,
+    player: {
+        name: string,
+        uuid: string
+    }
 }
 
 export async function mainLoader(): Promise<IMainLoader> {
 
     const servers = await Launcher.get_assets_servers();
+    const profiles = await Store.getProfiles();
     
-    return { servers };
+    const player = {
+        name: profiles.player.name,
+        uuid: profiles.player.uuid
+    }
+
+    return { servers, player };
 }
 
 export async function serverInfoLoader({ params }: LoaderFunctionArgs<any>): Promise<ILauncherAssetsServer> {

@@ -1,0 +1,15 @@
+.homeContainer {
+
+    width: 100%;
+    height: 65vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .text {
+        color: #fff;
+        font-size: 52px;
+        text-align: center;
+    }
+}

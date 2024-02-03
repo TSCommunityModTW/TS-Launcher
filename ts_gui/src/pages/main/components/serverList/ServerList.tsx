@@ -27,6 +27,9 @@ export default function ServerList() {
                     }}>
                         <HomeIcon
                                 className={`${styles.homeImg} ${selectLocation === "home" ? styles.homeButtonFillA238FF : null}`}
+                                onClick={() => {
+                                    navigate("/main/home");
+                                }}
                                 // onClick={() => {
                                 //     setSelectLocation(0);
                                 //     if (props.onChangeIndex) props.onChangeIndex(0);

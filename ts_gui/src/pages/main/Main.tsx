@@ -1,48 +1,46 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 
 import styles from "./Main.module.scss";
 
 import ServerList from "./components/serverList/ServerList";
 import Top from "./components/top/Top";
-import Store from "@/invoke/store";
-
+import { IMainLoader } from "@/loader";
 
 export default function Main() {
 
-    const [playerName, setPlayerName] = useState<string>("");
-    const [playerUUID, setPlayerUUID] = useState<string>("");
+    const loaderData = useLoaderData() as IMainLoader;
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        init();
-    }, []);
+    useEffect(() => { init(); }, []);
 
     const init = async () => {
 
-        let profiles = await Store.getProfiles();
-
-        setPlayerName(profiles.player.name);
-        setPlayerUUID(profiles.player.uuid);
+        navigate("/main/home");
 
     }
 
     return (
-        <div className={styles.box}>
-            
-            <div className={styles.mainContainer}>
-                
+        <div className={styles.transparentBackground}>
 
-                <Top
-                    userName={playerName}
-                    userUUID={playerUUID}
-                />
+            <div className={styles.box}>
 
-                <div className={styles.container}>
-                    <ServerList/>
-                    <Outlet />
+                <div className={styles.mainContainer}>
+
+                    <Top
+                        userName={loaderData.player.name}
+                        userUUID={loaderData.player.uuid}
+                    />
+
+                    <div className={styles.container}>
+                        <ServerList />
+                        <Outlet />
+                    </div>
+
                 </div>
 
             </div>
+            
         </div>
     )
 }

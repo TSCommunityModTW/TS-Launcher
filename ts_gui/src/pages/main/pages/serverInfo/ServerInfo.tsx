@@ -18,7 +18,6 @@ export default function ServerInfo() {
     const server = useLoaderData() as ILauncherAssetsServer;
     const childrenServers = server.children;
 
-    const [titleTrail, setTitleTrail] = useState<boolean>(true);
     const [selectChildrenServerId, setSelectChildrenServerId] = useState<string>(childrenServers[0].id);
 
     const childrenServer: (id: string) => ILauncherAssetsServerChildren | undefined = (id) => {
@@ -36,29 +35,25 @@ export default function ServerInfo() {
                 <div className={styles.playServerGameContainer}>
 
                     <div className={styles.leftDiv}>
-                        <Trail open={titleTrail}>
-                            <h1 className={styles.serverNameH1}>{server.name}</h1>
-                            <h2 className={styles.serverNameH2}>{childrenServer(selectChildrenServerId)?.name}</h2>
-                            <div className={styles.buttonDiv}>
-                                <div className={styles.settingButton} onClick={() => {
-                                    navigate(`/instanceSettings/${selectChildrenServerId}/parameters`);
-                                }}>
-                                    <img src={settingLines} alt="setting-lines" />
-                                </div>
-
-                                <ButtonPlay
-                                    serverId={server.id}
-                                    childrenServerId={selectChildrenServerId}
-                                />
-
+                        <h1 className={styles.serverNameH1}>{server.name}</h1>
+                        <h2 className={styles.serverNameH2}>{childrenServer(selectChildrenServerId)?.name}</h2>
+                        <div className={styles.buttonDiv}>
+                            <div className={styles.settingButton} onClick={() => {
+                                navigate(`/instanceSettings/${selectChildrenServerId}/parameters`);
+                            }}>
+                                <img src={settingLines} alt="setting-lines" />
                             </div>
-                        </Trail>
+
+                            <ButtonPlay
+                                serverId={server.id}
+                                childrenServerId={selectChildrenServerId}
+                            />
+
+                        </div>
                     </div>
 
                     <div className={styles.modpackContainer}>
-                        <Trail open={true}>
-                            <img src={server.imageUrl} />
-                        </Trail>
+                        <img src={server.imageUrl} />
                     </div>
 
                 </div>

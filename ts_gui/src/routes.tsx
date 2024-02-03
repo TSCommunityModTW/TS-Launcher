@@ -27,6 +27,7 @@ import ModList from "@/pages/instanceSettings/components/modList/ModList";
 import ResourcePacks from "@/pages/instanceSettings/components/resourcePacks/ResourcePacks";
 import Screenshot from "@/pages/instanceSettings/components/screenshot/Screenshot";
 import ServerInfo from "@/pages/main/pages/serverInfo/ServerInfo";
+import Home from "@/pages/main/pages/home/Home";
 
 import { mainLoader, parametersLoader, serverInfoLoader } from "./loader";
 
@@ -104,6 +105,10 @@ export default createBrowserRouter([
                         path: "/main/:serverId/server_info",
                         element: <ServerInfo />,
                         loader: serverInfoLoader
+                    },
+                    {
+                        path: "/main/home",
+                        element: <Home />
                     }
                 ]
             },
