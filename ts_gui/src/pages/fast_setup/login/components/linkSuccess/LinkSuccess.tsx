@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./LinkSuccess.module.scss";
 
@@ -10,6 +10,7 @@ import Store from "@/invoke/store";
 
 export default function LinkSuccess() {
 
+    const { type } = useParams() as { type: "new" | "refresh" };
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [playerName, setPlayerName] = useState<string>("");
@@ -41,7 +42,13 @@ export default function LinkSuccess() {
                         content={t("login.link_success.text_3")}
                         themeColor="green"
                         onClick={() => {
-                            navigate("/java/setup");
+
+                            if (type === "new") {
+                                navigate("/java/setup");
+                            } else {
+                                navigate("/main");
+                            }
+
                         }}
                     />
 

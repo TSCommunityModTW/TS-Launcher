@@ -5,7 +5,8 @@ pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
     tauri::plugin::Builder::new("auth")
         .invoke_handler(tauri::generate_handler![
             get_device_code,
-            auth_minecraft_await
+            auth_minecraft_await,
+            auth_verification_expires_at
         ])
         .build()
 }
@@ -21,4 +22,10 @@ pub async fn get_device_code() -> crate::api::Result<DeviceAuth> {
 #[tauri::command]
 pub async fn auth_minecraft_await(device_auth: DeviceAuth) -> crate::api::Result<bool> {
     Ok(auth::auth_minecraft_await(&device_auth).await?)
+}
+
+/// await invoke("plugin:auth|auth_verification_expires_at");
+#[tauri::command]
+pub async fn auth_verification_expires_at() -> super::Result<bool> {
+    Ok(auth::auth_verification_expires_at().await?)
 }

@@ -11,7 +11,7 @@ use crate::util;
 #[ts(export, export_to = "../ts_gui/src/interfaces/IStoreProfilesMicrosoftAuth.ts")]
 pub struct MicrosoftAuth {
     pub mc_account_token: String,
-    pub expires_at: String
+    pub expires_at: i64
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
@@ -49,7 +49,7 @@ impl Profiles {
             Profiles {
                 microsoft_auth: MicrosoftAuth {
                     mc_account_token: "".to_owned(),
-                    expires_at: "".to_owned(),
+                    expires_at: 0,
                 },
                 user: User {
                     username: "".to_owned(),

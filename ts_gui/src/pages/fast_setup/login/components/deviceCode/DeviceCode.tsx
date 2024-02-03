@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { open } from "@tauri-apps/api/shell";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,7 @@ import Auth from "@/invoke/auth";
 
 export default function DeviceCode() {
 
+    const { type } = useParams() as { type: "new" | "refresh" };
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -30,7 +31,7 @@ export default function DeviceCode() {
             setDeviceCode(await auth.getDeviceCode());
 
             if (await auth.auth_minecraft_await()) {
-                navigate("/login/link_success");
+                navigate(`/login/link_success/${type}`);
             } else {
                 navigate("/login/link_error");
             }

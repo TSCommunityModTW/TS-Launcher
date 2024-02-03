@@ -23,7 +23,7 @@ export default function Account() {
                     content={t("login.account.text_3")}
                     themeColor="purple"
                     onClick={() => {
-                        navigate("/login/device_code");
+                        navigate("/login/device_code/new");
                     }}
                 />
                 <ButtonFocus

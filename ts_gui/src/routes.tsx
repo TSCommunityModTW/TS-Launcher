@@ -56,7 +56,7 @@ export default createBrowserRouter([
                         element: <Account />
                     },
                     {
-                        path: "/login/device_code",
+                        path: "/login/device_code/:type",
                         element: <DeviceCode />
                     },
                     {
@@ -64,7 +64,7 @@ export default createBrowserRouter([
                         element: <LinkError />
                     },
                     {
-                        path: "/login/link_success",
+                        path: "/login/link_success/:type",
                         element: <LinkSuccess />
                     }
                 ]

@@ -15,4 +15,7 @@ export default class Auth {
         return await invoke("plugin:auth|auth_minecraft_await", { deviceAuth: this.deviceAuth });
     }
 
+    public static async auth_verification_expires_at(): Promise<boolean> {
+        return await invoke("plugin:auth|auth_verification_expires_at");
+    }
 }
