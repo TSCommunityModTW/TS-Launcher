@@ -9,9 +9,8 @@ use crate::util::io;
 
 use super::fetch;
 
-pub const S3_MANIFEST_URL: &str = "https://namelessrealms-daedalus.s3.ap-northeast-1.amazonaws.com";
-pub const MINECRAFT_VERSION_MANIFEST_URL: &str =
-    "https://launchermeta.mojang.com/mc/game/version_manifest.json";
+pub const S3_URL: &str = "https://namelessrealms.com/s3/minecraft-metadata";
+pub const MINECRAFT_VERSION_MANIFEST_URL: &str = "https://launchermeta.mojang.com/mc/game/version_manifest.json";
 
 #[derive(Debug, Deserialize)]
 pub struct MinecraftManifestLatest {
@@ -66,7 +65,7 @@ pub async fn get_vanilla_version_info(version: &str) -> crate::Result<VanillaVer
 
 #[tracing::instrument]
 pub async fn get_forge_versions_manifest() -> crate::Result<daedalus::modded::Manifest> {
-    let forge_manifest_v0_url = format!("{}/{}", S3_MANIFEST_URL, "forge/v0/manifest.json");
+    let forge_manifest_v0_url = format!("{}/{}", S3_URL, "forge/v0/manifest.json");
     let forge_manifest_v0 =
         fetch::request_json::<daedalus::modded::Manifest>(&forge_manifest_v0_url).await?;
 
