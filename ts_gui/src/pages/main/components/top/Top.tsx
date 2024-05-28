@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Top.module.scss";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import ts_1 from "@/assets/images/logo/ts_1.png";
 import settingLines from "@/assets/icons/settings.png";
@@ -17,6 +18,7 @@ type IProps = {
 export default function Top(props: IProps) {
 
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const toggleDropdown = () => {
@@ -36,9 +38,9 @@ export default function Top(props: IProps) {
                 <div className={styles.playerContainer} onClick={toggleDropdown}>
                             {dropdownVisible && (
                                 <div className={styles.dropdownContent}>
-                                    <p>切換帳號</p>
-                                    <p>啟動器設定</p>
-                                    <p>登出帳號</p>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_1")}</p>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_2")}</p>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_3")}</p>
                                 </div>
                             )}
                     <h1>{props.userName}</h1>
