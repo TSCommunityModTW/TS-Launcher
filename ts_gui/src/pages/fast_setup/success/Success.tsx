@@ -41,7 +41,7 @@ export default function SetupSuccess() {
                                 content={t("setup_success.text_4")}
                                 themeColor="gray"
                                 onClick={() => {
-                                    
+                                    //Wiki
                                 }}
                             />
 

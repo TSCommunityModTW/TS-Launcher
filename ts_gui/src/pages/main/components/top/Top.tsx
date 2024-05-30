@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./Top.module.scss";
 
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import ts_1 from "@/assets/images/logo/ts_1.png";
 import settingLines from "@/assets/icons/settings.png";
 
@@ -15,7 +18,12 @@ type IProps = {
 export default function Top(props: IProps) {
 
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+    };
     return (
         <div className={styles.topContainer}>
 
@@ -27,8 +35,14 @@ export default function Top(props: IProps) {
 
             <div className={styles.playerSettingCloseContainer}>
 
-                <div className={styles.playerContainer}>
-
+                <div className={styles.playerContainer} onClick={toggleDropdown}>
+                            {dropdownVisible && (
+                                <div className={styles.dropdownContent}>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_1")}</p>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_2")}</p>
+                                    <p>{t("main.components.topPlayer.playerMenu.select_3")}</p>
+                                </div>
+                            )}
                     <h1>{props.userName}</h1>
                     
                     <div className={styles.playerBodyImg} style={ props.userUUID.length > 0 ? { backgroundImage: `url(https://visage.surgeplay.com/bust/70/${props.userUUID}?y-40)` } : undefined }></div>
