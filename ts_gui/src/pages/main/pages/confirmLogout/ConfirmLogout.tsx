@@ -3,11 +3,27 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./ConfirmLogout.module.scss"
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus"
+import Store from "@/invoke/store";
+import { IStoreProfiles } from "@/interfaces/IStoreProfiles";
 
 
 export default function ConfirmLogout(){
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const emptyProfile: IStoreProfiles = {
+        microsoft_auth: {
+            mc_account_token: "",
+            expires_at: "0",
+        },
+        user: {
+            username: "",
+            id: "",
+        },
+        player: {
+            name: "",
+            uuid: "",
+        },
+    };
     return (
         <div className={styles.confirmLogoutContainer}>
             <h1>確定是否登出?</h1>
@@ -15,8 +31,8 @@ export default function ConfirmLogout(){
                 <ButtonFocus
                     content={t("main.confirmLogout.button_yes")}
                     themeColor="green"
-                    onClick={()=>{
-                        //需新增移除帳號資料的功能
+                    onClick={async()=>{
+                        await Store.setProfiles(emptyProfile);
                         navigate("/main/home");
                     }}
                 />
