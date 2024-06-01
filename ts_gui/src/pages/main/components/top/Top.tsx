@@ -24,6 +24,21 @@ export default function Top(props: IProps) {
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
+    const handleSelect = (selection:string) => {
+        switch(selection){
+            case 'select_1':
+                navigate("/main/home");
+                break;
+            case 'select_2':
+                navigate("/main/home");
+                break;
+            case 'select_3':
+                navigate("/main/confirm_logout");
+                break;
+        }
+        
+
+    };
     return (
         <div className={styles.topContainer}>
 
@@ -38,9 +53,9 @@ export default function Top(props: IProps) {
                 <div className={styles.playerContainer} onClick={toggleDropdown}>
                             {dropdownVisible && (
                                 <div className={styles.dropdownContent}>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_1")}</p>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_2")}</p>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_3")}</p>
+                                    <p onClick={() => handleSelect('select_1')}>{t("main.components.topPlayer.playerMenu.select_1")}</p>
+                                    <p onClick={() => handleSelect('select_2')}>{t("main.components.topPlayer.playerMenu.select_2")}</p>
+                                    <p onClick={() => handleSelect('select_3')}>{t("main.components.topPlayer.playerMenu.select_3")}</p>
                                 </div>
                             )}
                     <h1>{props.userName}</h1>

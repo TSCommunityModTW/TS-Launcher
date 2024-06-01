@@ -1,0 +1,15 @@
+.confirmLogoutContainer{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    h1{
+        color: white;
+    }
+    p{
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+}

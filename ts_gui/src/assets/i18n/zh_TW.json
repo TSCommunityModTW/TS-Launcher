@@ -113,6 +113,10 @@
                     "select_3": "登出帳號"
                 }
             }
+        },
+        "confirmLogout":{
+            "button_yes": "確定",
+            "button_no": "取消"
         }
     },
     "setting": {
