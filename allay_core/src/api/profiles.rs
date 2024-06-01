@@ -13,3 +13,11 @@ pub async fn set(profiles: Profiles) -> crate::Result<()> {
     *store.profiles.write().await = profiles;
     Ok(())
 }
+
+#[tracing::instrument]
+pub async fn clear() -> crate::Result<()> {
+    let store = Store::get().await?;
+    let mut profiles = store.profiles.write().await;
+    profiles.player.name="".to_owned();
+    Ok(())
+}
