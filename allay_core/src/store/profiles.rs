@@ -40,30 +40,34 @@ pub struct Profiles {
 }
 
 impl Profiles {
+    pub fn new()->Self{ 
+        Profiles {
+            microsoft_auth: MicrosoftAuth {
+                mc_account_token: "".to_owned(),
+                expires_at: 0,
+            },
+            user: User {
+                username: "".to_owned(),
+                id: "".to_owned(),
+            },
+            player: Player {
+                name: "".to_owned(),
+                uuid: "".to_owned(),
+            }
+        }
+    }
     
     pub async fn init(file_path: &Path) -> crate::Result<Self> {
 
         let profile = if let Ok(profile_json) = util::io::read_json_file::<Profiles>(&file_path).await {
             profile_json
         } else {
-            Profiles {
-                microsoft_auth: MicrosoftAuth {
-                    mc_account_token: "".to_owned(),
-                    expires_at: 0,
-                },
-                user: User {
-                    username: "".to_owned(),
-                    id: "".to_owned(),
-                },
-                player: Player {
-                    name: "".to_owned(),
-                    uuid: "".to_owned(),
-                }
-            }
+            Profiles::new()
         };
 
         Ok(profile)
     }
+
 
     pub fn get_microsoft_access_token(&self) -> crate::Result<String> {
         let entry = Entry::new(util::config::KEYTAR_SERVICE, "accesstoken")?;
