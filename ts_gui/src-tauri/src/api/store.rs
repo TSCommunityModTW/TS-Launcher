@@ -10,7 +10,8 @@ pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
             get_settings_java,
             set_settings_java,
             profiles_get,
-            profiles_set
+            profiles_set,
+            profiles_clear
         ])
         .build()
 }
@@ -58,5 +59,13 @@ pub async fn profiles_get() -> super::Result<Profiles> {
 #[tauri::command]
 pub async fn profiles_set(value: Profiles) -> super::Result<()> {
     profiles::set(value).await?;
+    Ok(())
+}
+
+// invoke("plugin:store|profiles_clear")
+#[tauri::command]
+pub async fn profiles_clear() -> super::Result<()> {
+    profiles::clear().await?;
+    Store::sync().await?;
     Ok(())
 }
