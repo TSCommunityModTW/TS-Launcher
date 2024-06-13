@@ -10,7 +10,7 @@ export default function ConfirmLogout(){
     const navigate = useNavigate();
     const { t } = useTranslation();
     const handleLogout = async () => {
-        await Store.clearProfiles();
+        Store.clearProfiles();
         navigate("/main/home");
     };
     return (
