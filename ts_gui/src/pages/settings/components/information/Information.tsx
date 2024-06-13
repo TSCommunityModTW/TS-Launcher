@@ -42,6 +42,8 @@ export default function Information() {
             name: "小誠",
             description: "伺服器",
             img: developerBdsImg,
+            discordLink: "",
+            githubLink: ""
         }
     ]
 

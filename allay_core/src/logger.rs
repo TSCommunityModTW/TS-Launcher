@@ -24,7 +24,7 @@ pub fn init_logger() -> Option<WorkerGuard> {
 #[cfg(not(debug_assertions))]
 pub fn init_logger() -> Option<WorkerGuard> {
 
-    use crate::app_path;
+    use crate::util::app_path;
     use tracing_subscriber::prelude::*;
 
     // Initialize and get logs directory path
