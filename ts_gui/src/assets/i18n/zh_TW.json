@@ -110,7 +110,8 @@
                 "playerMenu": {
                     "select_1": "切換帳號",
                     "select_2": "啟動器設定",
-                    "select_3": "登出帳號"
+                    "select_3": "登出帳號",
+                    "login": "登入"
                 }
             }
         },
