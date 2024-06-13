@@ -74,8 +74,9 @@ pub async fn auth_verification_expires_at() -> crate::Result<bool> {
 
         return Ok(true);
     }
-
-    tracing::info!("Microsoft 帳號驗證成功!");
+    else {
+        tracing::info!("Microsoft 帳號驗證成功!");
+    }
 
     Ok(true)
 }
