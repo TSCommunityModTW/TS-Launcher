@@ -8,7 +8,7 @@ import supportImg from "@/assets/icons/support.png";
 import Process from "@/invoke/process";
 import { useAppDispatch } from "@/hooks";
 import { setCrashOpen } from "@/slices/stateSlice";
-import { loading_listener } from "@/invoke/events";
+//import { loading_listener } from "@/invoke/events";
 
 type IPlayState = "onStandby" | "validate" | "start" | "startError" | "close" | "closeError" | "validateFlx" | "stop" | "flxStop";
 type IProps = {

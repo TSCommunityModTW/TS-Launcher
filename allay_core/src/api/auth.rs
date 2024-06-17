@@ -42,8 +42,10 @@ pub async fn auth_verification_expires_at() -> crate::Result<bool> {
 
     let microsoft_expires_at = &profiles.microsoft_auth.expires_at;
     let now = Local::now();
-
-    if now.timestamp() > *microsoft_expires_at {
+    if *microsoft_expires_at==0{
+        tracing::info!("沒有登入記錄!");
+    }
+    else if now.timestamp() > *microsoft_expires_at {
         
         tracing::warn!("Microsoft 帳號過期，嘗試取得新的 Token!");
 
@@ -72,8 +74,9 @@ pub async fn auth_verification_expires_at() -> crate::Result<bool> {
 
         return Ok(true);
     }
-
-    tracing::info!("Microsoft 帳號驗證成功!");
+    else {
+        tracing::info!("Microsoft 帳號驗證成功!");
+    }
 
     Ok(true)
 }

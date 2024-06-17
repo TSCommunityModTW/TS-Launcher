@@ -7,6 +7,7 @@ import styles from "./Information.module.scss";
 import developerQuasiImg from "@/assets/images/personnel/yu.jpg";
 import developerTsImg from "@/assets/images/personnel/ts.png";
 import developerGxsImg from "@/assets/images/personnel/gxs.png";
+import developerBdsImg from "@/assets/images/personnel/bds.png";
 import githubIconImg from "@/assets/icons/github.png";
 import discordIconImg from "@/assets/icons/discord.svg";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
@@ -36,6 +37,13 @@ export default function Information() {
             img: developerGxsImg,
             discordLink: "",
             githubLink: "https://github.com/kocreeper1"
+        },
+        {
+            name: "小誠",
+            description: "伺服器",
+            img: developerBdsImg,
+            discordLink: "",
+            githubLink: ""
         }
     ]
 

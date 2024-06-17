@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import styles from "./ServerInfo.module.scss";
 
-import Trail from "@/pages/components/trail/Trail";
+//import Trail from "@/pages/components/trail/Trail";
 import settingLines from "@/assets/icons/setting-lines.png";
 import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";

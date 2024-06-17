@@ -12,6 +12,7 @@ import Account from "@/pages/fast_setup/login/components/account/Account";
 import LinkError from "@/pages/fast_setup/login/components/linkError/LinkError";
 import LinkSuccess from "@/pages/fast_setup/login/components/linkSuccess/LinkSuccess";
 import Java from "@/pages/fast_setup/java/Java";
+import ConfirmLogout from "@/pages/main/pages/confirmLogout/ConfirmLogout";
 import Setup from "@/pages/fast_setup/java/components/setup/Setup";
 import Install from "@/pages/fast_setup/java/components/install/Install";
 import SetupSuccess from "@/pages/fast_setup/success/Success";
@@ -109,6 +110,10 @@ export default createBrowserRouter([
                     {
                         path: "/main/home",
                         element: <Home />
+                    },
+                    {
+                        path: "/main/confirm_logout",
+                        element: <ConfirmLogout />
                     }
                 ]
             },

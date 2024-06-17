@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./imageTool.module.scss";
+import styles from "./ImageTool.module.scss";
 
 import deleteForeverRedIcon from "@/assets/icons/delete-forever-red.png";
 import copyIcon from "@/assets/icons/copy.png";

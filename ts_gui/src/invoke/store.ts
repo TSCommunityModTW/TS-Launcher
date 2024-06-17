@@ -38,4 +38,8 @@ export default class Store {
     public static async setProfiles(value: IStoreProfiles) {
         await invoke("plugin:store|profiles_set", { value });
     }
+
+    public static async clearProfiles() {
+        await invoke("plugin:store|profiles_clear");
+    }
 }

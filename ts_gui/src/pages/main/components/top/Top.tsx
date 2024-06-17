@@ -24,6 +24,24 @@ export default function Top(props: IProps) {
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
+    const handleSelect = (selection:string) => {
+        switch(selection){
+            case 'select_1':
+                navigate("/main/home");
+                break;
+            case 'select_2':
+                navigate("/main/home");
+                break;
+            case 'select_3':
+                navigate("/main/confirm_logout");
+                break;
+            case 'login':
+                navigate("/login/account");
+                break;    
+        }
+        
+
+    };
     return (
         <div className={styles.topContainer}>
 
@@ -34,34 +52,37 @@ export default function Top(props: IProps) {
             </div>
 
             <div className={styles.playerSettingCloseContainer}>
+                {props.userName&&props.userUUID?
+                    <div className={styles.playerContainer} onClick={toggleDropdown}>
+                                {dropdownVisible && (
+                                    <div className={styles.dropdownContent}>
+                                        <p onClick={() => handleSelect('select_1')}>{t("main.components.topPlayer.playerMenu.select_1")}</p>
+                                        <p onClick={() => handleSelect('select_2')}>{t("main.components.topPlayer.playerMenu.select_2")}</p>
+                                        <p onClick={() => handleSelect('select_3')}>{t("main.components.topPlayer.playerMenu.select_3")}</p>
+                                    </div>
+                                )}
+                        <h1>{props.userName}</h1>
+                        
+                        <div className={styles.playerBodyImg} style={ props.userUUID.length > 0 ? { backgroundImage: `url(https://visage.surgeplay.com/bust/70/${props.userUUID}?y-40)` } : undefined }></div>
 
-                <div className={styles.playerContainer} onClick={toggleDropdown}>
-                            {dropdownVisible && (
-                                <div className={styles.dropdownContent}>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_1")}</p>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_2")}</p>
-                                    <p>{t("main.components.topPlayer.playerMenu.select_3")}</p>
-                                </div>
-                            )}
-                    <h1>{props.userName}</h1>
-                    
-                    <div className={styles.playerBodyImg} style={ props.userUUID.length > 0 ? { backgroundImage: `url(https://visage.surgeplay.com/bust/70/${props.userUUID}?y-40)` } : undefined }></div>
+                        {/* <ReactSkinview3d
+                            // skinUrl={`"https://crafatar.com/skins/"${props.userUUID}`}
+                            skinUrl={skin_1}
+                            height="500"
+                            width="500"
+                            onReady={({ viewer }) => {
+                                const walkingAnimation = new WalkingAnimation();
+                                walkingAnimation.headBobbing = false;
+                                viewer.animation = walkingAnimation;
+                                viewer.animation.speed = 0.5;
+                            }}
+                        /> */}
 
-                    {/* <ReactSkinview3d
-                        // skinUrl={`"https://crafatar.com/skins/"${props.userUUID}`}
-                        skinUrl={skin_1}
-                        height="500"
-                        width="500"
-                        onReady={({ viewer }) => {
-                            const walkingAnimation = new WalkingAnimation();
-                            walkingAnimation.headBobbing = false;
-                            viewer.animation = walkingAnimation;
-                            viewer.animation.speed = 0.5;
-                        }}
-                    /> */}
-
-                </div>
-
+                    </div>:
+                    <div className={styles.buttonContainer}>
+                        <div className={styles.loginButton} onClick={() => handleSelect('login')}>{t("main.components.topPlayer.playerMenu.login")}</div>
+                    </div>  
+                }
                 <div className={styles.buttonContainer}>
 
                     <div className={styles.settingButton}
