@@ -41,6 +41,7 @@ export default function App() {
 
         } catch (err: any) {
             dispatch(setCrashOpen({ state: true, errorMessage: err.message }));
+            navigate("/login/device_code/refresh");
         }
     }
 

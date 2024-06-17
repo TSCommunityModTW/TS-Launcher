@@ -17,7 +17,6 @@ pub async fn get_device_code() -> crate::api::Result<DeviceAuth> {
     Ok(auth::get_device_code().await?)
 }
 
-
 /// await invoke("plugin:auth|auth_minecraft_await");
 #[tauri::command]
 pub async fn auth_minecraft_await(device_auth: DeviceAuth) -> crate::api::Result<bool> {

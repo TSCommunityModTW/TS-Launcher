@@ -9,7 +9,7 @@ use crate::util::io;
 
 use super::fetch;
 
-pub const S3_URL: &str = "https://namelessrealms.com/s3/minecraft-metadata";
+pub const S3_URL: &str = "http://s3api.bdstw.org:9800/minecraft-metadata";
 pub const MINECRAFT_VERSION_MANIFEST_URL: &str = "https://launchermeta.mojang.com/mc/game/version_manifest.json";
 
 #[derive(Debug, Deserialize)]
@@ -193,7 +193,7 @@ pub const LAUNCHER_ASSETS: &str = r#"{
                     "name": "TS-WAR",
                     "imageUrl": "https://i.ibb.co/yYwrRf0/dawncraft-cf.png",
                     "minecraftType": "minecraftVanilla",
-                    "minecraftVersion": "1.17",
+                    "minecraftVersion": "1.6.4",
                     "action": {
                         "rule": "ALL",
                         "players": []
