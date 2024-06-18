@@ -42,7 +42,7 @@ export default function ChildrenServer(props: IProps) {
                         className={styles.bar}
                         style={{ height: `${barValue}%` }}
                     ></div>
-                    <img src={props.imageUrl} />
+                    <img className={styles.serverBorderContainer} src={props.imageUrl} />
                 </div>
 
             </div>
