@@ -21,6 +21,13 @@ export default function Changelog() {
 
     const contextList: Array<ChangelogContext> = [
         {
+            title: "v0.1.1",
+            color: ChangelogContextColor.Green,
+            descriptions: [
+                "- 少量錯誤修復"
+            ]
+        },
+        {
             title: "新專案開發",
             color: ChangelogContextColor.Green,
             descriptions: [
@@ -34,7 +41,7 @@ export default function Changelog() {
 
             <div className={styles.changelogTitleDiv}>
                 <h1 className={styles.headline}>{t("setting.menu.title_2.subTitle_1")}</h1>
-                <h2 className={styles.versionText}>{`v0.1.0-beta`}</h2>
+                <h2 className={styles.versionText}>{`v0.1.1-beta`}</h2>
             </div>
 
             {

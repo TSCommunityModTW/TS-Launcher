@@ -61,6 +61,7 @@ export default function DeviceCode() {
                         themeColor="green"
                         disabled={ deviceCode.length > 0 ? false : true }
                         onClick={() => {
+                            navigator.clipboard.writeText(deviceCode);
                             open("https://www.microsoft.com/link");
                         }}
                     />
