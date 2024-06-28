@@ -12,6 +12,7 @@ export default function ConfirmLogout(){
     const handleLogout = async () => {
         Store.clearProfiles();
         navigate("/main/home");
+        window.location.reload();
     };
     return (
         <div className={styles.confirmLogoutContainer}>
