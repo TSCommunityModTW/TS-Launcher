@@ -109,7 +109,8 @@ export default createBrowserRouter([
                     },
                     {
                         path: "/main/home",
-                        element: <Home />
+                        element: <Home />,
+                        loader: mainLoader,
                     },
                     {
                         path: "/main/confirm_logout",

@@ -65,18 +65,7 @@ export default function Top(props: IProps) {
                         
                         <div className={styles.playerBodyImg} style={ props.userUUID.length > 0 ? { backgroundImage: `url(https://visage.surgeplay.com/bust/70/${props.userUUID}?y-40)` } : undefined }></div>
 
-                        {/* <ReactSkinview3d
-                            // skinUrl={`"https://crafatar.com/skins/"${props.userUUID}`}
-                            skinUrl={skin_1}
-                            height="500"
-                            width="500"
-                            onReady={({ viewer }) => {
-                                const walkingAnimation = new WalkingAnimation();
-                                walkingAnimation.headBobbing = false;
-                                viewer.animation = walkingAnimation;
-                                viewer.animation.speed = 0.5;
-                            }}
-                        /> */}
+
 
                     </div>:
                     <div className={styles.buttonContainer}>
