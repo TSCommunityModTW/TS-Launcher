@@ -30,12 +30,22 @@ pub struct Java {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
+#[ts(rename = "IStoreSettingSelectedServer")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/IStoreSettingSelectedServer.ts")]
+pub struct SelectedServerStart {
+    pub main_id: String,
+    pub child_server_id: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreSettingsGeneral")]
 #[ts(export, export_to = "../ts_gui/src/interfaces/IStoreSettingsGeneral.ts")]
 pub struct General {
     pub open_game_keep_launcher_state: bool,
     // pub game_start_open_monitor_log: bool,
 }
+
+
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreSettings")]
@@ -45,9 +55,10 @@ pub struct Settings {
     pub java: HashMap<String, Java>,
     pub display_position: i32,
     pub launcher_keep_open: bool,
-    pub selected_server_start: String,
+    pub selected_server_start: SelectedServerStart,
     pub general: General
 }
+
 
 impl Settings {
     
@@ -78,7 +89,10 @@ impl Settings {
                 java,
                 display_position: 0,
                 launcher_keep_open: true,
-                selected_server_start: "".to_owned(),
+                selected_server_start: SelectedServerStart{
+                    main_id: "".to_owned(),
+                    child_server_id: "".to_owned()
+                },
                 general: General {
                     open_game_keep_launcher_state: true,
                     // game_start_open_monitor_log: false,
