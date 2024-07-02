@@ -37,6 +37,7 @@ export async function mainLoader(): Promise<IMainLoader> {
 
     const servers = await Launcher.get_assets_servers();
     const profiles = await Store.getProfiles();
+    await Store.saveLauncherSettingsFile(); //因為0.1.1變0.1.2 JSON更改
     
     const player = {
         name: profiles.player.name,

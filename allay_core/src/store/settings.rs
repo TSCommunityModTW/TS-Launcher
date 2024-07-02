@@ -1,6 +1,8 @@
 use std::{collections::HashMap, path::Path};
 use serde::{Deserialize, Serialize};
+use serde_json::{Value, json}; 
 use ts_rs::TS;
+
 
 use crate::util;
 
@@ -65,9 +67,15 @@ impl Settings {
     pub async fn init(file_path: &Path) -> crate::Result<Self> {
 
         let settings = if let Ok(settings_json) = util::io::read_json_file::<Settings>(&file_path).await {
+            tracing::debug!("Loaded setting's JSON.");
             settings_json
-        } else {
-
+        } else if let Ok(value) = util::io::read_json_file::<Value>(&file_path).await {
+            // If reading as Settings fails, try reading as Value for migration
+            tracing::debug!("Loaded setting's JSON as Value for migration.");
+            let migrated_value = migrate_settings(value)?;
+            serde_json::from_value(migrated_value)?
+        }
+        else {
             let mut java: HashMap<String, Java> = HashMap::new();
             java.insert("global".to_owned(), Java {
                 id: "global".to_owned(),
@@ -84,7 +92,7 @@ impl Settings {
                 java_parameter_checked: false,
             });
 
-            Settings {
+            let settings = Settings {
                 language: "".to_owned(),
                 java,
                 display_position: 0,
@@ -97,7 +105,9 @@ impl Settings {
                     open_game_keep_launcher_state: true,
                     // game_start_open_monitor_log: false,
                 },
-            }
+            };
+            tracing::debug!("Created setting's JSON.");
+            settings
         };
 
         Ok(settings)
@@ -105,7 +115,7 @@ impl Settings {
     }
 
     pub async fn update_java(&mut self, id: &str, version: JavaPathVersion, path: &str) -> crate::Result<()> {
-
+        tracing::debug!("Update_java");
         // let store = Store::get().await?;
         // let mut settings = store.settings.write().await;
 
@@ -121,7 +131,30 @@ impl Settings {
     }
 
     pub async fn sync(&self, file_path: &Path) -> crate::Result<()> {
+        tracing::debug!("Sync");
         util::io::write_struct_file(file_path, &self).await?;
         Ok(())
     }
+
+    
+}
+
+
+//Corvert 0.1.1 json to 0.1.2
+fn migrate_settings(mut value: Value) -> crate::Result<Value> {
+    if let Some(obj) = value.as_object_mut() {
+        if let Some(selected_server_start) = obj.get("selected_server_start") {
+            if selected_server_start.is_string() {
+                let main_id: String = selected_server_start.as_str().unwrap().to_owned();
+                let new_selected_server_start = json!({
+                    "main_id": main_id,
+                    "child_server_id": ""
+                });
+                obj.insert("selected_server_start".to_owned(), new_selected_server_start);
+                tracing::debug!("Migrated selected_server_start to new format.");
+            }
+        }
+        
+    }
+    Ok(value)
 }
