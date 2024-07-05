@@ -23,6 +23,7 @@ fn main() {
         .plugin(api::system::init())
         .plugin(api::launcher::init())
         .plugin(api::process::init())
+        .plugin(api::logger::init())
         .invoke_handler(tauri::generate_handler![
             initialize
         ]);

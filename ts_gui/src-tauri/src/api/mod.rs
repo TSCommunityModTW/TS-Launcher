@@ -6,6 +6,7 @@ pub mod java;
 pub mod system;
 pub mod launcher;
 pub mod process;
+pub mod logger;
 
 #[derive(Debug, thiserror::Error)]
 pub enum AllayCoreSerializableError {
