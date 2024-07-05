@@ -55,17 +55,3 @@ export async function serverInfoLoader({ params }: LoaderFunctionArgs<any>): Pro
 
     return server;
 }
-
-export interface IServerSelectedLoader{
-    server_id: string,
-    childrenServerId: string
-}
-
-export async function serverselectedLoader(): Promise<IServerSelectedLoader>{
-    const setting = await Store.getSettings();
-    return {
-        server_id: setting.selected_server_start.main_id,
-        childrenServerId: setting.selected_server_start.child_server_id
-    };
-
-}
