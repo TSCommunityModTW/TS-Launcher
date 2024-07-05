@@ -6,6 +6,8 @@ import playImg from "@/assets/icons/play.png";
 import stopImg from "@/assets/icons/stop.png";
 import supportImg from "@/assets/icons/support.png";
 import Process from "@/invoke/process";
+import Store from "@/invoke/store";
+import { IStoreSettingSelectedServer } from "@/interfaces/IStoreSettingSelectedServer";
 import { useAppDispatch } from "@/hooks";
 import { setCrashOpen } from "@/slices/stateSlice";
 //import { loading_listener } from "@/invoke/events";
@@ -38,10 +40,19 @@ export default function ButtonPlay(props: IProps) {
         // });
 
     }
+    const changeLastPlayedServer = async()=>{
+        const currentPlaying: IStoreSettingSelectedServer = {
+            main_id: props.serverId,
+            child_server_id: props.childrenServerId,
+        }
+        Store.setSettingsSelectedServerStart(currentPlaying)
+    }
+    
 
     return (
         <div className={styles.buttonPlayDiv} style={{ padding: `0px ${playPadding}px` }}
             onClick={() => {
+                changeLastPlayedServer();
                 Process.processMinecraftRun(props.serverId, props.childrenServerId)
                     .catch((err) => {
                         dispatch(setCrashOpen({ state: true, errorMessage: err.message }));
