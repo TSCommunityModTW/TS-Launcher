@@ -30,21 +30,32 @@ export interface IMainLoader {
     player: {
         name: string,
         uuid: string
+    },
+    selected_server:{
+        server_id: string,
+        childrenServerId: string
     }
+
 }
 
 export async function mainLoader(): Promise<IMainLoader> {
 
     const servers = await Launcher.get_assets_servers();
     const profiles = await Store.getProfiles();
+    const settings = await Store.getSettings();
     await Store.saveLauncherSettingsFile(); //因為0.1.1變0.1.2 JSON更改
-    
+
     const player = {
         name: profiles.player.name,
         uuid: profiles.player.uuid
     }
+    const selected_server =
+    {
+        server_id: settings.selected_server_start.main_id,
+        childrenServerId: settings.selected_server_start.child_server_id
+    }
 
-    return { servers, player };
+    return { servers, player, selected_server };
 }
 
 export async function serverInfoLoader({ params }: LoaderFunctionArgs<any>): Promise<ILauncherAssetsServer> {
