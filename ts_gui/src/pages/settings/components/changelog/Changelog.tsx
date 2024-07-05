@@ -21,10 +21,18 @@ export default function Changelog() {
 
     const contextList: Array<ChangelogContext> = [
         {
+            title: "v0.1.2",
+            color: ChangelogContextColor.Green,
+            descriptions: [
+                "主畫面修改: 顯示最後遊玩的伺服器"
+            ]
+        },
+        {
             title: "v0.1.1",
             color: ChangelogContextColor.Green,
             descriptions: [
-                "- 少量錯誤修復"
+                "新增: 登出功能",
+                "修複: 無法自動複製代碼"
             ]
         },
         {
