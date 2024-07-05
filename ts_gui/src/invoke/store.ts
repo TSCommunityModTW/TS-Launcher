@@ -20,7 +20,12 @@ export default class Store {
     }
   
     public static async setSettings(value: IStoreSettings) {
-        await invoke("plugin:store|settings_set", { value });
+    public static async getSettingsSelectedServerStart(): Promise<IStoreSettingSelectedServer> {
+        return await logger.invokeWithLogging<IStoreSettingSelectedServer>("plugin:store|get_settings_selected_server_start");
+    }
+
+    public static async setSettingsSelectedServerStart(value: IStoreSettingSelectedServer) {
+        await logger.invokeWithLogging<void>("plugin:store|set_settings_selected_server_start", { value });
     }
 
     public static async getSettingsJava(id: string): Promise<IStoreSettingsJava> {
