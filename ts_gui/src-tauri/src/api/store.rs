@@ -1,4 +1,4 @@
-use allay_core::{data::{Settings, Java, Profiles}, settings, profiles, Store};
+use allay_core::{data::{Java, Profiles, Settings}, profiles, settings, SelectedServerStart, Store};
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
@@ -11,7 +11,9 @@ pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {
             set_settings_java,
             profiles_get,
             profiles_set,
-            profiles_clear
+            profiles_clear,
+            get_settings_selected_server_start,
+            set_settings_selected_server_start
         ])
         .build()
 }
@@ -68,4 +70,43 @@ pub async fn profiles_clear() -> super::Result<()> {
     profiles::clear().await?;
     Store::sync().await?;
     Ok(())
+}
+
+// invoke("plugin::store|get_settings_selected_server_start")
+#[tauri::command]
+pub async fn get_settings_selected_server_start() -> super::Result<SelectedServerStart>{
+    Ok(settings::get_selected_server_start().await?)
+}
+
+
+// invoke("plugin::store|set_settings_selected_server_start")
+#[tauri::command]
+pub async fn set_settings_selected_server_start(value: SelectedServerStart) -> super::Result<()>{
+    match settings::set_selected_server_start(value.clone()).await {
+        Ok(_) => {
+            tracing::debug!("Selected Server Start set: {:?}", value);
+            match Store::sync().await {
+                Ok(_) => {
+                    tracing::debug!("Store synced successfully.");
+                    Ok(())
+                }
+                Err(e) => {
+                    tracing::error!("Failed to sync store: {:?}", e);
+                    Err(e.into()) // Convert the error to your custom Result type
+                }
+            }
+        }
+        Err(e) => {
+            tracing::error!("Failed to set selected server start: {:?}", e);
+            Err(e.into()) // Convert the error to your custom Result type
+        }
+    }
+    
+    
+    
+    
+    //settings::set_selected_server_start(value).await?;
+    //tracing::debug!("Selected Server Start set:{:?}",value);
+    //Store::sync().await?;
+    //Ok(())
 }
