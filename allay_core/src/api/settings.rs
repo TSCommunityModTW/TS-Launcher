@@ -1,4 +1,4 @@
-use crate::{Settings, Store, Java};
+use crate::{Java, SelectedServerStart, Settings, Store};
 
 #[tracing::instrument]
 pub async fn get() -> crate::Result<Settings> {
@@ -44,7 +44,7 @@ pub async fn get_java(id: &str) -> crate::Result<Java> {
 
 #[tracing::instrument]
 pub async fn set_java(id: &str, value: Java) -> crate::Result<()> {
-
+    
     let store = Store::get().await?;
     let mut settings = store.settings.write().await;
 
@@ -55,5 +55,20 @@ pub async fn set_java(id: &str, value: Java) -> crate::Result<()> {
         tracing::warn!("Store settings set {} java hashmap . ", id);
     }
 
+    Ok(())
+}
+
+#[tracing::instrument]
+pub async fn get_selected_server_start() -> crate::Result<(SelectedServerStart)> {
+    let settings = self::get().await?;
+    return Ok(settings.selected_server_start.clone());
+}
+
+
+#[tracing::instrument]
+pub async fn set_selected_server_start(selected_server_start: SelectedServerStart) -> crate::Result<()> {
+    let store = Store::get().await?;
+    let mut settings = store.settings.write().await;
+    settings.selected_server_start=selected_server_start;
     Ok(())
 }
