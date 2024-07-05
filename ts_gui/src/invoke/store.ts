@@ -1,7 +1,10 @@
 import { IStoreProfiles } from "@/interfaces/IStoreProfiles";
+import { IStoreSettingSelectedServer } from "@/interfaces/IStoreSettingSelectedServer";
 import { IStoreSettings } from "@/interfaces/IStoreSettings";
 import { IStoreSettingsJava } from "@/interfaces/IStoreSettingsJava";
-import { invoke } from "@tauri-apps/api/tauri";
+
+
+import logger from "./logger";
 
 export enum JavaPathVersion {
     Java8 = 0,
@@ -10,16 +13,19 @@ export enum JavaPathVersion {
 }
 
 export default class Store {
-    
+
     public static async saveLauncherSettingsFile(): Promise<void> {
-        await invoke("plugin:store|save");
+        await logger.invokeWithLogging<void>("plugin:store|save");
     }
 
     public static async getSettings(): Promise<IStoreSettings> {
-        return await invoke("plugin:store|settings_get");
+        return await logger.invokeWithLogging<IStoreSettings>("plugin:store|settings_get");
     }
-  
+
     public static async setSettings(value: IStoreSettings) {
+        await logger.invokeWithLogging<void>("plugin:store|settings_set", { value });
+    }
+
     public static async getSettingsSelectedServerStart(): Promise<IStoreSettingSelectedServer> {
         return await logger.invokeWithLogging<IStoreSettingSelectedServer>("plugin:store|get_settings_selected_server_start");
     }
@@ -29,22 +35,22 @@ export default class Store {
     }
 
     public static async getSettingsJava(id: string): Promise<IStoreSettingsJava> {
-        return await invoke("plugin:store|get_settings_java", { id });
+        return await logger.invokeWithLogging<IStoreSettingsJava>("plugin:store|get_settings_java", { id });
     }
 
     public static async setSettingsJava(id: string, value: IStoreSettingsJava): Promise<void> {
-        await invoke("plugin:store|set_settings_java", { id, value });
+        await logger.invokeWithLogging<void>("plugin:store|set_settings_java", { id, value });
     }
 
     public static async getProfiles(): Promise<IStoreProfiles> {
-        return await invoke("plugin:store|profiles_get");
+        return await logger.invokeWithLogging<IStoreProfiles>("plugin:store|profiles_get");
     }
-  
+
     public static async setProfiles(value: IStoreProfiles) {
-        await invoke("plugin:store|profiles_set", { value });
+        await logger.invokeWithLogging<void>("plugin:store|profiles_set", { value });
     }
 
     public static async clearProfiles() {
-        await invoke("plugin:store|profiles_clear");
+        await logger.invokeWithLogging<void>("plugin:store|profiles_clear");
     }
 }
