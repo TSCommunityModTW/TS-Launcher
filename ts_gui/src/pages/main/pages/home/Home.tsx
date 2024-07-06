@@ -8,6 +8,7 @@ import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
 
+import HomePageWidget from "../../components/homePageWidget/HomePageWidget";
 
 export default function Home() {
 
@@ -26,8 +27,12 @@ export default function Home() {
     }
     return null;
   }
+
+  
   const SelectedServer = findChildServerById(loaderData?.selected_server?.childrenServerId);
   const imgsrc = SelectedServer?.child?.imageUrl;
+
+
   return (
     <div className={styles.homeContainer}>
 
@@ -39,7 +44,8 @@ export default function Home() {
       ) : (
         <p></p>
       )}
-
+<HomePageWidget playerName=""
+/>
       <div>
         {loaderData?.player?.uuid ? (
           <ReactSkinview3d
@@ -56,7 +62,7 @@ export default function Home() {
         ) : (
           <p>無法加載皮膚</p>
         )}
-        {loaderData?.selected_server ? (
+        {SelectedServer ? (
           <div className={styles.buttonPlay}>
             <ButtonPlay
               serverId={loaderData?.selected_server?.server_id}
@@ -64,7 +70,7 @@ export default function Home() {
             />
           </div>
         ) : (
-          <p>沒有最後遊玩的伺服器</p>
+          <p></p>
         )}
       </div>
 
