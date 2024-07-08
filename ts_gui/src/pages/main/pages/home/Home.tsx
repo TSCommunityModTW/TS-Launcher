@@ -8,7 +8,7 @@ import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
 
-import HomePageWidget from "../../components/homePageWidget/HomePageWidget";
+import HomeWidget from "../../components/homePageWidget/HomeWidget";
 
 export default function Home() {
 
@@ -44,7 +44,7 @@ export default function Home() {
       ) : (
         <p></p>
       )}
-<HomePageWidget playerName=""
+<HomeWidget playerName=""
 />
       <div>
         {loaderData?.player?.uuid ? (
