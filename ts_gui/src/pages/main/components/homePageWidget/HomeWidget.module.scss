@@ -1,20 +1,17 @@
 .HomeWidgetContainer {
-    width: 100%;
-    height: 65vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #1d1d1d;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
     .header {
-        display: flex;
-        align-items: center;
-        background-color: #2e2e2e;
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        color: #fff;
+        color: #ffffff;
+        margin-bottom: 10px;
 
         .titleavatar {
             width: 32px;
@@ -34,19 +31,22 @@
     }
 
     .button {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        background-color: #635959;
+        background-color: #5c5c5c;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 0 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s;
     }
 
     .menu {
         display: flex;
         align-items: center;
-        margin-top: 20px;
-        background-color: #4a4a4a;
-        padding: 10px;
+        background-color: #888;
         border-radius: 10px;
+        padding: 5px 10px;
     }
 
     .widgetitem {

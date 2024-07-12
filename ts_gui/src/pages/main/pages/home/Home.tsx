@@ -28,7 +28,7 @@ export default function Home() {
     return null;
   }
 
-  
+
   const SelectedServer = findChildServerById(loaderData?.selected_server?.childrenServerId);
   const imgsrc = SelectedServer?.child?.imageUrl;
 
@@ -44,8 +44,8 @@ export default function Home() {
       ) : (
         <p></p>
       )}
-<HomeWidget playerName=""
-/>
+      <HomeWidget playerName={loaderData.player.name?loaderData.player.name:""}
+      />
       <div>
         {loaderData?.player?.uuid ? (
           <ReactSkinview3d
