@@ -9,7 +9,14 @@
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-    .header {
+    .menu {
+        display: flex;
+        align-items: center;
+        background-color: #888;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+    .description {
         color: #ffffff;
         margin-bottom: 10px;
 
@@ -40,26 +47,12 @@
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         transition: background-color 0.3s;
     }
-
-    .menu {
-        display: flex;
-        align-items: center;
-        background-color: #888;
+    .button_selected{
+        width: 32px;
+        height: 32px;
         border-radius: 10px;
-        padding: 5px 10px;
-    }
-
-    .widgetitem {
-        width: 40px;
-        height: 40px;
+        padding: 10px;
         margin: 0 5px;
-        background-color: #3c3c3c;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
+        transition: background-color 0.3s;
     }
 }

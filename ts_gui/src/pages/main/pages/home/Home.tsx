@@ -3,12 +3,13 @@ import ReactSkinview3d from "react-skinview3d"
 import { WalkingAnimation } from "skinview3d";
 
 import { useLoaderData } from "react-router-dom";
-import { IMainLoader} from "@/loader";
-import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
+import { IMainLoader } from "@/loader";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
 
+import { useState } from "react";
 import HomeWidget from "../../components/homePageWidget/HomeWidget";
+import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 
 export default function Home() {
 
@@ -32,19 +33,25 @@ export default function Home() {
   const SelectedServer = findChildServerById(loaderData?.selected_server?.childrenServerId);
   const imgsrc = SelectedServer?.child?.imageUrl;
 
+  const [selectedWidgetButton, setSelectedWidgetButton] = useState<string | null>(null);
 
+  const handleWidgetButtonClick = (buttonKey: string) => {
+    setSelectedWidgetButton(buttonKey);
+  };
   return (
     <div className={styles.homeContainer}>
 
 
-      {SelectedServer ? (
+      {SelectedServer&&selectedWidgetButton==="home" ? (
         <div className={styles.serverBorderContainer}>
           <img className={styles.serverBorderContainer} src={imgsrc} />
         </div>
       ) : (
         <p></p>
       )}
-      <HomeWidget playerName={loaderData.player.name?loaderData.player.name:""}
+      <HomeWidget
+        playerName={loaderData.player.name ? loaderData.player.name : ""}
+        onButtonClick={handleWidgetButtonClick}
       />
       <div>
         {loaderData?.player?.uuid ? (
