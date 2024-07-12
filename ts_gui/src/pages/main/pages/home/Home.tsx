@@ -3,7 +3,7 @@ import ReactSkinview3d from "react-skinview3d"
 import { WalkingAnimation } from "skinview3d";
 
 import { useLoaderData } from "react-router-dom";
-import { IMainLoader, IServerSelectedLoader, serverselectedLoader } from "@/loader";
+import { IMainLoader} from "@/loader";
 import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
 import { ILauncherAssetsServer } from "@/interfaces/ILauncherAssetsServer";
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
