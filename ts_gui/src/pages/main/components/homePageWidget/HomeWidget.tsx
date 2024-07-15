@@ -12,15 +12,24 @@ import world from "@/assets/icons/world.png"
 import world_selected from "@/assets/icons/world_selected.png"
 import money from "@/assets/icons/money.png"
 import money_selected from "@/assets/icons/money_selected.png"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 type IProps = {
     playerName: string;
     onButtonClick: (buttonKey: string) => void; 
 }
 export default function HomeWidget(props: IProps) {
+    
+    const [selectedButton, setSelectedButton] = useState("home");
+    const handleButtonClick = (buttonKey: string) => {
+        setSelectedButton(buttonKey);
+        props.onButtonClick(buttonKey);
+    }
 
-    const [selectedButton, setSelectedButton] = useState("");
+    useEffect(() => {
+        props.onButtonClick("home");
+    }, []);
+    
     const buttons = [
         {
             key: "skin",
@@ -55,7 +64,7 @@ export default function HomeWidget(props: IProps) {
                 <div className={styles.titleavatar}>ICON HERE</div>玩家: <span className={styles.playerName}>{props.playerName}</span>您上次遊玩的內容
             </div>
             <div className={styles.menu}>
-                <div key="home" className={styles.widgetitem} onClick={() => setSelectedButton("home")}>
+                <div key="home" className={styles.widgetitem} onClick={() => handleButtonClick("home")}>
                     <img 
                     className={selectedButton==="home"?styles.button_selected:styles.button} 
                     src={selectedButton==="home"?home_selected:home} />
@@ -65,7 +74,7 @@ export default function HomeWidget(props: IProps) {
                 {
                     buttons.map((button) => {
                         return (
-                            <div key={button.key} className={styles.widgetitem} onClick={() => setSelectedButton(button.key)}>
+                            <div key={button.key} className={styles.widgetitem} onClick={() => handleButtonClick(button.key)}>
                                 <img 
                                 className={selectedButton===button.key?styles.button_selected:styles.button} 
                                 src={selectedButton===button.key?button.selected_icon:button.icon} />

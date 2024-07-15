@@ -34,26 +34,30 @@ export default function Home() {
   const imgsrc = SelectedServer?.child?.imageUrl;
 
   const [selectedWidgetButton, setSelectedWidgetButton] = useState<string | null>(null);
-
   const handleWidgetButtonClick = (buttonKey: string) => {
     setSelectedWidgetButton(buttonKey);
   };
+
   return (
     <div className={styles.homeContainer}>
-
-
-      {SelectedServer&&selectedWidgetButton==="home" ? (
-        <div className={styles.serverBorderContainer}>
-          <img className={styles.serverBorderContainer} src={imgsrc} />
+      <div className={styles.leftContainer}>
+        <div className={styles.WidgetWindow}>
+          {SelectedServer && selectedWidgetButton === "home" ? (
+            <div className={styles.serverBorderContainer}>
+              <img className={styles.serverBorderContainer} src={imgsrc} />
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
-      ) : (
-        <p></p>
-      )}
-      <HomeWidget
-        playerName={loaderData.player.name ? loaderData.player.name : ""}
-        onButtonClick={handleWidgetButtonClick}
-      />
-      <div>
+        <div className={styles.Widget}>
+          <HomeWidget
+            playerName={loaderData.player.name ? loaderData.player.name : ""}
+            onButtonClick={handleWidgetButtonClick}
+          />
+        </div>
+      </div>
+      <div className={styles.SkinView}>
         {loaderData?.player?.uuid ? (
           <ReactSkinview3d
             skinUrl={`https://crafatar.com/skins/${loaderData.player.uuid}`}
@@ -69,16 +73,19 @@ export default function Home() {
         ) : (
           <p>無法加載皮膚</p>
         )}
-        {SelectedServer ? (
-          <div className={styles.buttonPlay}>
-            <ButtonPlay
-              serverId={loaderData?.selected_server?.server_id}
-              childrenServerId={loaderData?.selected_server?.childrenServerId}
-            />
-          </div>
-        ) : (
-          <p></p>
-        )}
+        <div className={styles.playButton}>
+          {SelectedServer ? (
+            <div className={styles.buttonPlay}>
+              <ButtonPlay
+                serverId={loaderData?.selected_server?.server_id}
+                childrenServerId={loaderData?.selected_server?.childrenServerId}
+              />
+            </div>
+          ) : (
+            <p></p>
+          )}
+        </div>
+
       </div>
 
     </div >
