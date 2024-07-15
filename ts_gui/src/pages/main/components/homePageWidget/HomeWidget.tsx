@@ -1,7 +1,7 @@
 import styles from "./HomeWidget.module.scss"
 
 import home from "@/assets/icons/home.png";
-import home_selected from "@/assets/icons/home_selected.png"; s
+import home_selected from "@/assets/icons/home_selected.png"; 
 import skin from "@/assets/icons/shirt.png";
 import skin_selected from "@/assets/icons/shirt_selected.png";
 import inventory from "@/assets/icons/inventory.png";
