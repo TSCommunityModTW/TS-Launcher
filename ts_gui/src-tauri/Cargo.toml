@@ -14,7 +14,7 @@ tauri-build = { version = "1.5", features = [] }
 
 allay_core = { path = "../../allay_core", features = ["tauri"] }
 
-tauri = { version = "1.5", features = [ "dialog-open", "macos-private-api", "app-all", "window-unminimize", "window-unmaximize", "window-set-decorations", "window-minimize", "window-hide", "window-start-dragging", "window-show", "window-create", "window-maximize", "window-close", "shell-open"] }
+tauri = { version = "1.5", features = [ "updater", "dialog-open", "macos-private-api", "app-all", "window-unminimize", "window-unmaximize", "window-set-decorations", "window-minimize", "window-hide", "window-start-dragging", "window-show", "window-create", "window-maximize", "window-close", "shell-open"] }
 
 tokio = { version = "1", features = ["full"] }
 
