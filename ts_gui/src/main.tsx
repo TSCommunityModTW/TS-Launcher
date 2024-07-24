@@ -8,9 +8,7 @@ import routes from "@/routes.tsx";
 import "@/i18n.ts";
 import "@/styles.scss";
 
-import updater from "./updater";
 
-updater();
 
 ReactDOM
     .createRoot(document.getElementById("root") as HTMLElement)

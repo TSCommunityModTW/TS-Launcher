@@ -41,6 +41,14 @@ pub struct Modpack {
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
 #[ts(rename = "ILauncherAssetsServerChildren")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/ILauncherAssetsAnnounment.ts")]
+pub struct ServerAnnounment {
+    pub title: String,
+    pub message: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, TS)]
+#[ts(rename = "ILauncherAssetsServerChildren")]
 #[ts(export, export_to = "../ts_gui/src/interfaces/ILauncherAssetsServerChildren.ts")]
 pub struct ServerChildren {
     pub id: String,
@@ -53,7 +61,8 @@ pub struct ServerChildren {
     #[serde(rename = "minecraftVersion")]
     pub minecraft_version: String,
     pub action: Action,
-    pub modpack: Modpack
+    pub modpack: Modpack,
+    pub announment: Vec<ServerAnnounment>
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
@@ -67,7 +76,8 @@ pub struct Server {
     pub description: String,
     #[serde(rename = "officialWebLinkUrl")]
     pub official_web_link_url: String,
-    pub children: Vec<ServerChildren>
+    pub children: Vec<ServerChildren>,
+    pub announment: Vec<ServerAnnounment>
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
