@@ -9,9 +9,13 @@ import InputIcon from "@/pages/components/inputIcon/InputIcon";
 import ButtonFocus from "@/pages/components/buttonFocus/ButtonFocus";
 import Checkbox from "@/pages/components/checkbox/Checkbox";
 
+import logger from "@/invoke/logger";
+
+
 export default function ModList() {
 
     const { t } = useTranslation();
+
 
     const [disabledDiv, _setDisabledDiv] = React.useState<boolean>(false);
     const [searchValue, setSearchValue] = React.useState("");
@@ -32,9 +36,10 @@ export default function ModList() {
 
     const handleChange = (event: any) => {
         for (let _file of event.target.files) {
-            // window.electron.game.module.copyModuleFile({ name: file.name, path: file.path }, props.serverId);
+            logger.logMessage("info",`[Mod List] handleChange - File Name: ${_file.name}`)
+             //window.electron.game.module.copyModuleFile({ name: file.name, path: file.path }, props.serverId);
         }
-        // setMods(window.electron.game.module.getModules(props.serverId));
+        //setMods(window.electron.game.module.getModules(props.serverId));
     };
 
     const search = (_searchValue: string) => {

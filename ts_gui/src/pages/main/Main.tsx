@@ -7,6 +7,8 @@ import ServerList from "./components/serverList/ServerList";
 import Top from "./components/top/Top";
 import { IMainLoader } from "@/loader";
 
+import logger from "@/invoke/logger";
+
 export default function Main() {
 
     const loaderData = useLoaderData() as IMainLoader;
@@ -19,7 +21,7 @@ export default function Main() {
         navigate("/main/home");
 
     }
-
+    logger.logMessage("debug","Main Page Loaded.");
     return (
         <div className={styles.transparentBackground}>
 

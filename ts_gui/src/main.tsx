@@ -9,7 +9,9 @@ import "@/i18n.ts";
 import "@/styles.scss";
 
 import updater from "./updater";
+import logger from "./invoke/logger";
 
+logger.logMessage("debug","main.tsx: loaded")
 updater();
 
 ReactDOM

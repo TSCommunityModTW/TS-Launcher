@@ -8,12 +8,14 @@ import Auth from "./invoke/auth";
 import { useAppDispatch } from "./hooks";
 import { setCrashOpen } from "./slices/stateSlice";
 
+import logger from "./invoke/logger";
 export default function App() {
     
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
 
+    logger.logMessage("debug","App.tsx: loaded");
     React.useEffect(() => { init() }, []);
 
     // ! https://github.com/tauri-apps/tauri/issues/5170
