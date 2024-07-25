@@ -52,7 +52,7 @@ export default function Home() {
         </div>
         <div className={styles.Widget}>
           <HomeWidget
-            playerName={loaderData.player.name ? loaderData.player.name : ""}
+            playerName={loaderData.player.name ? loaderData.player.name : "訪客"}
             onButtonClick={handleWidgetButtonClick}
           />
         </div>
