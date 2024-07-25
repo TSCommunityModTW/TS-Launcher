@@ -5,6 +5,8 @@
     justify-content: space-between;
     align-items: center;
 
+    position: relative;
+
     .logoContainer {
 
         img {
@@ -12,7 +14,12 @@
             height: 60px;
         }
     }
-
+    .announmentContainer{
+        z-index: 1;
+        position: absolute;
+        top: 15px;
+        left: 160px;
+    }
     .playerSettingCloseContainer {
 
         display: flex;

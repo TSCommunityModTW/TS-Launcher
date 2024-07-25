@@ -44,9 +44,28 @@ export default async function updater() {
             await relaunch()
         }
     } catch (error) {
-        logger.logMessage("error",`Updater ${error}`)
+        logger.logMessage("error",`updater.tsx: Update failed, error: ${error}`)
     }
 
     // you need to call unlisten if your handler goes out of scope, for example if the component is unmounted.
     unlisten()
+}
+
+export async function isNewUpdate() {
+    try {
+        const { shouldUpdate, manifest } = await checkUpdate()
+
+
+        if (shouldUpdate) {
+            logger.logMessage("info", `updater.tsx: There are new update ${manifest?.version}, ${manifest?.date}, ${manifest?.body}` )
+            return true;
+        }
+        else{
+            logger.logMessage("info", `updater.tsx: There are no new update ${manifest?.version}, ${manifest?.date}, ${manifest?.body}` )
+            return false;
+        }
+    } catch (error) {
+        logger.logMessage("error",`updater.tsx: Check update failed. Error: ${error}`)
+        return false;
+    }
 }

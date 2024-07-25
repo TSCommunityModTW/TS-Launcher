@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./Top.module.scss";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import ts_1 from "@/assets/images/logo/ts_1.png";
@@ -12,6 +12,7 @@ import settingLines from "@/assets/icons/settings.png";
 
 import TopAnnounment from "./topAnnounment/TopAnnounment";
 
+import { isNewUpdate } from "@/updater";
 
 
 
@@ -28,11 +29,34 @@ export default function Top(props: IProps) {
     const { t } = useTranslation();
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [needUpdate, setNeedUpdate] = useState<boolean>(false);
+
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
 
-    
+    useEffect(() => {
+        const checkForUpdate = async () => {
+            const updateNeeded: boolean = await isNewUpdate();
+            setNeedUpdate(updateNeeded);
+        };
+        checkForUpdate();
+    }, []);
+
+    const announcements = [
+        {
+            title: "公告編號:No.91", message: `:villager: 對像:
+ @憶蝶夢海伺服器|頻道檢視  
+
+⛑️ 伺服器暫停白名單申請
+目前伺服器玩家人數為額滿狀態
+暫時暫停白名單申請
+我們 TS 社群 將迎來新的白名單申請系統 請各位玩家敬請期待!!!
+
+
+不便之處請見諒，感謝各位玩家的耐心等待。` }
+    ];
+
     const handleSelect = (selection: string) => {
         switch (selection) {
             case 'select_1':
@@ -51,7 +75,7 @@ export default function Top(props: IProps) {
 
 
     };
-    
+
     return (
         <div className={styles.topContainer}>
 
@@ -60,8 +84,9 @@ export default function Top(props: IProps) {
                 <img src={ts_1} />
 
             </div>
-
-            <TopAnnounment needUpdate={false} announment={[]} />
+            <div className={styles.announmentContainer}>
+                <TopAnnounment needUpdate={needUpdate} announment={announcements} />
+            </div>
 
             <div className={styles.playerSettingCloseContainer}>
                 {props.userName && props.userUUID ?
