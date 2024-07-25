@@ -8,8 +8,24 @@ import logger from './invoke/logger'
 
 export default async function updater() {
     const unlisten = await onUpdaterEvent(({ error, status }) => {
-        // This will log all updater events, including status updates and errors.
-        logger.logMessage("error", `updater.tsx: Error message:${error},Status:${status}`)
+        switch (status){
+            case "ERROR":{
+                logger.logMessage("error", `updater.tsx: Error message:${error}`);
+                break
+            }
+            case "PENDING":{
+                logger.logMessage("info", `updater.tsx: Pending to update`);
+                break
+            }
+            case "UPTODATE":{
+                logger.logMessage("info", `updater.tsx: This version Up to date`);
+                break
+            }
+            case "DONE":{
+                logger.logMessage("info", `updater.tsx: The update finished.`);
+                break
+            }
+        }
     })
 
     try {
@@ -29,7 +45,6 @@ export default async function updater() {
         }
     } catch (error) {
         logger.logMessage("error",`Updater ${error}`)
-        console.error(error)
     }
 
     // you need to call unlisten if your handler goes out of scope, for example if the component is unmounted.
