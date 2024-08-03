@@ -36,9 +36,9 @@ export default function TopAnnounment(props: IProps) {
 
     return (
         <div className={styles.WidgetContainer}>
-            <div className={`${styles.announmentContainer} ${isExpanded ? styles.notexpanded : styles.expanded}`} onClick={toggleExpand}>
+            <div className={`${styles.announmentContainer} ${isExpanded ? styles.expanded : styles.notexpanded}`} onClick={toggleExpand}>
                 <h1><span>公告：</span><span>{AnnounmentTitle}</span></h1>
-                <div className={`${styles.messages} ${isExpanded ? styles.hide : styles.show}`}>
+                <div className={`${styles.messages} ${isExpanded ? styles.show : styles.hide}`}>
                     {props.announment.map((msg, index) => (
                         <p key={index}>{msg.message}</p>
                     ))}
