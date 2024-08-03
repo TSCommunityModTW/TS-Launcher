@@ -1,24 +1,33 @@
 .HomeWidgetContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    //align-items: center;
     background-color: #222;
     border-radius: 15px;
-    padding: 10px 20px;
+    //padding: 10px 20px;
     width: fit-content;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+
+
+
+    padding: 5px;
+    border: 2px solid #8e44ad;
 
     .menu {
         display: flex;
         align-items: center;
         background-color: #888;
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
         padding: 5px 10px;
     }
+
     .description {
         color: #ffffff;
         margin-bottom: 10px;
+        border-radius: 10px 10px 0 0;
+        font-size: 14px;
 
         .titleavatar {
             width: 32px;
@@ -47,7 +56,8 @@
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         transition: background-color 0.3s;
     }
-    .button_selected{
+
+    .button_selected {
         width: 32px;
         height: 32px;
         border-radius: 10px;

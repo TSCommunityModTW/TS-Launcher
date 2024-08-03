@@ -31,31 +31,11 @@ export default function HomeWidget(props: IProps) {
     }, []);
     
     const buttons = [
-        {
-            key: "skin",
-            icon: skin,
-            selected_icon: skin_selected,
-        },
-        {
-            key: "inventory",
-            icon: inventory,
-            selected_icon: inventory_selected,
-        },
-        {
-            key: "friend",
-            icon: friend,
-            selected_icon: friend_selected,
-        },
-        {
-            key: "world",
-            icon: world,
-            selected_icon: world_selected,
-        },
-        {
-            key: "money",
-            icon: money,
-            selected_icon: money_selected,
-        }
+        {key: "skin", icon: skin, selected_icon: skin_selected,},
+        {key: "inventory", icon: inventory, selected_icon: inventory_selected,},
+        {key: "friend", icon: friend, selected_icon: friend_selected,},
+        {key: "world", icon: world, selected_icon: world_selected,},
+        {key: "money", icon: money, selected_icon: money_selected,}
     ]
 
     return (
