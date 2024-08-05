@@ -1,0 +1,74 @@
+.serverBorderContainer {
+
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    background-color: #252424;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    img {
+        border-radius: 5px;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+.skinContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .skinGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  
+  .skinItem {
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    &.selected {
+      border-color: #ff0;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    }
+  
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  .applyButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #45a049;
+    }
+  }

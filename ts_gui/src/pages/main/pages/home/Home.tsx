@@ -10,6 +10,7 @@ import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServe
 import { useState } from "react";
 import HomeWidget from "../../components/homePageWidget/HomeWidget";
 import ButtonPlay from "../../components/buttonPlay/ButtonPlay";
+import WidgetContent from "../../components/homePageWidget/widgetContect/WidgetContent";
 
 export default function Home() {
 
@@ -42,13 +43,10 @@ export default function Home() {
     <div className={styles.homeContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.WidgetWindow}>
-          {SelectedServer && selectedWidgetButton === "home" ? (
-            <div className={styles.serverBorderContainer}>
-              <img className={styles.serverBorderContainer} src={imgsrc} />
-            </div>
-          ) : (
-            <div></div>
-          )}
+        <WidgetContent 
+            selectedButton={selectedWidgetButton} 
+            serverChild={SelectedServer?.child}
+          />
         </div>
         <div className={styles.Widget}>
           <HomeWidget
