@@ -76,7 +76,7 @@
         "installerArgs": []
       },
       "endpoints": [
-        "https://s3api.bdstw.org:9800/ts-launcher-metadata/version/version.json"
+        "http://s3api.bdstw.org:9900/ts-launcher-metadata/version/version.json"
       ]
     }
     

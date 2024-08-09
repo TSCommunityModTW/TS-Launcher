@@ -19,11 +19,8 @@ const WidgetContent: React.FC<WidgetContentProps> = ({ selectedButton, serverChi
     const skinViewerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
-        // Disable zoom on all skin viewers
         skinViewerRefs.current.forEach(skinViewer => {
             if (skinViewer) {
-                const viewer = (skinViewer as any).viewer;
-                viewer.controls.enableZoom = false;
             }
         });
     }, [selectedSkin]);
@@ -52,8 +49,7 @@ const WidgetContent: React.FC<WidgetContentProps> = ({ selectedButton, serverChi
                             >
                                 <div ref={el => skinViewerRefs.current[index] = el}>
                                     <ReactSkinview3d
-                                        //skinUrl={skin.imageUrl}
-                                        skinUrl={`https://crafatar.com/skins/"9a18d613-c78d-47d3-a58e-8bc56edcb5f0`}
+                                        skinUrl={`https://crafatar.com/skins/9a18d613-c78d-47d3-a58e-8bc56edcb5f0`}
                                         height="200"
                                         width="200"
                                     />
