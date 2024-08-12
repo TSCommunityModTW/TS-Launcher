@@ -49,8 +49,8 @@ const WidgetContent: React.FC<WidgetContentProps> = ({ selectedButton, serverChi
                                 <div ref={el => skinViewerRefs.current[index] = el}>
                                     <ReactSkinview3d
                                         skinUrl={`https://crafatar.com/skins/9a18d613-c78d-47d3-a58e-8bc56edcb5f0`}
-                                        height="200"
-                                        width="200"
+                                        height="100"
+                                        width="100"
                                     />
                                 </div>
                             </div>
