@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from '../widgetContect/WidgetContent.module.scss';
 import { ILauncherAssetsServerChildren } from "@/interfaces/ILauncherAssetsServerChildren";
 import ReactSkinview3d from 'react-skinview3d';
-import { WalkingAnimation } from "skinview3d";
 
 interface WidgetContentProps {
     selectedButton: string | null;
