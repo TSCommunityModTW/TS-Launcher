@@ -1,4 +1,4 @@
-use allay_core::{init_logger, launcher_assets::ServerChildren};
+use allay_core::{init_logger, launcher_assets::ServerChildren, loader::loader::{BuildModLoader, LoaderType}, metadata, validate};
 
 const MINECRAFT_VERSION: &str = "1.20.2";
 
@@ -51,17 +51,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let minecraft_auth = minecraft::auth_minecraft(&microsoft_token_auth.access_token).await?;
     // println!("{:#?}", minecraft_auth);
 
-    // match start_game(MINECRAFT_VERSION).await {
-    //     Ok(_) => tracing::info!("Game started Ok"),
-    //     Err(e) => tracing::error!(e),
-    // }
+    match start_game(MINECRAFT_VERSION).await {
+        Ok(_) => tracing::info!("Game started Ok"),
+        Err(e) => tracing::error!(e),
+    }
 
     Ok(())
 }
 
 async fn start_game(minecraft_version: &str) -> Result<(), Box<dyn std::error::Error>> {
 
-    // let java_jvm_path = "/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/bin/java";
+    let java_jvm_path = "/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/bin/java";
     // let java_jvm_path = "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin/java";
     // let java_jvm_path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_311.jdk/Contents/Home/bin/java";
     // let java_jvm_path = "/Users/quasi-pc/Downloads/jre-17.0.9.jre/bin/java";
@@ -72,7 +72,10 @@ async fn start_game(minecraft_version: &str) -> Result<(), Box<dyn std::error::E
     // let mut children = Children::new();
     // children.rescue_cache().await?;
 
-    // let vanilla_version_info = metadata::get_vanilla_version_info(minecraft_version).await?;
+    let vanilla_version_info = metadata::get_vanilla_version_info(minecraft_version).await?;
+
+    // ? Fabric 支援
+    let loader_version_info = BuildModLoader::new("1.20.4", LoaderType::Fabric, "0.15.11", &vanilla_version_info).get_loader_version_info().await?;
 
     // ! Forge 暫時不支援
     // let loader_version_info = BuildModLoader::new("1.5.2", LoaderType::Forge, "7.8.1.738", &vanilla_version_info).get_loader_version_info().await?;

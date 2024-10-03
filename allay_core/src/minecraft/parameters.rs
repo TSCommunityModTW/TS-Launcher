@@ -2,7 +2,7 @@ use std::{path::{PathBuf, Path}, collections::HashMap};
 use uuid::Uuid;
 use crate::{util::{app_path, utils::{self, OSArch, OSType}, config}, FORGE_MANIFEST_V3_QUERY_P1, FORGE_MANIFEST_V2_QUERY_P1, FORGE_MANIFEST_V2_QUERY};
 
-use super::{version::VanillaVersionInfo, loader::{loader::{LoaderVersionInfo, LoaderJvmArgumentType}, forge::handler::parse_forge_loader_version}, arguments::Argument};
+use super::{arguments::Argument, loader::{forge::handler::parse_forge_loader_version, loader::{LoaderJvmArgumentType, LoaderType, LoaderVersionInfo}}, version::VanillaVersionInfo};
 
 #[derive(Debug, Clone)]
 pub struct JvmMinecraftParameters {
@@ -149,7 +149,7 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
             crate::ErrorKind::LoaderError("Get loader Failure".to_owned())
         })?;
 
-        if !FORGE_MANIFEST_V3_QUERY_P1.matches(&parse_forge_loader_version(&loader_manifest.id)?) {
+        if loader_manifest.r#type != LoaderType::Fabric && !FORGE_MANIFEST_V3_QUERY_P1.matches(&parse_forge_loader_version(&loader_manifest.id)?) {
             return Ok(None);
         }
 
@@ -505,10 +505,11 @@ impl<'a, 'b> BuildParameters<'a, 'b> {
                     }
                 }
 
-                // * If version is 23.5.2851 <= 25.0.9 add vanilla client.jar path
-                if FORGE_MANIFEST_V2_QUERY.matches(&parse_forge_loader_version(&loader_manifest.id)?) {
+                // * If version is 23.5.2851 <= 25.0.9 or Fabric add vanilla client.jar path
+                if loader_manifest.r#type == LoaderType::Fabric || FORGE_MANIFEST_V2_QUERY.matches(&parse_forge_loader_version(&loader_manifest.id)?) {
                     libraries.push(self.version_metadata.get_client_jar().path.to_string_lossy().to_string());
                 }
+
             } else { 
                 // // * No loader to add vanilla client.jar path
                 libraries.push(self.version_metadata.get_client_jar().path.to_string_lossy().to_string());

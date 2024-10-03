@@ -28,6 +28,10 @@ mod store;
 mod event;
 mod error;
 mod logger;
+mod assets;
+
+pub use util::*; // TODO: temporary
+pub use minecraft::*; // TODO: temporary
 
 pub use store::*;
 pub use api::*;

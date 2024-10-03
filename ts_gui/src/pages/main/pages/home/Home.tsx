@@ -31,7 +31,7 @@ export default function Home() {
 
 
   const SelectedServer = findChildServerById(loaderData?.selected_server?.childrenServerId);
-  const imgsrc = SelectedServer?.child?.imageUrl;
+  const imgsrc = SelectedServer?.child?.image_url;
 
   const [selectedWidgetButton, setSelectedWidgetButton] = useState<string | null>(null);
   const handleWidgetButtonClick = (buttonKey: string) => {

@@ -53,7 +53,7 @@ export default function ServerInfo() {
                     </div>
 
                     <div className={styles.modpackContainer}>
-                        <img src={server.imageUrl} />
+                        <img src={server.image_url} />
                     </div>
 
                 </div>
@@ -64,7 +64,7 @@ export default function ServerInfo() {
                             return <ChildrenServer
                                 key={uuidv4()}
                                 serverId={item.id}
-                                imageUrl={item.imageUrl}
+                                imageUrl={item.image_url}
                                 name={item.name}
                                 onClick={() => {
                                     setSelectChildrenServerId(item.id);

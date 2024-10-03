@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use allay_core::{java, settings, Store};
+use allay_core::{prelude::java, settings, Store};
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {

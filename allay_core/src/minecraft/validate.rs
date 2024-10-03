@@ -1,9 +1,11 @@
-use crate::{util::{download::{DownloadFile, self}, config}, minecraft::loader::{loader::LoaderType, forge::installer::ForgeInstaller}, LoadingBarId};
+use std::path::Path;
+
+use crate::{assets::game_assets::{IAssetsVersionMenifest, IAssetsVersionMenifestFile}, minecraft::loader::{forge::installer::ForgeInstaller, loader::LoaderType}, util::{config, download::{self, DownloadFile}}, LoadingBarId};
 use super::{version::{VanillaVersionInfo, ClientJar}, loader::loader::LoaderVersionInfo, libraries::LibrariesJar, assets::AssetObjects};
 
 
-#[tracing::instrument(skip(vanilla_version_info, loader_version_info, java_jvm_path, loading_bar))]
-pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loader_version_info: Option<&LoaderVersionInfo>, java_jvm_path: Option<&str>, loading_bar: Option<(&LoadingBarId, f64)>) -> crate::Result<()> {
+#[tracing::instrument(skip(vanilla_version_info, loader_version_info, game_assets_version_menifest, game_dir_path, java_jvm_path, loading_bar))]
+pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loader_version_info: Option<&LoaderVersionInfo>, game_assets_version_menifest: Option<&IAssetsVersionMenifest>, game_dir_path: &Path, java_jvm_path: Option<&str>, loading_bar: Option<(&LoadingBarId, f64)>) -> crate::Result<()> {
 
     tracing::info!("Validate downloading Data...");
     tracing::info!("Add vanilla downloads queue.");
@@ -18,6 +20,11 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
         add_asset_objects_to_download_queue(vanilla_version_info.get_asset_objects().await?, &mut queue);
         // 添加庫檔案到下載佇列
         add_libraries_to_download_queue(vanilla_version_info.get_libraries(), &mut queue);
+
+        // 添加遊戲檔案資料到下載佇列
+        if let Some(game_assets_version_menifest) = game_assets_version_menifest {
+            add_game_assets_file_to_download_queue(&game_assets_version_menifest.files, game_dir_path, &mut queue);
+        }
         
         // loader
         if let Some(loader_version_info) = loader_version_info {
@@ -58,6 +65,21 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
     Ok(())
 }
 
+fn add_game_assets_file_to_download_queue(files: &Vec<IAssetsVersionMenifestFile>, game_dir_path: &Path, queue: &mut Vec<DownloadFile>) {
+    for file in files.iter() {
+        let path = game_dir_path.join(&file.install_path);
+        queue.push(DownloadFile {
+            name: file.name.to_owned(),
+            path: path,
+            sha1: file.hash.to_owned(),
+            size: file.size,
+            download_url: file.download_url.to_owned(),
+            relative_url: None,
+            manifest_url: None
+        });
+    }
+}
+ 
 fn add_libraries_to_download_queue(libraries: Vec<LibrariesJar>, queue: &mut Vec<DownloadFile>) {
     for lib in libraries.iter() {
         queue.push(DownloadFile {

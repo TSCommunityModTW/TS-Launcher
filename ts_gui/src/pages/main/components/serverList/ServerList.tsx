@@ -17,6 +17,8 @@ export default function ServerList() {
         navigate(`/main/${serverId}/server_info`);
     }
 
+    console.log(servers);
+
     return (
         <div className={styles.bgbox}>
 
@@ -57,7 +59,7 @@ export default function ServerList() {
                                         <div className={styles.focusHover}></div>
                                         <img 
                                             rel="preload"
-                                            src={server.imageUrl}
+                                            src={server.image_url}
                                             onClick={() => {
                                                 setSelectLocation(server.id);
                                                 onClickMenuButton(server.id);

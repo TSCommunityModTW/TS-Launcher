@@ -2,7 +2,7 @@ use std::{path::{Path, PathBuf}, collections::HashMap};
 
 use serde::Deserialize;
 
-use crate::minecraft::{arguments::Argument, libraries::LibrariesJar, version::VanillaVersionInfo, loader::forge::handler::ForgeHandler};
+use crate::{loader::fabric::handler::FabricHandler, minecraft::{arguments::Argument, libraries::LibrariesJar, loader::forge::handler::ForgeHandler, version::VanillaVersionInfo}};
 
 use super::forge::handler::ForgeLoader;
 
@@ -84,6 +84,21 @@ impl<'a> BuildModLoader<'a> {
                     client_lzma: forge_loader_version_info.client_lzma,
                     loader_install: forge_loader_version_info.loader_install
                 })
+            });
+        }
+
+        if self.loader_type == LoaderType::Fabric {
+
+            let fabric_loader_version_info = FabricHandler::new(self.minecraft_version, self.loader_version).get_fabric_loader_version_info().await?;
+
+            return Ok(LoaderVersionInfo {
+                r#type: self.loader_type.clone(),
+                id: self.loader_version.to_owned(),
+                loader_version: fabric_loader_version_info.loader_version,
+                main_class: fabric_loader_version_info.main_class,
+                arguments: fabric_loader_version_info.arguments,
+                libraries: fabric_loader_version_info.libraries,
+                forge: None
             });
         }
 

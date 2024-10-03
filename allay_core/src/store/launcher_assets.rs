@@ -29,22 +29,29 @@ pub struct Action {
     pub players: Vec<ActionPlayer>
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(rename = "ILAServerChildrenModpack")]
-#[ts(export, export_to = "../ts_gui/src/interfaces/ILAServerChildrenModpack.ts")]
-pub struct Modpack {
-    pub name: String,
-    pub version: String,
-    #[serde(rename = "downloadUrl")]
-    pub download_url: String,
-}
+// #[derive(Debug, Serialize, Deserialize, Clone, TS)]
+// #[ts(rename = "ILAServerChildrenModpack")]
+// #[ts(export, export_to = "../ts_gui/src/interfaces/ILAServerChildrenModpack.ts")]
+// pub struct Modpack {
+//     pub name: String,
+//     pub version: String,
+//     #[serde(rename = "downloadUrl")]
+//     pub download_url: String,
+// }
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(rename = "ILauncherAssetsServerChildren")]
-#[ts(export, export_to = "../ts_gui/src/interfaces/ILauncherAssetsAnnounment.ts")]
+#[ts(rename = "ILauncherAssetsServerChildrenAnnounment")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/ILauncherAssetsServerChildrenAnnounment.ts")]
 pub struct ServerAnnounment {
     pub title: String,
     pub message: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, TS)]
+#[ts(rename = "ILauncherAssetsServerChildrenAssets")]
+#[ts(export, export_to = "../ts_gui/src/interfaces/ILauncherAssetsServerChildrenAssets.ts")]
+pub struct Assets {
+    pub version: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
@@ -54,15 +61,15 @@ pub struct ServerChildren {
     pub id: String,
     pub ip: String,
     pub name: String,
-    #[serde(rename = "imageUrl")]
+    // #[serde(rename = "imageUrl")]
     pub image_url: String,
-    #[serde(rename = "minecraftType")]
+    // #[serde(rename = "minecraftType")]
     pub minecraft_type: String,
-    #[serde(rename = "minecraftVersion")]
+    // #[serde(rename = "minecraftVersion")]
     pub minecraft_version: String,
     pub action: Action,
-    pub modpack: Modpack,
-    pub announment: Vec<ServerAnnounment>
+    // pub modpack: Modpack,
+    pub assets: Assets,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, TS)]
@@ -71,10 +78,10 @@ pub struct ServerChildren {
 pub struct Server {
     pub id: String,
     pub name: String,
-    #[serde(rename = "imageUrl")]
+    // #[serde(rename = "image_url")]
     pub image_url: String,
     pub description: String,
-    #[serde(rename = "officialWebLinkUrl")]
+    // #[serde(rename = "officialWebLinkUrl")]
     pub official_web_link_url: String,
     pub children: Vec<ServerChildren>,
     pub announment: Vec<ServerAnnounment>

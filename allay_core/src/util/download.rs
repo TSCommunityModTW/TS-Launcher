@@ -55,7 +55,7 @@ pub async fn validate_download_assets(files: Vec<DownloadFile>, limit: Option<us
     Ok(())
 }
 
-#[tracing::instrument(skip(url))]
+#[tracing::instrument(skip(url, path, relative_url, manifest_urls))]
 pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relative_url: Option<&String>, manifest_urls: Option<&Vec<String>>) -> crate::Result<()> {
 
     for attempt in 1..=(FETCH_ATTEMPTS + 2) {
@@ -135,6 +135,7 @@ pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relat
                         tracing::warn!("嘗試重新取得, url: {}", url);
                         continue;
                     } else {
+                        // tracing::warn!("嘗試重新失敗，先跳過, url: {}", url);
                         return Err(ErrorKind::FileSHA1Error(name.to_owned(), sha1.to_owned(), url.to_owned()).as_error());
                     }
                 }
@@ -165,5 +166,8 @@ pub fn sha1_exists(path: &Path, expected_hash: &str) -> crate::Result<bool> {
     let mut hasher = Sha1::new();
     copy(&mut local_file, &mut hasher)?;
     let local_hash = format!("{:x}", hasher.finalize());
+
+    tracing::debug!("local_sha1_exists: {}", local_hash);
+
     Ok(local_hash == expected_hash.to_string())
 }

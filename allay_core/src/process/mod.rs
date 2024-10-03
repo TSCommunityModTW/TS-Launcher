@@ -1,7 +1,7 @@
 use tokio::process::Command;
 use uuid::Uuid;
 
-use crate::{Store, Java, util::{utils, metadata, app_path, io::create_dir_all}, data::LauncherAssets, launcher_assets::ServerChildren, minecraft::{validate, parameters::{BuildParameters, JavaJvmSettings, PlayerProfile}, libraries}, emit::{init_loading, emit_loading}, LoadingBarType};
+use crate::{assets::game_assets, data::LauncherAssets, emit::{emit_loading, init_loading}, launcher_assets::ServerChildren, minecraft::{libraries, loader::loader::{BuildModLoader, LoaderType}, parameters::{BuildParameters, JavaJvmSettings, PlayerProfile}, validate}, util::{app_path, io::create_dir_all, metadata, utils}, Java, LoadingBarType, Store};
 
 pub mod children;
 
@@ -42,7 +42,29 @@ impl Process {
             }
         }
 
-        let minecraft_version = children_server.minecraft_version;
+        // TODO
+        // let minecraft_version = children_server.minecraft_version;
+
+        let game_dir_path = app_path::get_instances_dir_path().join(children_server_id);
+
+        // 確保 Game 目錄路徑存在
+        create_dir_all(&game_dir_path).await?;
+
+        // Get game assets file
+        let game_assets_version_menifest  = game_assets::get_game_assets_version_menifest(&server_id, &children_server_id, &children_server.assets.version).await?;
+
+        emit_loading(&loading_bar, 5.0, None).await?;
+        // Get vanilla assets
+        let vanilla_version_info = metadata::get_vanilla_version_info(&game_assets_version_menifest.minecraft.version).await?;
+
+        let loader_type: LoaderType = match game_assets_version_menifest.modloader.r#type.as_str() {
+            "Forge" => LoaderType::Forge,
+            "Fabric" => LoaderType::Fabric,
+            _ => panic!("Not support loader.")
+        };
+
+        // Get loader assets
+        let loader_version_info = BuildModLoader::new(&game_assets_version_menifest.minecraft.version, loader_type, &game_assets_version_menifest.modloader.version, &vanilla_version_info).get_loader_version_info().await?;
 
         let java_settings: Java;
         // Get java settings
@@ -63,15 +85,12 @@ impl Process {
             if java_settings.java_path_checked {
                 java_jvm_path = java_settings.java_path;
             } else {
-                java_jvm_path = Self::is_mc_java_jvm_path(&minecraft_version, &global_java_settings);
+                java_jvm_path = Self::is_mc_java_jvm_path(&game_assets_version_menifest.minecraft.version, &global_java_settings);
             }
         }
 
-        emit_loading(&loading_bar, 5.0, None).await?;
-        let vanilla_version_info = metadata::get_vanilla_version_info(&minecraft_version).await?;
-
         emit_loading(&loading_bar, 15.0, None).await?;
-        validate::validate_installer(&vanilla_version_info, None, Some(&java_jvm_path), Some((&loading_bar, 60.0))).await?;
+        validate::validate_installer(&vanilla_version_info, Some(&loader_version_info), Some(&game_assets_version_menifest), &game_dir_path, Some(&java_jvm_path), Some((&loading_bar, 60.0))).await?;
         emit_loading(&loading_bar, 15.0, None).await?;
 
         let java_jvm_settings = JavaJvmSettings {
@@ -87,12 +106,8 @@ impl Process {
             mc_account_token: profiles.microsoft_auth.mc_account_token.clone(),
         };
 
-        let game_dir_path = app_path::get_instances_dir_path().join(children_server_id);
-
-        // 確保 Game 目錄路徑存在
-        create_dir_all(&game_dir_path).await?;
-
-        let java_jvm_parameters = BuildParameters::new(&vanilla_version_info, &game_dir_path, java_jvm_settings, player_profile).get_jvm_vanilla_parameters()?;
+        // let java_jvm_parameters = BuildParameters::new(&vanilla_version_info, &game_dir_path, java_jvm_settings, player_profile).get_jvm_vanilla_parameters()?;
+        let java_jvm_parameters = BuildParameters::new(&vanilla_version_info, &game_dir_path, java_jvm_settings, player_profile).get_jvm_loader_parameters(&loader_version_info)?;
         tracing::info!("{:#?}", java_jvm_parameters.parameters);
 
         let mut children = store.children.write().await;

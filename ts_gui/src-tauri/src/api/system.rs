@@ -1,4 +1,4 @@
-use allay_core::java;
+use allay_core::prelude::java;
 use tauri::plugin::TauriPlugin;
 
 pub fn init<R: tauri::Runtime>() -> TauriPlugin<R> {

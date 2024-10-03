@@ -54,7 +54,7 @@ export async function mainLoader(): Promise<IMainLoader> {
         server_id: settings.selected_server_start.main_id,
         childrenServerId: settings.selected_server_start.child_server_id
     }
-
+    
     return { servers, player, selected_server };
 }
 
