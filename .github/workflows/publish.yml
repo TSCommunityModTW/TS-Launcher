@@ -5,14 +5,15 @@ on:
   push:
     tags:
       - 'v*.*.*'
-      
-defaults:
-  run:
-    working-directory: './ts_gui'
 
 jobs:
   # 用於發布 Tauri 應用程式的工作
   publish-tauri:
+  
+    defaults:
+      run:
+        working-directory: './ts_gui'
+        
     permissions:
       contents: write # 授權寫入內容（發布時需要此權限）。
     
