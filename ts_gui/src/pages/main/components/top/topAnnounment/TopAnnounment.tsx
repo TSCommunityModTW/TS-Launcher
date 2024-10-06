@@ -3,8 +3,6 @@ import { useState } from "react";
 import styles from "./TopAnnounment.module.scss"
 import download from "@/assets/icons/download.png"
 
-import AnnounmentMessage from "../../announmentMessage/AnnounmentMessage";
-
 type Announment = {
     title: string;
     message: string;
