@@ -73,7 +73,7 @@ jobs:
       # 第 7 步：使用 Tauri 操作來構建並發布應用程式
       - uses: tauri-apps/tauri-action@v0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token 進行身份驗證
+          GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }} # 使用 GitHub Token 進行身份驗證
         with:
           projectPath: "./ts_gui"
           tagName: v__VERSION__ # 自動將 __VERSION__ 替換為應用程式的版本號
