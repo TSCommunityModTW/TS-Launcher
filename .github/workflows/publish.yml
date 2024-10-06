@@ -5,6 +5,10 @@ on:
   push:
     tags:
       - 'v*.*.*'
+      
+defaults:
+  run:
+    working-directory: './ts_gui'
 
 jobs:
   # 用於發布 Tauri 應用程式的工作
@@ -63,7 +67,7 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: './ts_gui/src-tauri -> target' # 緩存 Rust 的目標目錄
+          workspaces: './src-tauri -> target' # 緩存 Rust 的目標目錄
 
       # 第 6 步：安裝專案的前端依賴項
       # 如果你的項目需要構建前端，可以在此處添加構建命令。
@@ -75,7 +79,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }} # 使用 GitHub Token 進行身份驗證
         with:
-          projectPath: './ts_gui'
+          # projectPath: './ts_gui'
           tagName: v__VERSION__ # 自動將 __VERSION__ 替換為應用程式的版本號
           releaseName: 'App v__VERSION__' # 發布版本的名稱
           releaseBody: '查看資源以下載並安裝此版本。' # 發布的描述
