@@ -1,0 +1,84 @@
+name: "publish"
+
+# 此工作流程會在推送匹配 "v*.*.*" 模式的標籤時觸發（例如 v1.0.0）。
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  # 用於發布 Tauri 應用程式的工作
+  publish-tauri:
+    permissions:
+      contents: write # 授權寫入內容（發布時需要此權限）。
+    
+    strategy:
+      fail-fast: false # 即使其中一個工作失敗，其他工作仍將繼續執行。
+      matrix:
+        include:
+          # 定義不同的平台及其對應參數
+          # 對於基於 Arm 架構的 Mac（M1 及以上）
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
+          # 對於基於 Intel 架構的 Mac
+          - platform: "macos-latest"
+            args: "--target x86_64-apple-darwin"
+          # Ubuntu 平台（v22.04 適用於 Tauri v1）
+          - platform: "ubuntu-22.04"
+            args: ""
+          # Windows 平台
+          - platform: "windows-latest"
+            args: ""
+
+    # 使用 matrix 中指定的平台運行工作
+    runs-on: ${{ matrix.platform }}
+    steps:
+      # 第 1 步：從存儲庫中檢出最新代碼
+      - uses: actions/checkout@v4
+
+      # 第 2 步：僅在 Ubuntu 平台上安裝所需的依賴項
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == "ubuntu-22.04" # 條件檢查僅在 Ubuntu 上運行
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+        # webkitgtk 4.0 適用於 Tauri v1 - webkitgtk 4.1 適用於 Tauri v2。
+        # 你可以移除不適用於應用程式的版本以加快工作流程速度。
+
+      # 第 3 步：設置 Node.js 環境，使用 LTS 版本並緩存依賴項
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/* # 使用 Node.js 的最新 LTS 版本
+          cache: "yarn" # 緩存 Yarn 的依賴項（可以改為 npm 或 pnpm 取決於你使用的包管理器）
+
+      # 第 4 步：安裝 Rust 穩定版
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # 僅在 macOS 上安裝特定目標以優化工作流程
+          targets: ${{ matrix.platform == "macos-latest" && "aarch64-apple-darwin,x86_64-apple-darwin" || "" }}
+
+      # 第 5 步：緩存 Rust 的編譯輸出以加快未來的構建
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "./ts_gui/src-tauri -> target" # 緩存 Rust 的目標目錄
+
+      # 第 6 步：安裝專案的前端依賴項
+      # 如果你的項目需要構建前端，可以在此處添加構建命令。
+      - name: install frontend dependencies
+        run: yarn install # 使用 Yarn 安裝依賴項。若使用 npm 或 pnpm，請更改此命令。
+
+      # 第 7 步：使用 Tauri 操作來構建並發布應用程式
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub Token 進行身份驗證
+        with:
+          projectPath: "./ts_gui"
+          tagName: v__VERSION__ # 自動將 __VERSION__ 替換為應用程式的版本號
+          releaseName: "App v__VERSION__" # 發布版本的名稱
+          releaseBody: "查看資源以下載並安裝此版本。" # 發布的描述
+          releaseDraft: true # 將發布版本作為草稿保存
+          prerelease: false # 將發布標記為穩定版本（非預發布）
+          args: ${{ matrix.args }} # 將平台相關的參數傳遞給 Tauri
