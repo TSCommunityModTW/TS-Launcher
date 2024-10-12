@@ -482,7 +482,8 @@ impl<'a> ForgeHandler<'a> {
 
         if let Some(modloaders_manifest) = forge_manifest.game_versions.iter().find(|v| v.id == self.minecraft_version) {
 
-            let id = format!("{}-{}", self.minecraft_version, self.loader_version);
+            // let id = format!("{}-{}", self.minecraft_version, self.loader_version);
+            let id = self.loader_version;
             let modloaders = &modloaders_manifest.loaders;
 
             let forge_loader_version = modloaders.iter().find(|v| v.id == id)

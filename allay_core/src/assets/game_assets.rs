@@ -11,7 +11,7 @@ use serde::{Serialize, Deserialize};
 use crate::util::{fetch, metadata::API_URL};
 
 pub async fn get_game_assets_version_menifest(server_id: &str, children_server_id: &str, version: &str) -> crate::Result<IAssetsVersionMenifest> {
-    let version_menifest = fetch::request_json::<IAssetsVersionMenifest>(format!("{}/launcher/assets/metadata/{}/{}/version_metadata/{}", API_URL, server_id, children_server_id, version).as_str()).await?;
+    let version_menifest = fetch::request_json::<IAssetsVersionMenifest>(format!("{}/launcher/servers/{}/children/{}/versions/{}/metadata", API_URL, server_id, children_server_id, version).as_str()).await?;
     Ok(version_menifest)
 }
 

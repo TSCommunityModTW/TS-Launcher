@@ -1,6 +1,5 @@
 use std::path::Path;
 
-use chrono::format;
 use serde::Deserialize;
 
 use crate::minecraft::version::VanillaVersionInfo;
@@ -10,9 +9,10 @@ use crate::util::io;
 
 use super::fetch;
 
-pub const S3_URL: &str = "http://s3api.tshosts.com:9800/minecraft-metadata";
-pub const MINECRAFT_VERSION_MANIFEST_URL: &str = "https://launchermeta.mojang.com/mc/game/version_manifest.json";
-// pub const API_URL: &str = "http://api.tshosts.com:9042";
+pub const S3_URL: &str = "https://s3api.tshosts.com/minecraft-metadata";
+#[cfg(not(debug_assertions))]
+pub const API_URL: &str = "https://api.tshosts.com";
+#[cfg(debug_assertions)]
 pub const API_URL: &str = " http://localhost:8030";
 
 #[derive(Debug, Deserialize)]
@@ -39,7 +39,7 @@ pub struct MinecraftManifest {
 
 #[tracing::instrument]
 async fn get_versions_manifest() -> crate::Result<MinecraftManifest> {
-    Ok(fetch::request_json::<MinecraftManifest>(MINECRAFT_VERSION_MANIFEST_URL).await?)
+    Ok(fetch::request_json::<MinecraftManifest>("https://launchermeta.mojang.com/mc/game/version_manifest.json").await?)
 }
 
 #[tracing::instrument]
@@ -83,5 +83,5 @@ pub async fn get_fabric_versions_manifest() -> crate::Result<daedalus::modded::M
 
 #[tracing::instrument]
 pub async fn get_launcher_assets() -> crate::Result<LauncherAssets> {
-    Ok(fetch::request_json::<LauncherAssets>(format!("{}/{}", API_URL, "launcher/assets/metadata/servers").as_str()).await?)
+    Ok(fetch::request_json::<LauncherAssets>(format!("{}/{}", API_URL, "launcher/servers/metadata").as_str()).await?)
 }

@@ -14,7 +14,7 @@ tokio = { version = "1", features = ["full"] }
 
 tauri = { version = "1.5", optional = true }
 
-daedalus = { version = "0.1.27" }
+daedalus = { version = "0.2.3" }
 
 uuid = { version = "1.4.1", features = ["v4", "fast-rng", "macro-diagnostics", "serde"] }
 futures = "0.3"

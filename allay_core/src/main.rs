@@ -1,6 +1,7 @@
-use allay_core::{init_logger, launcher_assets::ServerChildren, loader::loader::{BuildModLoader, LoaderType}, metadata, validate};
+use allay_core::{app_path, init_logger, libraries, loader::loader::{BuildModLoader, LoaderType}, metadata, parameters::{BuildParameters, JavaJvmSettings, PlayerProfile}, validate};
+use tokio::process::Command;
 
-const MINECRAFT_VERSION: &str = "1.20.2";
+const MINECRAFT_VERSION: &str = "1.20.4";
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -61,6 +62,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 async fn start_game(minecraft_version: &str) -> Result<(), Box<dyn std::error::Error>> {
 
+    let game_dir_path = app_path::get_instances_dir_path().join("test");
+
     let java_jvm_path = "/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/bin/java";
     // let java_jvm_path = "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin/java";
     // let java_jvm_path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_311.jdk/Contents/Home/bin/java";
@@ -83,7 +86,7 @@ async fn start_game(minecraft_version: &str) -> Result<(), Box<dyn std::error::E
 
     // ? Forge 支援，已測試過
     // let loader_version_info = BuildModLoader::new("1.8.9", LoaderType::Forge, "11.15.1.2318-1.8.9", &vanilla_version_info).get_loader_version_info().await?;
-    // let loader_version_info = BuildModLoader::new("1.7.10", LoaderType::Forge, "10.13.4.1614-1.7.10", &vanilla_version_info).get_loader_version_info().await?;
+    // let loader_version_info = BuildModLoader::new("1.7.10", LoaderType::Forge, "10.13.4.1614", &vanilla_version_info).get_loader_version_info().await?;
     // let loader_version_info = BuildModLoader::new("1.12.2", LoaderType::Forge, "14.23.5.2847", &vanilla_version_info).get_loader_version_info().await?;
     // let loader_version_info = BuildModLoader::new("1.12.2", LoaderType::Forge, "14.23.5.2860", &vanilla_version_info).get_loader_version_info().await?;
     // let loader_version_info = BuildModLoader::new("1.15.2", LoaderType::Forge, "31.2.50", &vanilla_version_info).get_loader_version_info().await?;
@@ -98,26 +101,39 @@ async fn start_game(minecraft_version: &str) -> Result<(), Box<dyn std::error::E
 
     // println!("{:#?}", loader_version_info);
 
-    // validate::validate_installer(&vanilla_version_info, Some(&loader_version_info), Some(&java_jvm_path)).await?;
-    // validate::validate_installer(&vanilla_version_info, None, Some(&java_jvm_path)).await?;
+    validate::validate_installer(&vanilla_version_info, Some(&loader_version_info), None, &game_dir_path, Some(&java_jvm_path), None).await?;
+    // validate::validate_installer(&vanilla_version_info, None, None, &game_dir_path, Some(&java_jvm_path), None).await?;
     
+    let java_jvm_settings = JavaJvmSettings {
+        ram_max_size: 1024,
+        ram_min_size: 1024,
+        java_parameter: "".to_owned(),
+        java_jvm_path: "".to_owned()
+    };
+
+    let player_profile = PlayerProfile {
+        name: "yucheng".to_owned(),
+        uuid: "93ea0589-ec75-4cad-8619-995164382e8d".to_owned(),
+        mc_account_token: "".to_owned()
+    };
+
     // * modloader
-    // let java_jvm_parameters = BuildParameters::new(&vanilla_version_info).get_jvm_loader_parameters(&loader_version_info)?;
+    let java_jvm_parameters = BuildParameters::new(&vanilla_version_info, &game_dir_path, java_jvm_settings, player_profile).get_jvm_loader_parameters(&loader_version_info)?;
     // * vanilla
-    // let java_jvm_parameters = BuildParameters::new(&vanilla_version_info).get_jvm_vanilla_parameters()?;
+    // let java_jvm_parameters = BuildParameters::new(&vanilla_version_info, &game_dir_path, java_jvm_settings, player_profile).get_jvm_vanilla_parameters()?;
 
     // tracing::info!("{:#?}", java_jvm_parameters.parameters.join(" "));
-    // tracing::info!("{:#?}", java_jvm_parameters.parameters);
+    tracing::info!("{:#?}", java_jvm_parameters.parameters);
 
-    // libraries::extract_natives(vanilla_version_info.get_libraries(), &java_jvm_parameters.natives_dir_path)?;
+    libraries::extract_natives(vanilla_version_info.get_libraries(), &java_jvm_parameters.natives_dir_path)?;
 
-    // let mut child = Command::new(java_jvm_path);
-    // child.args(&java_jvm_parameters.parameters);
-    // child.current_dir(app_path::get_instances_dir_path().join("main-server"));
+    let mut child = Command::new(&java_jvm_path);
+    child.args(&java_jvm_parameters.parameters);
+    child.current_dir(&game_dir_path);
 
-    // let _minecrafts_child = children.insert_new_process(Uuid::new_v4(), child).await?;
+    let _ = child.spawn()?;
 
-    // tokio::time::sleep(tokio::time::Duration::from_secs(500)).await;
+    tokio::time::sleep(tokio::time::Duration::from_secs(500)).await;
 
     Ok(())
 }
