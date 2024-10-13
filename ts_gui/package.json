@@ -1,10 +1,13 @@
 {
   "name": "ts-launcher",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "type": "module",
   "productName": "TSLauncher",
-  "description": "Minecraft TSLauncher",
-  "author": "Yu (https://github.com/yucheng918)",
+  "description": "TS Launcher for TS 模組伺服器社群",
+  "author": {
+    "name": "TS Community Mod Team",
+    "email": "tssoft058@gmail.com"
+  },
   "license": "GPL-3.0",
   "homepage": "https://github.com/TSCommunityModTW/TS-Launcher",
   "repository": {

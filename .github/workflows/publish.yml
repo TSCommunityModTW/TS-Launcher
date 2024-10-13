@@ -84,7 +84,7 @@ jobs:
         with:
           projectPath: './ts_gui'
           tagName: v__VERSION__ # 自動將 __VERSION__ 替換為應用程式的版本號
-          releaseName: 'App v__VERSION__' # 發布版本的名稱
+          releaseName: 'Releases v__VERSION__' # 發布版本的名稱
           releaseBody: '查看資源以下載並安裝此版本。' # 發布的描述
           releaseDraft: true # 將發布版本作為草稿保存
           prerelease: false # 將發布標記為穩定版本（非預發布）

@@ -1,5 +1,5 @@
 use crate::{ErrorKind, util, LoadingBarId, emit::loading_try_for_each_concurrent};
-use std::{path::{PathBuf, Path}, fs::File, io::copy};
+use std::{fs::File, io::copy, path::{Path, PathBuf}, time::Duration};
 use reqwest::{Client, Method};
 use futures::{StreamExt, stream};
 use sha1::{Sha1, Digest};
@@ -8,7 +8,10 @@ use super::{io::write_file, config::FETCH_ATTEMPTS};
 
 lazy_static! {
     pub static ref REQWEST_CLIENT: reqwest::Client = {
-        Client::new()
+        Client::builder()
+            // .timeout(Duration::from_secs(30))
+            .build()
+            .expect("Failed to build reqwest client")
     };
 }
 
@@ -23,7 +26,7 @@ pub struct DownloadFile {
     pub manifest_url: Option<Vec<String>>,
 }
 
-#[tracing::instrument(skip(files, limit, loading_bar))]
+#[tracing::instrument(skip_all)]
 pub async fn validate_download_assets(files: Vec<DownloadFile>, limit: Option<usize>, loading_bar: Option<(&LoadingBarId, f64)>) -> crate::Result<()> {
 
     let num_futs = files.len();
@@ -41,9 +44,9 @@ pub async fn validate_download_assets(files: Vec<DownloadFile>, limit: Option<us
         |file| async move {
 
             if !util::io::is_path_exists(&file.path) {
-                tracing::debug!("Local file does not exist, ready to download: {}", &file.name);
+                tracing::debug!("本機檔案不存在，準備下載: {}", &file.name);
                 match download_file(&file.download_url, &file.path, &file.name, &file.sha1, file.relative_url.as_ref(), file.manifest_url.as_ref()).await {
-                    Ok(_) => tracing::debug!("Downloaded file finish: {:?}", &file.path),
+                    Ok(_) => tracing::debug!("檔案下載完成: {:?}", &file.path),
                     Err(error) => return Err(error),
                 }
             }
@@ -55,7 +58,7 @@ pub async fn validate_download_assets(files: Vec<DownloadFile>, limit: Option<us
     Ok(())
 }
 
-#[tracing::instrument(skip(url, path, relative_url, manifest_urls))]
+#[tracing::instrument(skip_all)]
 pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relative_url: Option<&String>, manifest_urls: Option<&Vec<String>>) -> crate::Result<()> {
 
     for attempt in 1..=(FETCH_ATTEMPTS + 2) {
@@ -68,7 +71,7 @@ pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relat
 
                 if !res.status().is_success() {
 
-                    tracing::warn!("取得下載檔案失敗，嘗試重新取得，嘗試次數: {}", attempt);
+                    tracing::warn!("取得下載檔案失敗，狀態碼: {}，嘗試重新取得，嘗試次數: {}", res.status(), attempt);
         
                     if let Some(manifest_urls) = manifest_urls {
         
@@ -124,15 +127,17 @@ pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relat
                 }
 
                 let bytes = res.bytes().await?;
+                tracing::info!("下載成功，檔案大小: {} bytes", bytes.len());
                 write_file(path, &bytes).await?;
 
                 // 檢查下载文件的 SHA-1 哈希值是否匹配
                 if !sha1_exists(path, sha1)? {
 
-                    tracing::warn!("檔案 SHA-1 雜湊值不符。 {} sha1: {} url: {}", name.to_owned(), sha1, url.to_owned());
+                    util::io::remove_file(path).await?;
+                    tracing::warn!("已刪除不匹配的檔案: {:?}", path.to_string_lossy().to_owned());
 
                     if attempt <= 3 {
-                        tracing::warn!("嘗試重新取得, url: {}", url);
+                        tracing::warn!("檔案 SHA-1 雜湊值不符，嘗試重新取得 name: {} sha1: {} url: {}", name.to_owned(), sha1, url.to_owned());
                         continue;
                     } else {
                         // tracing::warn!("嘗試重新失敗，先跳過, url: {}", url);
@@ -155,19 +160,31 @@ pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relat
     Err(crate::ErrorKind::DownloadFileError(format!("下載檔案失敗, url: {}", url)).as_error())
 }
 
- // 檢查本地檔案的 SHA-1 雜湊值是否匹配
+// 檢查本地檔案的 SHA-1 雜湊值是否匹配
+#[tracing::instrument(skip_all)]
 pub fn sha1_exists(path: &Path, expected_hash: &str) -> crate::Result<bool> {
+
+    let expected_hash = expected_hash.trim();
 
     if expected_hash.is_empty() {
         return Ok(true);
     }
 
     let mut local_file = File::open(path)?;
+    let metadata = local_file.metadata()?;
+
+    // 檢查檔案是否為空
+    if metadata.len() == 0 {
+        tracing::warn!("本地檔案為空，無法計算 SHA-1");
+        return Ok(false);
+    }
+
     let mut hasher = Sha1::new();
     copy(&mut local_file, &mut hasher)?;
-    let local_hash = format!("{:x}", hasher.finalize());
+    let binding = format!("{:x}", hasher.finalize()).to_owned();
+    let local_hash = binding.trim();
 
-    tracing::debug!("local_sha1_exists: {}", local_hash);
+    tracing::debug!("local: {} expected: {}", local_hash, expected_hash);
 
-    Ok(local_hash == expected_hash.to_string())
+    Ok(local_hash == expected_hash)
 }

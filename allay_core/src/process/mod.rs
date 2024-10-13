@@ -1,7 +1,9 @@
+use std::{fmt::format, path::Path};
+
 use tokio::process::Command;
 use uuid::Uuid;
 
-use crate::{assets::game_assets, data::LauncherAssets, emit::{emit_loading, init_loading}, launcher_assets::ServerChildren, minecraft::{libraries, loader::loader::{BuildModLoader, LoaderType}, parameters::{BuildParameters, JavaJvmSettings, PlayerProfile}, validate}, util::{app_path, io::create_dir_all, metadata, utils}, Java, LoadingBarType, Store};
+use crate::{assets::game_assets, data::LauncherAssets, emit::{emit_loading, init_loading}, launcher_assets::ServerChildren, minecraft::{libraries, loader::loader::{BuildModLoader, LoaderType}, parameters::{BuildParameters, JavaJvmSettings, PlayerProfile}, validate}, util::{self, app_path, io::create_dir_all, metadata, utils}, Java, LoadingBarType, Store};
 
 pub mod children;
 
@@ -119,8 +121,17 @@ impl Process {
             return Err(crate::ErrorKind::LauncherError("Java 虛擬機路徑不能為空".to_owned()).as_error());
         }
 
+        if !util::io::is_path_exists(Path::new(&java_jvm_path)) {
+            return Err(crate::ErrorKind::LauncherError(format!("Java 虛擬機路徑沒有檔案: {}", &java_jvm_path)).as_error());
+        }
+
+        tracing::debug!("{:#?}", &java_jvm_path);
+
         let mut child = Command::new(&java_jvm_path);
         child.args(&java_jvm_parameters.parameters);
+
+        tracing::debug!("{:#?}", &game_dir_path);
+
         child.current_dir(&game_dir_path);
 
         let _minecrafts_child = children.insert_new_process(uuid, child).await?;

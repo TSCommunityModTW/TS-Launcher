@@ -6,8 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "TS Launcher",
-    "version": "0.1.1"
+    "productName": "TS Launcher"
   },
   "tauri": {
     "allowlist": {
@@ -45,7 +44,12 @@
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
-      ]
+      ],
+      "windows": {
+        "webviewInstallMode": {
+          "type": "downloadBootstrapper"
+        }
+      }
     },
     "security": {
       "csp": null
@@ -79,6 +83,5 @@
         "https://s3api.bdstw.org:9800/ts-launcher-metadata/version/version.json"
       ]
     }
-    
   }
 }

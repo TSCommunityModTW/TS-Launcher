@@ -21,6 +21,9 @@ pub async fn install_jar(version: u32) -> crate::Result<PathBuf> {
 
     #[cfg(target_os = "windows")]
     return Ok(java::install(version, None).await?);
+
+    #[cfg(target_os = "linux")]
+    return Ok(java::install(version, None).await?);
 }
 
 #[tracing::instrument]
