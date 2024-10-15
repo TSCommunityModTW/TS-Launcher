@@ -1,5 +1,5 @@
 use crate::{ErrorKind, util, LoadingBarId, emit::loading_try_for_each_concurrent};
-use std::{fs::File, io::copy, path::{Path, PathBuf}, time::Duration};
+use std::{fs::File, io::copy, path::{Path, PathBuf}};
 use reqwest::{Client, Method};
 use futures::{StreamExt, stream};
 use sha1::{Sha1, Digest};
@@ -77,7 +77,7 @@ pub async fn download_file(url: &str, path: &Path, name: &str, sha1: &str, relat
 
     for attempt in 1..=(FETCH_ATTEMPTS + 2) {
 
-        tracing::debug!("嘗試下載次數: {}，URL: {}", attempt, url);
+        tracing::debug!("下載次數: {}，URL: {}", attempt, url);
 
         let response = REQWEST_CLIENT.request(Method::GET, url);
         let result = response.send().await;
