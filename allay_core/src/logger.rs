@@ -1,5 +1,7 @@
 use tracing_appender::non_blocking::WorkerGuard;
 
+use crate::util;
+
 // #[cfg(debug_assertions)]
 // pub fn init_logger() -> Option<WorkerGuard> {
 
@@ -38,20 +40,23 @@ pub fn init_logger() -> Option<WorkerGuard> {
     let filter = tracing_subscriber::EnvFilter::new("allay_core=debug,ts_gui=debug");
 
     // 獲取當前日期，並格式化為 YYYY-MM-DD
-    let date = Local::now().format("%Y-%m-%d").to_string();
+    // let date = Local::now().format("%Y-%m-%d").to_string();
 
     // 自定義日志文件名稱
     let logs_dir = app_path::get_logs_dir_path();
-    let log_file_name = format!("{}/{}_app_log.log", logs_dir.to_string_lossy().to_owned(), date);
+    // let log_file_name = format!("{}/{}_app_log.log", logs_dir.to_string_lossy().to_owned(), date);
+
 
     // 打開文件，並確保是追加寫入模式
-    let log_file = OpenOptions::new()
-        .create(true)
-        .append(true)
-        .open(log_file_name)
-        .expect("Failed to open log file");
+    // let log_file = OpenOptions::new()
+    //     .create(true)
+    //     .append(true)
+    //     .open(log_file_name)
+    //     .expect("Failed to open log file");
 
-    let (non_blocking_appender, guard) = tracing_appender::non_blocking(log_file);
+
+    let file_appender = tracing_appender::rolling::daily(logs_dir, "allay_core");
+    let (non_blocking_appender, guard) = tracing_appender::non_blocking(file_appender);
 
     let subscriber = tracing_subscriber::registry()
         .with(tracing_subscriber::fmt::layer()
