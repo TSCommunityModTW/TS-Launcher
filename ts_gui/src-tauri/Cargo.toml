@@ -1,6 +1,6 @@
 [package]
 name = "ts_gui"
-version = "0.1.4"
+version = "0.1.5"
 description = "TS Launcher for TS 模組伺服器社群"
 authors = ["TS Community Mod Team <tssoft058@gmail.com>"]
 license = "GPL-3.0"

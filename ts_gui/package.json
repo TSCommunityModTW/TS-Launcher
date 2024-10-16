@@ -1,6 +1,6 @@
 {
   "name": "ts-launcher",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "productName": "TSLauncher",
   "description": "TS Launcher for TS 模組伺服器社群",

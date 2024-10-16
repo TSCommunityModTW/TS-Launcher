@@ -1,5 +1,5 @@
 use crate::{ErrorKind, util, LoadingBarId, emit::loading_try_for_each_concurrent};
-use std::{fs::File, io::copy, path::{Path, PathBuf}};
+use std::{fs::File, io::copy, path::{Path, PathBuf}, time::Duration};
 use reqwest::{Client, Method};
 use futures::{StreamExt, stream};
 use sha1::{Sha1, Digest};
@@ -9,7 +9,8 @@ use super::{io::write_file, config::FETCH_ATTEMPTS};
 lazy_static! {
     pub static ref REQWEST_CLIENT: reqwest::Client = {
         Client::builder()
-            // .timeout(Duration::from_secs(30))
+            .timeout(Duration::from_secs(30)) // 增加整體請求超時
+            .connect_timeout(Duration::from_secs(10)) // 設定連接超時
             .build()
             .expect("Failed to build reqwest client")
     };
