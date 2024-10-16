@@ -4,7 +4,7 @@ use crate::{assets::game_assets::{IAssetsVersionMenifest, IAssetsVersionMenifest
 use super::{version::{VanillaVersionInfo, ClientJar}, loader::loader::LoaderVersionInfo, libraries::LibrariesJar, assets::AssetObjects};
 
 
-#[tracing::instrument(skip(vanilla_version_info, loader_version_info, game_assets_version_menifest, game_dir_path, java_jvm_path, loading_bar))]
+#[tracing::instrument(skip_all)]
 pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loader_version_info: Option<&LoaderVersionInfo>, game_assets_version_menifest: Option<&IAssetsVersionMenifest>, game_dir_path: &Path, java_jvm_path: Option<&str>, loading_bar: Option<(&LoadingBarId, f64)>) -> crate::Result<()> {
 
     tracing::info!("Validate downloading Data...");
@@ -65,6 +65,7 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
     Ok(())
 }
 
+#[tracing::instrument(skip_all)]
 fn add_game_assets_file_to_download_queue(files: &Vec<IAssetsVersionMenifestFile>, game_dir_path: &Path, queue: &mut Vec<DownloadFile>) {
     for file in files.iter() {
         let path = game_dir_path.join(&file.install_path);
@@ -80,6 +81,7 @@ fn add_game_assets_file_to_download_queue(files: &Vec<IAssetsVersionMenifestFile
     }
 }
  
+#[tracing::instrument(skip_all)]
 fn add_libraries_to_download_queue(libraries: Vec<LibrariesJar>, queue: &mut Vec<DownloadFile>) {
     for lib in libraries.iter() {
         queue.push(DownloadFile {
@@ -94,6 +96,7 @@ fn add_libraries_to_download_queue(libraries: Vec<LibrariesJar>, queue: &mut Vec
     }
 }
 
+#[tracing::instrument(skip_all)]
 fn add_asset_objects_to_download_queue(asset_objects: Vec<AssetObjects>, queue: &mut Vec<DownloadFile>) {
     for obj in asset_objects.iter() {
         queue.push(DownloadFile {
@@ -108,6 +111,7 @@ fn add_asset_objects_to_download_queue(asset_objects: Vec<AssetObjects>, queue: 
     }
 }
 
+#[tracing::instrument(skip_all)]
 fn add_client_jar_to_download_queue(client_jar: ClientJar, queue: &mut Vec<DownloadFile>) {
     queue.push(DownloadFile {
         name: client_jar.name,

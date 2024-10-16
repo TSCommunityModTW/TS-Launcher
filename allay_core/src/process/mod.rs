@@ -11,6 +11,7 @@ pub struct Process {}
 
 impl Process {
     
+    #[tracing::instrument(skip_all)]
     pub async fn run(server_id: &str, children_server_id: &str, uuid: Uuid) -> crate::Result<()> {
 
         let loading_bar = init_loading(
@@ -139,6 +140,7 @@ impl Process {
         Ok(())
     }
 
+    #[tracing::instrument(skip_all)]
     fn is_mc_java_jvm_path(mc_version: &str, java: &Java) -> String {
         if utils::is_mc_version("1.18", mc_version) {
             return java.java17_path.clone();
