@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 
-use crate::util::config::MICROSOFT_CLIENT_ID;
+use crate::config;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct DeviceAuth {
@@ -40,7 +40,7 @@ struct TokenAuthError {
 pub async fn auth_device_code() -> crate::Result<DeviceAuth> {
 
     let mut params = HashMap::new();
-    params.insert("client_id", MICROSOFT_CLIENT_ID);
+    params.insert("client_id", config::MICROSOFT_CLIENT_ID);
     params.insert("scope", "XboxLive.signin,offline_access");
 
     let device_code_response = Client::new()
@@ -77,7 +77,7 @@ pub struct RefreshTokenAuth {
 pub async fn refresh_access_token(refresh_token: &str) -> crate::Result<RefreshTokenAuth> {
 
     let mut params = HashMap::new();
-    params.insert("client_id", MICROSOFT_CLIENT_ID);
+    params.insert("client_id", config::MICROSOFT_CLIENT_ID);
     params.insert("scope", "XboxLive.signin,offline_access");
     params.insert("refresh_token", refresh_token);
     params.insert("grant_type", "refresh_token");
@@ -103,7 +103,7 @@ pub async fn auth_verification_user(device_auth: &DeviceAuth) -> crate::Result<O
     loop {
         let mut params = HashMap::new();
         params.insert("grant_type", "urn:ietf:params:oauth:grant-type:device_code");
-        params.insert("client_id", MICROSOFT_CLIENT_ID);
+        params.insert("client_id", config::MICROSOFT_CLIENT_ID);
         params.insert("device_code", &device_auth.device_code);
 
         let token_response = Client::new()

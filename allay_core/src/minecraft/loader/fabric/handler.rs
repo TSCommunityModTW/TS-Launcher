@@ -2,7 +2,7 @@ use std::{collections::HashMap, path::Path};
 
 use regex::Regex;
 
-use crate::{app_path, arguments::Argument, fetch, libraries::{LibrariesJar, LibrariesJarType}, loader::{forge::handler::ForgeLoaderVersionInfo, loader::{parse_group_relative_path, parse_group_url, LoaderArguments, LoaderJvmArgument, LoaderJvmArgumentType}}, metadata};
+use crate::{arguments::Argument, libraries::{LibrariesJar, LibrariesJarType}, loader::{forge::handler::ForgeLoaderVersionInfo, loader::{parse_group_relative_path, parse_group_url, LoaderArguments, LoaderJvmArgument, LoaderJvmArgumentType}}, util::{app_path, fetch, metadata}};
 
 pub struct FabricHandler<'a> {
     minecraft_version: &'a str,

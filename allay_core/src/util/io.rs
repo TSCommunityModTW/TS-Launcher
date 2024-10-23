@@ -35,23 +35,16 @@ impl IOError {
 #[tracing::instrument(skip(struct_objects, path))]
 pub async fn write_struct_file<T>(path: &Path, struct_objects: &T) -> crate::Result<()> where T: ?Sized + Serialize {
     let bytes = serde_json::to_vec(struct_objects).map_err(|e| IOError::with_path(e.into(), path))?;
+    self::create_dir_all(&path).await?;
     self::write_file(&path, &bytes).await?;
     Ok(())
 }
 
 #[tracing::instrument(skip(bytes, path))]
 pub async fn write_file(path: &Path, bytes: &[u8]) -> crate::Result<()> {
-
-    // create all dir 
-    if let Some(parent) = path.parent() {
-        self::create_dir_all(parent).await?;
-    }
-
     let mut file = File::create(path).await.map_err(|e| IOError::with_path(e, path))?;
     file.write_all(bytes).await.map_err(|e| IOError::with_path(e, path))?;
-
-    tracing::info!("成功寫入檔案: {:?}", path);
-
+    // tracing::info!("成功寫入檔案: {:?}", path);
     Ok(())
 }
 
@@ -71,7 +64,14 @@ pub fn is_path_exists(path: &Path) -> bool {
     }
 }
 
-pub async fn create_dir_all(path: impl AsRef<std::path::Path>) -> Result<(), IOError> {
+pub async fn create_dir_all(path: &Path) -> crate::Result<()> {
+    if let Some(parent) = path.parent() {
+        self::tokio_create_dir_all(parent).await?;
+    }
+    Ok(())
+}
+
+pub async fn tokio_create_dir_all(path: impl AsRef<std::path::Path>) -> Result<(), IOError> {
 
     let path = path.as_ref();
     

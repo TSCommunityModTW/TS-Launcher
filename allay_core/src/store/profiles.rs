@@ -4,7 +4,7 @@ use keyring::Entry;
 use serde::{Serialize, Deserialize};
 use ts_rs::TS;
 
-use crate::util;
+use crate::{config, util};
 
 #[derive(Serialize, Deserialize, Debug, Clone, TS)]
 #[ts(rename = "IStoreProfilesMicrosoftAuth")]
@@ -70,12 +70,12 @@ impl Profiles {
 
 
     pub fn get_microsoft_access_token(&self) -> crate::Result<String> {
-        let entry = Entry::new(util::config::KEYTAR_SERVICE, "accesstoken")?;
+        let entry = Entry::new(config::KEYTAR_SERVICE, "accesstoken")?;
         Ok(entry.get_password()?)
     }
 
     pub fn set_microsoft_access_token(&self, access_token: &str) -> crate::Result<()> {
-        let entry = Entry::new(util::config::KEYTAR_SERVICE, "accesstoken")?;
+        let entry = Entry::new(config::KEYTAR_SERVICE, "accesstoken")?;
         if access_token.len() <= 0 {
             entry.delete_password()?;
         } else {
@@ -85,12 +85,12 @@ impl Profiles {
     }
 
     pub fn get_microsoft_refresh_token(&self) -> crate::Result<String> {
-        let entry = Entry::new(util::config::KEYTAR_SERVICE, "refreshtoken")?;
+        let entry = Entry::new(config::KEYTAR_SERVICE, "refreshtoken")?;
         Ok(entry.get_password()?)
     }
 
     pub fn set_microsoft_refresh_token(&self, refresh_token: &str) -> crate::Result<()> {
-        let entry = Entry::new(util::config::KEYTAR_SERVICE, "refreshtoken")?;
+        let entry = Entry::new(config::KEYTAR_SERVICE, "refreshtoken")?;
         if refresh_token.len() <= 0 {
             entry.delete_password()?;
         } else {

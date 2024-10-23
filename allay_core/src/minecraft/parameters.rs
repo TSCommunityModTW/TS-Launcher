@@ -1,6 +1,6 @@
 use std::{path::{PathBuf, Path}, collections::HashMap};
 use uuid::Uuid;
-use crate::{util::{app_path, utils::{self, OSArch, OSType}, config}, FORGE_MANIFEST_V3_QUERY_P1, FORGE_MANIFEST_V2_QUERY_P1, FORGE_MANIFEST_V2_QUERY};
+use crate::{config, util::{app_path, utils::{self, OSArch, OSType}}, FORGE_MANIFEST_V2_QUERY, FORGE_MANIFEST_V3_QUERY_P1};
 
 use super::{arguments::Argument, loader::{forge::handler::parse_forge_loader_version, loader::{LoaderJvmArgumentType, LoaderType, LoaderVersionInfo}}, version::VanillaVersionInfo};
 

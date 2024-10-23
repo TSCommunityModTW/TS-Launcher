@@ -1,7 +1,7 @@
 // #![allow(dead_code)]
 // #![allow(unused_variables)]
 
-use std::path::{PathBuf, Path};
+use std::{fmt::format, path::{Path, PathBuf}};
 
 use serde::{Deserialize, Serialize};
 
@@ -220,6 +220,7 @@ impl VanillaVersionInfo {
             sha1: self.downloads.client.sha1.to_string(),
             size: self.downloads.client.size,
             download_url: self.downloads.client.download_url.to_string()
+            // download_url: format!("{}{}", self.downloads.client.download_url.to_string(), "x") // TODO: ERROR TEST
         }
     }
 

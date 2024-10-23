@@ -163,6 +163,7 @@ pub async fn check_java_path(path: &Path) -> Option<bool> {
     }
 
     let file_path = tempdir.join("JavaInfo.class");
+    io::create_dir_all(&file_path).await.ok()?;
     io::write_file(&file_path, bytes).await.ok()?;
 
     let output = Command::new(&java)

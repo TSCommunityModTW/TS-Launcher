@@ -23,14 +23,15 @@ lazy_static! {
 mod util;
 mod api;
 mod minecraft;
-mod process;
 mod store;
 mod event;
 mod error;
 mod logger;
-mod assets;
+mod config;
+pub mod process;
+pub mod assets;
 
-pub use util::*; // TODO: temporary
+// pub use util::*; // TODO: temporary
 pub use minecraft::*; // TODO: temporary
 
 pub use store::*;

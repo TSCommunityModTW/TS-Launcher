@@ -5,70 +5,70 @@ use crate::util::{io, java};
 #[derive(Debug, thiserror::Error)]
 pub enum ErrorKind {
 
-    #[error("Fetching error URL: {0}")]
+    #[error("抓取錯誤的 URL: {0}")]
     FetchError(#[from] reqwest::Error),
 
-    #[error("Serialization error (JSON): {0}")]
+    #[error("序列化錯誤 (JSON): {0}")]
     JSONError(#[from] serde_json::Error),
 
-    #[error("File SHA-1 hash does not match, {0} sha1: {1} url: {2}")]
+    #[error("文件 SHA-1 哈希不匹配, {0} sha1: {1} url: {2}")]
     FileSHA1Error(String, String, String),
 
-    #[error("File Download error, expected: {0}")]
+    #[error("文件下載錯誤，說明: {0}")]
     DownloadFileError(String),
 
-    #[error("Files Download error, failure: {0}")]
+    #[error("多個文件下載錯誤，失敗: {0}")]
     DownloadFilesError(usize),
 
-    #[error("I/O (std) error: {0}")]
+    #[error("I/O (std) 錯誤: {0}")]
     StdIOError(#[from] std::io::Error),
 
-    #[error("Create file error, expected: {0}")]
+    #[error("創建文件錯誤，預期: {0}")]
     CreateFileIOError(String),
 
-    #[error("Run future error: {0}")]
+    #[error("執行 future 錯誤: {0}")]
     FutureError(#[from] tokio::task::JoinError),
 
-    #[error("Error launching minecraft: {0}")]
+    #[error("啟動 Minecraft 錯誤: {0}")]
     LauncherError(String),
 
-    #[error("I/O error: {0}")]
+    #[error("I/O 錯誤: {0}")]
     IOError(#[from] io::IOError),
 
-    #[error("Error fetching modLoader: {0}")]
+    #[error("抓取 modLoader 錯誤: {0}")]
     LoaderError(String),
 
-    #[error("Error while parsing version as semver: {0}")]
+    #[error("解析版本為 semver 時發生錯誤: {0}")]
     SemVerError(#[from] semver::Error),
 
-    #[error("Microsoft auth error: {0}")]
+    #[error("Microsoft 認證錯誤: {0}")]
     MicrosoftAuthError(String),
 
-    #[error("Minecraft auth error: {0}")]
+    #[error("Minecraft 認證錯誤: {0}")]
     MinecraftAuthError(String),
 
-    #[error("Zip error: {0}")]
+    #[error("壓縮檔錯誤: {0}")]
     ArchiveZipError(#[from] zip::result::ZipError),
 
     #[error("{0}")]
     KeyringError(#[from] keyring::Error),
 
-    #[error("Java install error: {0}")]
+    #[error("Java 安裝錯誤: {0}")]
     JavaUtilError(#[from] java::JavaUtilError),
     
-    #[error("Invalid input: {0}")]
+    #[error("無效輸入: {0}")]
     InputError(String),
 
-    #[error("Event error: {0}")]
+    #[error("事件錯誤: {0}")]
     EventError(#[from] crate::event::EventError),
 
-    #[error("Unable to read {0} from any source")]
+    #[error("無法從任何來源讀取 {0}")]
     NoValueFor(String),
 
-    #[error("API interacting error: {0}")]
+    #[error("API 交互錯誤: {0}")]
     APIInteractingError(String),
 
-    #[error("Launcher assets error: {0}")]
+    #[error("啟動器資源錯誤: {0}")]
     LauncherAssetsError(String),
 }
 

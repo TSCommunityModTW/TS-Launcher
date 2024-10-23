@@ -1,6 +1,8 @@
 use std::path::{PathBuf, Path};
 
-use super::{config, utils::{OSType, self}};
+use crate::config;
+
+use super::utils::{OSType, self};
 
 pub fn get_app_dir_path() -> PathBuf {
 

@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use crate::{assets::game_assets::{IAssetsVersionMenifest, IAssetsVersionMenifestFile}, minecraft::loader::{forge::installer::ForgeInstaller, loader::LoaderType}, util::{config, download::{self, DownloadFile}}, LoadingBarId};
+use crate::{assets::game_assets::{IAssetsVersionMenifest, IAssetsVersionMenifestFile}, config, minecraft::loader::{forge::installer::ForgeInstaller, loader::LoaderType}, util::download::{self, DownloadFile}, LoadingBarId};
 use super::{version::{VanillaVersionInfo, ClientJar}, loader::loader::LoaderVersionInfo, libraries::LibrariesJar, assets::AssetObjects};
 
 
@@ -67,6 +67,9 @@ pub async fn validate_installer(vanilla_version_info: &VanillaVersionInfo, loade
 
 #[tracing::instrument(skip_all)]
 fn add_game_assets_file_to_download_queue(files: &Vec<IAssetsVersionMenifestFile>, game_dir_path: &Path, queue: &mut Vec<DownloadFile>) {
+    
+    // let s3_prefix = "https://s3api.tshosts.com/";
+    
     for file in files.iter() {
         let path = game_dir_path.join(&file.install_path);
         queue.push(DownloadFile {
