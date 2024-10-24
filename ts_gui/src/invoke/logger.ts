@@ -1,8 +1,5 @@
 import { invoke } from '@tauri-apps/api/tauri';
 
-
-
-
 // Function to log messages
 export default class logger {
     public static async logMessage(level: string, message: string) {

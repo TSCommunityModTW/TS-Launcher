@@ -4,6 +4,7 @@
 mod error;
 mod api;
 mod vibrancy;
+mod shadows;
 
 fn main() {
 
@@ -13,6 +14,8 @@ fn main() {
 
     builder = builder.setup(move |app| {
         vibrancy::init(app)?;
+        #[cfg(target_os = "windows")]
+        shadows::init(app)?;
         Ok(())
     });
 

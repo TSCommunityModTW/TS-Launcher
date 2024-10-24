@@ -68,7 +68,8 @@
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,
         "transparent": true,
-        "visible": false
+        "visible": false,
+        "decorations": true
       }
     ],
     "updater": {
@@ -82,6 +83,11 @@
       "endpoints": [
         "https://s3api.bdstw.org:9800/ts-launcher-metadata/version/version.json"
       ]
+    }
+  },
+  "plugins": {
+    "window-shadows": {
+      "active": true
     }
   }
 }

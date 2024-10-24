@@ -200,7 +200,7 @@ pub fn sha1_exists(path: &Path, expected_hash: &str) -> crate::Result<bool> {
     }
 
     let mut local_file = File::open(path)?;
-    let metadata = local_file.metadata()?;
+    // let metadata = local_file.metadata()?;
 
     // 檢查檔案是否為空
     // if metadata.len() == 0 {
